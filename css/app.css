@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 :root {
     --main-bg-color: #fff;
     --second-bg-color: #f5f5f5;
@@ -21,7 +23,7 @@
 }
 
 body {
-    font-family: "Poppins", sans-serif;
+    font-family: "Inter", sans-serif;
     overflow-x: hidden;
     position: relative;
     background-color: var(--main-bg-color);
@@ -45,7 +47,21 @@ li {
 img {
     max-width: 100%;
 }
-
+p{
+    line-height: 1.6;
+    font-size: 16px;
+}
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  line-height: 1.15; /* 1 */
+  margin: 0; /* 2 */
+  overflow: auto;
+}
 .container {
     max-width: 1366px;
     margin: auto;
@@ -203,7 +219,7 @@ ul.devided > li:last-child {
     display: flex;
     align-items: center;
     margin: 0 20px;
-    font-weight: 600;
+    font-weight: 700;
     height: 100%;
     text-transform: uppercase;
 }
@@ -331,7 +347,8 @@ ul.devided > li:last-child {
 }
 
 .btn-flat {
-    display: inline-block;
+    display: flex;
+    justify-content: center;
     border: 2px solid var(--btn-border-color);
     background-color: var(--btn-bg);
     color: var(--btn-color);
@@ -485,10 +502,14 @@ ul.devided > li:last-child {
 .section-header,
 .section-footer {
     text-align: center;
-    margin: 80px 0 70px;
+    margin: 50px 0 50px;
     text-transform: uppercase;
 }
 
+h1.section-header {
+
+    font-weight: 700;
+}
 .section-header h2 {
     font-size: 40px;
 }
@@ -620,22 +641,23 @@ footer {
 }
 
 .footer-head {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     text-transform: uppercase;
 }
 
+h3.footer-head{
+    font-weight: 700;
+}
+.footer-body{
+    padding:8px 40px 16px 0px ;
+}
 footer ul li {
     margin-bottom: 10px;
 }
 
-.contact-header {
-    text-align: center;
-    font-weight: 600;
-    margin-bottom: 30px;
-    font-size: 38px;
-}
 
 .contact-socials {
+    margin-top: 32px;
     display: flex;
     justify-content: center;
 }
@@ -649,6 +671,9 @@ footer ul li {
     color: var(--grey);
 }
 
+.menu span{
+    font-weight: 700;
+}
 .menu li a {
     text-transform: capitalize;
     transition: transform 0.3s ease-in-out;
@@ -958,6 +983,128 @@ footer ul li {
     line-height: 25px;
 }
 
+.personal-info > * ~ * {
+    margin-top: 25px;
+}
+
+.personal-info-detail-title {
+    font-weight: 600;
+    color: gray;
+}
+
+.personal-description {
+    font-size: 18px;
+    text-align: justify;
+}
+
+.personal-row {
+    padding: 45px 0;
+}
+
+.personal-contact-socials {
+    display:flex;
+    justify-content: flex-end;
+}
+
+.personal-contact-socials a {
+    font-size: 30px;
+    margin: 0 10px;
+}
+
+.personal-contact-socials a:hover {
+    color: var(--grey);
+}
+
+.textarea {
+    padding: 10px 20px 10px 20px;
+    color: #655f5f !important;
+    width: 100%;
+    border: none;
+    height: auto;
+    min-height: 150px;
+    font-size: 18px;
+    margin-bottom: 30px;
+    margin-top: 0;
+}
+.bg-form{
+    background-color: #F5F5F5;
+    padding-top: 20px;
+    margin-bottom: 100px;
+}
+.form-btn{
+    display: flex;
+    justify-content: center;
+}
+.form-control:focus {
+     border-color: #ffffff !important;
+     box-shadow: 0 0 0 .2rem rgba(255, 255, 255, .25);
+}
+.form-control {
+    width: 100%;
+
+    border: #fff solid 1px;
+    padding: 15px 20px;
+    border-radius: inherit;
+    color: #cfcece;
+    font-size: 18px;
+}
+ .form-control:focus, .form-control:hover {
+     box-shadow: none;
+}
+
+
+.contact-info h1{
+    padding: 6px 0 12px 0;
+    font-weight: 600;
+    font-size: 20px;
+
+}
+
+.contact-info span{
+    font-size: 16px; 
+    font-weight: 600;
+    
+}
+
+.contact-note h1 {
+    font-weight: 600;
+    font-size: 20px;
+    color: red;
+}
+
+.contact-note span{
+    font-size: 16px; 
+    font-weight: 600;
+}
+
+.policy-info{
+    padding-bottom: 32px;
+}
+.policy-info span{
+   
+    font-size: 20px;
+    font-weight: 700;
+}
+.policy-info p {
+    padding-top: 12px;
+}
+
+.privacy-security-info{
+    padding-bottom: 32px;
+}
+.privacy-security-info h3{
+    padding: 12px 0px;
+}
+
+.store-hours-info h2{
+
+    text-transform: capitalize;
+}
+.store-hours-info h3{
+    padding: 16px 0 0 0;
+
+    
+}
 /* responsive */
 
 @media only screen and (max-width: 1280px) {
@@ -1025,6 +1172,7 @@ footer ul li {
     }
 
     .main-menu a {
+    
         padding: 10px 0;
     }
 
@@ -1148,6 +1296,7 @@ footer ul li {
     .pagination {
         justify-content: center;
     }
+    
 }
 
 @media only screen and (max-width: 750px) {
@@ -1174,4 +1323,7 @@ footer ul li {
     .promotion-box {
         height: unset;
     }
+
+    
 }
+
