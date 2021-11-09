@@ -255,15 +255,22 @@ ul.devided > li:last-child {
     transition: all 0.4s cubic-bezier(0.77, 0, 0.175, 1);
 }
 
+
 .mega-dropdown:hover .mega-content {
     opacity: 1;
     visibility: visible;
+    
     top: 100%;
 }
 
 .mega-content h3 {
     margin: 20px 0;
     padding-left: 20px;
+}
+
+.mega-content h3 > a:hover {
+    cursor: pointer;
+    color:var(--red);
 }
 
 .mega-content ul {
@@ -279,6 +286,7 @@ ul.devided > li:last-child {
     margin: 0 20px;
     text-transform: capitalize;
 }
+
 
 .mega-content ul > li > a:hover {
     padding-left: 10px;
@@ -752,7 +760,9 @@ footer ul li {
 .filter-list > li {
     margin-bottom: 20px;
 }
-
+.filter-list > li > a:hover{
+    colo: var(--red);
+}
 .filter-toggle-box {
     display: none;
 }
@@ -760,7 +770,7 @@ footer ul li {
 .price-range {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .price-range span {
