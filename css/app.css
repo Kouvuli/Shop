@@ -7,6 +7,7 @@
     --grey: #4b4b4b;
     --black: #000;
     --red: #c0392b;
+    --warning: red;
     --top-header-size: 30px;
     --mid-header-size: 80px;
     --bottom-header-size: 45px;
@@ -51,6 +52,12 @@ p{
     line-height: 1.6;
     font-size: 16px;
 }
+
+table, th, td {
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
 button,
 input,
 optgroup,
@@ -1069,7 +1076,7 @@ footer ul li {
 .contact-note h1 {
     font-weight: 600;
     font-size: 20px;
-    color: red;
+    color: var(--warning);
 }
 
 .contact-note span{
@@ -1103,6 +1110,24 @@ footer ul li {
 .store-hours-info h3{
     padding: 16px 0 0 0;
 
+    
+}
+.shipping-info h3{
+    font-weight: 600;
+    padding: 12px 0px;
+}
+.shipping-info span{
+    font-weight: 600;
+}
+
+.return-exchange-info{
+    padding-bottom: 32px;
+}
+.return-exchange-info td,th{
+    padding:  16px;
+}
+.return-exchange-info h3{
+    padding: 16px 0;
     
 }
 /* responsive */
