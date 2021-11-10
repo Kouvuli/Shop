@@ -4,14 +4,8 @@ const routes = express.Router()
 
 
 routes.get('/', (req, res) => {
-    //?q=monggo
-    const { q } = req.query
 
-    const { title } = req.body
-
-    const data = {}
-    // bookService.create({ title: data.title, ...})
-    res.render('trang-chu')
+    res.render('index')
 })
 routes.get('/books', (req, res) => {
     res.render('index');
