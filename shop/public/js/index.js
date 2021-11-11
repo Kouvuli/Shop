@@ -142,5 +142,3 @@ products.forEach((e) => {
   product_list.insertAdjacentHTML("beforeend", prod);
   best_product_list.insertAdjacentHTML("afterbegin", prod);
 });
-
-document.querySelector("")
