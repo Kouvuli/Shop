@@ -11,9 +11,9 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
 
-        <title>SB Admin 2 - 404</title>
+        <title>WebNerd Admin</title>
 
-        <!-- Custom fonts for this template-->
+        <!-- Custom fonts for this template -->
         <link
             href="vendor/fontawesome-free/css/all.min.css"
             rel="stylesheet"
@@ -24,8 +24,14 @@
             rel="stylesheet"
         />
 
-        <!-- Custom styles for this template-->
-        <link href="css/sb-admin-2.min.css" rel="stylesheet" />
+        <!-- Custom styles for this template -->
+        <link href="css/global.css" rel="stylesheet" />
+
+        <!-- Custom styles for this page -->
+        <link
+            href="vendor/datatables/dataTables.bootstrap4.min.css"
+            rel="stylesheet"
+        />
 
     </head>
 
@@ -43,13 +49,12 @@
                 <!-- Sidebar - Brand -->
                 <a
                     class="sidebar-brand d-flex align-items-center justify-content-center"
-                    href="index.html"
+                    href="/"
                 >
                     <div class="sidebar-brand-icon rotate-n-15">
                         <i class="fas fa-laugh-wink"></i>
                     </div>
-                    <div class="sidebar-brand-text mx-3">SB Admin
-                        <sup>2</sup></div>
+                    <div class="sidebar-brand-text mx-3">WebNerd Admin</div>
                 </a>
 
                 <!-- Divider -->
@@ -57,16 +62,39 @@
 
                 <!-- Nav Item - Dashboard -->
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html">
+                    <a class="nav-link" href="/">
                         <i class="fas fa-fw fa-tachometer-alt"></i>
                         <span>Dashboard</span>
+                    </a>
+                </li>
+                <hr class="sidebar-divider" />
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/users">
+                        <i class="fas fa-users"></i>
+                        <span>Người dùng</span>
+                    </a>
+                </li>
+                <hr class="sidebar-divider" />
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/products">
+                        <i class="fas fa-headphones-alt"></i>
+                        <span>Sản phẩm</span>
+                    </a>
+                </li>
+                <hr class="sidebar-divider" />
+                <li class="nav-item">
+                    <a class="nav-link" href="/orders">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Đơn hàng</span>
                     </a>
                 </li>
 
                 <!-- Divider -->
                 <hr class="sidebar-divider" />
 
-                <!-- Heading -->
+                {{! <!-- Heading -->
                 <div class="sidebar-heading">
                     Interface
                 </div>
@@ -202,10 +230,10 @@
                     <a class="nav-link" href="tables.html">
                         <i class="fas fa-fw fa-table"></i>
                         <span>Tables</span></a>
-                </li>
+                </li>}}
 
                 <!-- Divider -->
-                <hr class="sidebar-divider d-none d-md-block" />
+                {{! <hr class="sidebar-divider d-none d-md-block" /> }}
 
                 <!-- Sidebar Toggler (Sidebar) -->
                 <div class="text-center d-none d-md-inline">
@@ -661,7 +689,28 @@
         <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
         <!-- Custom scripts for all pages-->
-        <script src="js/sb-admin-2.min.js"></script>
+        <script src="js/global.js"></script>
+        <!-- Page level plugins -->
+        <script src="vendor/chart.js/Chart.min.js"></script>
+
+        <!-- Page level custom scripts -->
+        <script src="js/demo/earning-chart.js"></script>
+        <script src="js/demo/chart-pie-demo.js"></script>
+
+        <!-- Page level custom scripts -->
+        <script src="js/demo/datatables-demo.js"></script>
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="js/demo/datatables-demo.js"></script>
+
+        <!-- Core plugin JavaScript-->
+        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+        <!-- Custom scripts for all pages-->
+
+        <!-- Page level plugins -->
+        <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+        <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     </body>
 
