@@ -1,0 +1,97 @@
+<div class="bg-main">
+    <div class="container">
+        <div class="box">
+            <div class="breadcumb">
+                <a href="/">Trang chủ</a>
+                <span><i class='bx bxs-chevrons-right'></i></span>
+                <a href="/category/tat-ca-san-pham">Tất cả sản phẩm</a>
+            </div>
+        </div>
+        <div class="box">
+            <div class="row">
+                <div class="col-3 filter-col" id="filter-col">
+                    <div class="box filter-toggle-box">
+                        <button class="btn-flat btn-hover" id="filter-close">close</button>
+                    </div>
+                    <div class="box">
+                        <span class="filter-header">
+                            Danh mục
+                        </span>
+                        <ul class="filter-list">
+
+                            <li><a href="/category/tai-nghe">Tai nghe</a></li>
+                            <li><a href="/category/may-nghe-nhac">Máy nghe nhạc</a></li>
+                            <li><a href="/category/loa">Loa</a></li>
+                            <li><a href="/category/microphone">Microphone</a></li>
+                        </ul>
+                    </div>
+                    <div class="box">
+                        <span class="filter-header">
+                            Giá
+                        </span>
+                        <div class="price-range">
+                            <input type="text">
+                            <span>-</span>
+                            <input type="text">
+                        </div>
+                    </div>
+                    <div class="box">
+                        <span class="filter-header">
+                            Loại
+                        </span>
+                        <ul class="filter-list">
+                            <li>
+                                <div class="group-checkbox">
+                                    <input type="checkbox" id="status1">
+                                    <label for="status1">
+                                        Đang giảm giá
+                                        <i class='bx bx-check'></i>
+                                    </label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="group-checkbox">
+                                    <input type="checkbox" id="status2">
+                                    <label for="status2">
+                                        Còn hàng
+                                        <i class='bx bx-check'></i>
+                                    </label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="group-checkbox">
+                                    <input type="checkbox" id="status3">
+                                    <label for="status3">
+                                        Hết hàng
+                                        <i class='bx bx-check'></i>
+                                    </label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="col-9 col-md-12">
+                    <div class="box filter-toggle-box">
+                        <button class="btn-flat btn-hover" id="filter-toggle">Lọc</button>
+                    </div>
+                    <div class="box">
+                        <div class="row" id="products"></div>
+                    </div>
+                    <div class="box">
+                        <ul class="pagination">
+                            <li><a href="#"><i class='bx bxs-chevron-left'></i></a></li>
+                            <li><a href="#" class="active">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#"><i class='bx bxs-chevron-right'></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/products.js"></script>
