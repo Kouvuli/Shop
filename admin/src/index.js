@@ -4,8 +4,8 @@ import express from "express";
 import http from "http";
 import morgan from "morgan";
 import cors from "cors";
-import mongoose from 'mongoose';
-import appRoutes from './appRoutes'
+import mongoose from "mongoose";
+import appRoutes from "./appRoutes";
 import path from "path";
 // import axios from "axios";
 // import bookModel from "./models/bookModel";
@@ -57,6 +57,3 @@ class App {
     }
 }
 new App(PORT);
-
-
-
