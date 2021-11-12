@@ -1,0 +1,60 @@
+<div class="container-fluid">
+
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">{{title}}</h1>
+        <a
+            href="#"
+            class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
+        ><i class="fas fa-user-plus fa-sm text-white-50"></i>
+            Thêm người dùng</a>
+    </div>
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">{{title}}</h6>
+
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table
+                    class="table table-bordered"
+                    id="dataTable"
+                    width="100%"
+                    cellspacing="0"
+                >
+                    <thead>
+                        <tr>
+                            {{#each header}}
+                                <th>{{this}}</th>
+                            {{/each}}
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            {{#each header}}
+                                <th>{{this}}</th>
+                            {{/each}}
+                        </tr>
+                    </tfoot>
+                    <tbody>
+
+                        {{#each data}}
+                            <tr>
+                                <td>
+                                    <i class="fas fa-user-lock"></i>
+                                    Garrett Winters
+                                </td>
+                                <td>admin</td>
+                                <td>admin@gmail.com</td>
+                                <td>Nam</td>
+                                <td>Đức Huệ - Long An</td>
+                            </tr>
+                        {{/each}}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
