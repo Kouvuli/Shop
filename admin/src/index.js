@@ -36,8 +36,7 @@ class App {
     }
     useDatabase() {
         mongoose.connect(`mongodb+srv://nguyenkhavi:${process.env.MONGODB_PASSWORD}@cluster0.vo4ad.mongodb.net/${process.env.MONGODB_NAME}`, { useNewUrlParser: true, useUnifiedTopology: true });
-        mongoose.connection.on('error', err => console.log(err));
-        mongoose.connection.once('open', () => console.log('> MongoDB Running...')).on('error', (e) => { throw e });
+        mongoose.connection.once('open', () => console.log('> MongoDB is connected...')).on('error', (e) => { throw e });
     }
     useMiddlewares() {
         this.app.use(cors());
