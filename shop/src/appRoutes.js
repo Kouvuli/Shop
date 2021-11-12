@@ -6,6 +6,10 @@ router.get("/", function (req, res, next) {
   res.render("trang-chu", { title: "Express", layout: "layouts/main" });
 });
 
+router.get("/dang-nhap", function (req, res, next) {
+  res.render("dang-nhap", { title: "Express", layout: "layouts/login" });
+});
+
 router.get("/chinh-sach-bao-mat", function (req, res, next) {
   res.render("chinh-sach-bao-mat", {
     title: "Express",
