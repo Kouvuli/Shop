@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 *{
 	padding: 0;
     margin: 0;
@@ -28,6 +29,68 @@ table, th, td {
     border: 1px solid black;
 }
 
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  line-height: 1.15; /* 1 */
+  margin: 0; /* 2 */
+}
+
+/**
+ * Show the overflow in IE.
+ * 1. Show the overflow in Edge.
+ */
+
+button,
+input { /* 1 */
+  overflow: visible;
+}
+
+/**
+ * Remove the inheritance of text transform in Edge, Firefox, and IE.
+ * 1. Remove the inheritance of text transform in Firefox.
+ */
+
+button,
+select { /* 1 */
+  text-transform: none;
+}
+
+/**
+ * Correct the inability to style clickable types in iOS and Safari.
+ */
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+}
+
+/**
+ * Remove the inner border and padding in Firefox.
+ */
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+button,
+input {
+  font-family: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  line-height: 1.15; /* 1 */
+  margin: 0; /* 2 */
+  overflow: auto;
+}
 .logo {
     font-size: 40px;
     font-weight: 700;
@@ -67,7 +130,7 @@ body {
     font-family: "Inter", sans-serif;
     overflow-x: hidden;
     position: relative;
-    background-image: url(/shop/public/images/boseheadphones.png);
+    background-image: url(/images/boseheadphones.png);
 	background-size: cover;
 	background-repeat: no-repeat;
     overflow-x: hidden;
@@ -76,7 +139,10 @@ body {
 
 .bg-main {
     background-color: var(--main-bg-color);
+
+
 } 
+
 
 .mid-header {
     display: flex;
@@ -99,18 +165,6 @@ body {
     margin-left: 15px;
 }
 
-.btn-cart-add {
-    font-size: 15px;
-    padding: 5px 10px;
-    line-height: 17px;
-}
-.mobile-menu {
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 20px;
-    display: none;
-}
-
 .container {
     max-width: 1366px;
     margin: auto;
@@ -118,215 +172,17 @@ body {
     position: relative;
 }
 @media only screen and (max-width: 1280px) {
-    .mobile-menu {
-        display: flex;
-    }
 
-    .header-wrapper {
-        display: flex;
-        flex-direction: column;
-        height: 100vh;
-        width: 100%;
-        overflow-x: auto;
-        position: fixed;
-        top: 0;
-        right: 100%;
-        background-color: var(--main-bg-color);
-        z-index: 99;
-        transition: right 0.3s ease-in-out;
-    }
-
-    .header-wrapper.active {
-        right: 0;
-    }
 
     .logo {
         font-size: 30px;
     }
 
-    .mb-menu-close {
-        display: block;
-        position: absolute;
-        right: 43px;
-        top: 18px;
-        z-index: 99;
-        font-size: 25px;
-    }
-
-    .top-header {
-        display: none;
-    }
-
-    .mid-header {
-        display: flex;
-        flex-direction: column;
-        padding: 0 20px;
-        height: unset;
-    }
-
-    .mid-header > * {
-        margin-top: 15px;
-    }
-
-    .search {
-        width: 100%;
-    }
-
-    .bottom-header {
-        justify-content: flex-start;
-    }
-
-    .main-menu {
-        flex-direction: column;
-        height: unset;
-    }
-
-    .main-menu a {
     
-        padding: 10px 0;
-    }
-
-    .mega-dropdown > a > i {
-        display: none;
-    }
-
-    .mega-content {
-        position: relative;
-        opacity: 1;
-        visibility: visible;
-        box-shadow: unset;
-        background-color: transparent;
-        padding-left: 45px;
-    }
-
-    .mega-content h3 {
-        font-size: 15px;
-        padding: 5px 0;
-        margin: unset;
-    }
-
-    .mega-content ul > li > a {
-        padding: 5px 0;
-    }
-
-    .mega-content .img-row {
-        display: none;
-    }
-
-    .hero {
-        height: calc(
-            80vh -
-                (
-                    var(--top-header-size) + var(--mid-header-size) +
-                        var(--bottom-header-size)
-                )
-        );
-        margin-bottom: 60px;
-    }
-
-    .slide {
-        flex-direction: column-reverse;
-    }
-
-    .slide > .info,
-    .slide > .img {
-        width: 100%;
-    }
-
-    .slide > .img > img {
-        max-width: 300px;
-    }
-
-    .info-content p {
-        display: none;
-    }
-
-    .info-content button {
-        margin-top: unset;
-    }
-
-    .slide-next,
-    .slider:hover .slide-next {
-        right: 40%;
-    }
-
-    .slide-prev,
-    .slider:hover .slide-prev {
-        left: 40%;
-    }
-
-    .slide-next,
-    .slide-prev {
-        bottom: -70px;
-        transform: unset;
-        top: unset;
-    }
-
-    .product-btn {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-        position: relative;
-        margin-bottom: 20px;
-    }
-
-    .sp-item-info {
-        padding-right: 35px;
-    }
-
-    .blog {
-        flex-wrap: wrap;
-    }
-
-    .blog-img,
-    .blog-info {
-        width: 100%;
-    }
-
-    .filter-toggle-box {
-        display: block;
-    }
-
-    .filter-col {
-        position: fixed;
-        width: 100%;
-        background-color: var(--main-bg-color);
-        z-index: 98;
-        left: 100%;
-        height: 80vh;
-        overflow-y: scroll;
-        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-        transition: left 0.2s ease-in-out;
-    }
-
-    .filter-col.active {
-        left: 0;
-    }
-
-    .pagination {
-        justify-content: center;
-    }
     
 }
 
-@media only screen and (max-width: 750px) {
-    .hero {
-        height: calc(
-            70vh -
-                (
-                    var(--top-header-size) + var(--mid-header-size) +
-                        var(--bottom-header-size)
-                )
-        );
-        margin-bottom: 60px;
-    }
 
-    .info-content h2 {
-        margin: unset;
-        font-size: 40px;
-    }
-
-}
 
 /*============================================================*/
 .form-box
@@ -341,29 +197,35 @@ body {
 }
 .button-box
 {
-	width:220px;
-	margin:35px auto;
+	width:250px;
+	margin:30px auto;
 	position:relative;
 	border-radius: 30px;
+    display: flex;
+    justify-content: space-evenly;
 }
 .toggle-btn
 {
-	padding:10px 30px;
+	padding:10px 10px;
 	cursor:pointer;
 	background:transparent;
 	border:0;
 	outline: none;
 	position: relative;
+    font-weight: 600;
+    text-align: center;
+    font-size: 16px;
+    
 }
 #btn
 {
 	top: 0;
-	left:0;
+	left:21px;
 	position: absolute;
-	width: 110px;
+	width: 100px;
 	height: 100%;
 	background:#fff;
-	border-radius: 30px;
+	border-radius: 35px;
 	transition: .5s;
 }
 .input-group-login
@@ -383,13 +245,11 @@ body {
 .input-field
 {
 	width: 100%;
-	padding:10px 0;
+	padding:10px ;
 	margin:5px 0;
-	border-left:0;
-	border-top:0;
-	border-right:0;
-	border-bottom: 1px solid #999;
-	outline:none;
+	outline: none;
+	border: 1.25px solid rgb(255, 255, 255);
+	border-radius: 10px;
 	background: transparent;
 }
 .submit-btn
@@ -403,16 +263,19 @@ body {
 	border: 0;
 	outline: none;
 	border-radius: 30px;
+     text-transform: uppercase;
+     font-weight: 700;
 }
 .check-box
 {
 	margin: 30px 10px 34px 0;
 }
+
 span
 {
 	color:#777;
 	font-size:12px;
-	bottom:68px;
+	bottom:72px;
 	position:absolute;
 }
 #login
@@ -422,7 +285,8 @@ span
 #login input
 {
 	color:white;
-	font-size:15;
+    font-weight: 400;
+	font-size:14px;
 }
 #register
 {
@@ -431,7 +295,8 @@ span
 #register input
 {
 	color:white;
-	font-size: 15;
+    font-weight: 400;
+	font-size: 14px;
 }
 
 

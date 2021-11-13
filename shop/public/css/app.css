@@ -1260,7 +1260,7 @@ footer ul li {
 
     .hero {
         height: calc(
-            80vh -
+            100vh -
                 (
                     var(--top-header-size) + var(--mid-header-size) +
                         var(--bottom-header-size)
@@ -1357,7 +1357,7 @@ footer ul li {
 @media only screen and (max-width: 750px) {
     .hero {
         height: calc(
-            70vh -
+            80vh -
                 (
                     var(--top-header-size) + var(--mid-header-size) +
                         var(--bottom-header-size)

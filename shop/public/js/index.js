@@ -48,7 +48,7 @@ setInterval(() => {
   if (!slide_play) return;
   nextSlide();
   showSlide();
-}, 5000);
+}, 3000);
 
 // render products
 
