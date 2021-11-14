@@ -1,5 +1,7 @@
 import dotenv from "dotenv";
-dotenv.config();
+dotenv.config({
+    path: process.env.NODE_ENV === 'development' ? `.development.env` : `.env`
+})
 import express from "express";
 import http from "http";
 import morgan from "morgan";
@@ -7,9 +9,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import appRoutes from "./appRoutes";
 import path from "path";
-// import axios from "axios";
-// import bookModel from "./models/bookModel";
-// import bookDetailModel from "./models/bookDetailModel";
+
 const PORT = process.env.PORT || 5000;
 
 class App {

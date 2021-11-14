@@ -3,9 +3,9 @@ import express from "express";
 const routes = express.Router()
 
 routes.get('/', (req, res) => {
-    res.redirect('/login')
+    // res.redirect('/login')
 
-    // res.render('dashboard/index')
+    res.render('dashboard/index')
 })
 
 routes.get('/login', (req, res) => {
