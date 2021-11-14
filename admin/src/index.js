@@ -9,6 +9,9 @@ import cors from "cors";
 import mongoose from "mongoose";
 import appRoutes from "./appRoutes";
 import path from "path";
+import helpers from "./helpers";
+import { create } from 'express-handlebars'
+
 
 const PORT = process.env.PORT || 5000;
 
@@ -28,8 +31,13 @@ class App {
         this.app.use('/', appRoutes);
     }
     useViewEngine() {
+        const hbs = create({
+            helpers: helpers
+        });
+        this.app.engine('handlebars', hbs.engine);
         this.app.set('views', path.join(__dirname, '/views'));
         this.app.set('view engine', 'hbs');
+
     }
     useStatic() {
         this.app.use(express.static(path.join(__dirname, '/public')))
