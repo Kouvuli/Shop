@@ -4,23 +4,23 @@ const { Schema } = mongoose;
 const schema = new Schema(
     {
         //name: Tên sản phẩm
-        name: { type: Schema.Types.String },
+        name: { type: Schema.Types.String, required: true },
         //description: Mô tả sản phẩm
-        description: { type: Schema.Types.String },
+        description: { type: Schema.Types.String, required: true },
         //category: Thông tin danh mục
-        category: { type: Object },
+        category: { type: Schema.Types.Object, },
         //manufacturer: thông tin về sản xuất sản phẩm
-        manufacturer: { type: Object },
+        manufacturer: { type: Schema.Types.Object },
         //quantity: Số lượng sản phẩm trong kho
-        quantity: { type: Schema.Types.Number },
+        quantity: { type: Schema.Types.Number, required: true },
         //originPrice: giá nhập / sản phẩm
-        originPrice: { type: Schema.Types.Number },
+        originPrice: { type: Schema.Types.Number, required: true },
         //currentPrice: Giá bán hiện tại / sản phẩm
-        currentPrice: { type: Schema.Types.Number },
+        currentPrice: { type: Schema.Types.Number, required: true },
         //images: mảng các ảnh của sản phẩm
-        images: { type: Array < String > [] },
+        images: { type: Array },
         //comments: Danh sách bình luận của sản phẩm, mỗi comment {userId, content}
-        comments: { type: Array < Object > [] },
+        comments: { type: Array },
 
     },
     { timestamps: true }
