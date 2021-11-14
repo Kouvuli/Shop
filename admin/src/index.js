@@ -1,5 +1,7 @@
 import dotenv from "dotenv";
-dotenv.config();
+dotenv.config({
+    path: process.env.NODE_ENV === 'development' ? `.development.env` : `.env`
+})
 import express from "express";
 import http from "http";
 import morgan from "morgan";
@@ -7,9 +9,10 @@ import cors from "cors";
 import mongoose from "mongoose";
 import appRoutes from "./appRoutes";
 import path from "path";
-// import axios from "axios";
-// import bookModel from "./models/bookModel";
-// import bookDetailModel from "./models/bookDetailModel";
+import helpers from "./helpers";
+import { create } from 'express-handlebars'
+
+
 const PORT = process.env.PORT || 5000;
 
 class App {
@@ -28,8 +31,13 @@ class App {
         this.app.use('/', appRoutes);
     }
     useViewEngine() {
+        const hbs = create({
+            helpers: helpers
+        });
+        this.app.engine('handlebars', hbs.engine);
         this.app.set('views', path.join(__dirname, '/views'));
         this.app.set('view engine', 'hbs');
+
     }
     useStatic() {
         this.app.use(express.static(path.join(__dirname, '/public')))
