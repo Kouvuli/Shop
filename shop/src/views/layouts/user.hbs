@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
+    <link rel="stylesheet" href="/css/grid.css">
+    <link rel="stylesheet" href="/css/user.css">
+    <title>{{title}}</title>
+</head>
+
+<body>
+    <header>
+        <!-- mobile menu -->
+        <div class="mobile-menu bg-second">
+            <a href="#" class="mb-logo">VVTStore</a>
+            <span class="mb-menu-toggle" id="mb-menu-toggle">
+                <i class='bx bx-menu'></i>
+            </span>
+        </div>
+        <!-- end mobile menu -->
+        <!-- main header -->
+        <div class="header-wrapper" id="header-wrapper">
+            <span class="mb-menu-toggle mb-menu-close" id="mb-menu-close">
+                <i class='bx bx-x'></i>
+            </span>
+            <!-- mid header -->
+            <div class="bg-main">
+                <div class="mid-header container">
+                    <a href="/" class="logo">VVTStore</a>
+                    <div class="search">
+                        <input type="text" placeholder="Search">
+                        <i class='bx bx-search-alt'></i>
+                    </div>
+                    <ul class="user-menu">
+                        <li><a href="/tai-khoan/thong-bao"><i class='bx bx-bell'></i></a></li>
+                        <li><a href="/tai-khoan/ho-so"><i class='bx bx-user-circle'></i></a></li>
+                        <li><a href="/tai-khoan/gio-hang"><i class='bx bx-cart'></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="row">
+        <div class="col-3">
+            <nav class="side-bar">
+                <div class="user-p">
+                    <img src="/images/default-user-image.png">
+                    <h4>User Name</h4>
+                </div>
+                <ul>
+                    <li>
+                        <a href="/tai-khoan/ho-so-ca-nhan">
+                            <i class='bx bxs-user' style='color:#ffffff'></i>
+                            <span>Tài khoản của tôi</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/tai-khoan/gio-hang">
+                            <i class='bx bxs-cart' style='color:#ffffff'></i>
+                            <span>Giỏ hàng</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/tai-khoan/thong-bao">
+                            <i class='bx bxs-bell' style='color:#ffffff'></i>
+                            <span>Thông báo</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/tai-khoan/da-thich">
+                            <i class='bx bxs-heart' style='color:#ffffff'></i>
+                            <span>Đã thích</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class='bx bxs-log-out' style='color:#ffffff'></i>
+                            <span>Đăng xuất</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="col-9 col-md-12">
+            {{{body}}}
+
+        </div>
+
+
+
+
+    </div>
+
+</body>
+
+</html>

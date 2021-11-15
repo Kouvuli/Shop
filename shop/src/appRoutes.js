@@ -51,6 +51,9 @@ router.get("/lien-he", function (req, res, next) {
     layout: "layouts/main",
   });
 });
+router.get("/product-detail", function (req, res, next) {
+  res.render("products/product-detail", { layout: "layouts/main" });
+});
 
 router.get("/phuong-thuc-van-chuyen", function (req, res, next) {
   res.render("phuong-thuc-van-chuyen", {
@@ -64,6 +67,23 @@ router.get("/thoi-gian-lam-viec", function (req, res, next) {
     title: "Express",
     layout: "layouts/main",
   });
+});
+
+router.get("/tai-khoan/ho-so-ca-nhan", function (rq, res, next) {
+  res.render("user/ho-so-ca-nhan", {
+    title: "Tài khoản",
+    layout: "layouts/user",
+  });
+});
+
+router.get("/tai-khoan/gio-hang", function (rq, res, next) {
+  res.render("user/gio-hang", { title: "Giỏ hàng", layout: "layouts/user" });
+});
+router.get("/tai-khoan/thong-bao", function (rq, res, next) {
+  res.render("user/thong-bao", { layout: "layouts/user" });
+});
+router.get("/tai-khoan/da-thich", function (rq, res, next) {
+  res.render("user/da-thich", { layout: "layouts/user" });
 });
 
 router.get("/category/tat-ca-san-pham", function (req, res, next) {
