@@ -31,16 +31,11 @@ class App {
         this.app.use('/', appRoutes);
     }
     useViewEngine() {
-        const hbs = create({
-            helpers: helpers
-        });
-        this.app.engine('handlebars', hbs.engine);
-        this.app.set('views', path.join(__dirname, '/views'));
-        this.app.set('view engine', 'hbs');
-
+        this.app.set("views", "./src/views");
+        this.app.set("view engine", "hbs");
     }
     useStatic() {
-        this.app.use(express.static(path.join(__dirname, '/public')))
+        this.app.use(express.static("./public"));
     }
     useDatabase() {
         mongoose.connect(`mongodb+srv://nguyenkhavi:${process.env.MONGODB_PASSWORD}@cluster0.vo4ad.mongodb.net/${process.env.MONGODB_NAME}`, { useNewUrlParser: true, useUnifiedTopology: true });

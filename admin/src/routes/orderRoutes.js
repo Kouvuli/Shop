@@ -10,11 +10,11 @@ routes.get('/', (req, res) => {
         title: 'Đơn hàng',
         page: page,
         perPage: per_page,
-        data: Array.from({ length: 600 }, (_, index) => index + 1),
+        data: Array.from({ length: 10 }, (_, index) => index + 1),
         header: ["Mã đơn hàng", "Tên người mua", "Đơn giá", "Khuyến mãi", "Phải thanh toán", "Tình trạng"]
     }
 
-    res.render('orders/index', { ...state })
+    res.render('orders/index', { ...state, layout: 'layouts/main' })
 })
 
 export default routes

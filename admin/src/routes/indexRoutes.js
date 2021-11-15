@@ -51,7 +51,7 @@ routes.get('/', async (req, res) => {
 
 
 
-    res.render('dashboard/index')
+    res.render('index', { layout: 'layouts/main' })
 })
 
 routes.get('/login', (req, res) => {
@@ -63,7 +63,7 @@ routes.post('/login', (req, res) => {
     const { username, password } = req.body
     console.log({ username, password });
 
-    res.render('login/index')
+    res.render('login/index', { layout: 'layouts/main' })
 })
 
 
