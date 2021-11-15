@@ -239,7 +239,7 @@ textarea {
 }
 
 .personal-profile label{
-    padding-top: 32px;
+    padding-top: 8px;
     font-size: 20px;
     font-weight: 600;
     
@@ -253,10 +253,7 @@ textarea {
     border:none;
     
 }
-.personal-profile input::placeholder{
-    color: var(--black);
-    font-weight: 500;
-}
+
 #gender{
     max-width: 200px;
 }
