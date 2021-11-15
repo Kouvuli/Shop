@@ -6,7 +6,7 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "NODE_ENV=development nodemon --exec babel-node src/index.js",
-        "build": "webpack --mode production --progress && node build/project-web-development.bundle.js"
+        "build": "webpack --mode production --progress"
     },
     "repository": {
         "type": "git",
