@@ -61,7 +61,6 @@ routes.get('/login', (req, res) => {
 
 routes.post('/login', (req, res) => {
     const { username, password } = req.body
-    console.log({ username, password });
 
     res.render('login/index', { layout: 'layouts/main' })
 })

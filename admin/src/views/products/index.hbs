@@ -145,24 +145,19 @@
                         {{#each data}}
                             <tr>
                                 <td>
-                                    <div>
-                                        <img
-                                            src="https://taingheviet.com/uploads/thumbs/tn_500x500_a6881ad75e4dc56d5f6d194b270b724e_peacok%201.jpg"
-                                        />
-                                        <img
-                                            src="https://taingheviet.com/uploads/thumbs/tn_500x500_a6881ad75e4dc56d5f6d194b270b724e_peacok%201.jpg"
-                                        />
-                                    </div>
+                                    {{#each this.images}}
+                                        <img src={{this}} />
+                                    {{/each}}
                                 </td>
                                 <td>
 
-                                    Tai nghe siêu cấp vip pro
+                                    {{this.name}}
                                 </td>
-                                <td>Tai nghe</td>
-                                <td>LGD</td>
-                                <td>$12</td>
-                                <td>$24</td>
-                                <td>Nghe nhạc được</td>
+                                <td>{{this.category.type}}</td>
+                                <td>{{this.manufacturer.name}}</td>
+                                <td>{{this.originPrice}}</td>
+                                <td>{{this.currentPrice}}</td>
+                                <td>{{this.description}}</td>
                             </tr>
                         {{/each}}
 
