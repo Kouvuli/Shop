@@ -42,13 +42,14 @@
                                 <td>
                                     <i class="fas fa-info-circle"></i>
 
-                                    MS010100
+                                    {{this._id}}
                                 </td>
-                                <td>Admin</td>
-                                <td>$200</td>
-                                <td>$18</td>
-                                <td>$172</td>
-                                <td>Đang giao</td>
+                                <td>{{this.name}}</td>
+                                <td>{{this.createdAt}}</td>
+                                <td>{{this.cost}}</td>
+                                <td>{{this.discount}}</td>
+                                <td>{{this.totalCost}}</td>
+                                <td>{{this.status}}</td>
                             </tr>
                         {{/each}}
 

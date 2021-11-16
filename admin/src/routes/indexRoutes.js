@@ -3,6 +3,8 @@ import userModel from '../models/userModel'
 import productModel from '../models/productModel'
 import cartModel from "../models/cartModel";
 import orderModel from "../models/orderModel";
+import discountModel from "../models/discountModel";
+
 const routes = express.Router()
 
 routes.get('/', async (req, res) => {
@@ -48,20 +50,19 @@ routes.get('/', async (req, res) => {
     //     })
     // }
     // console.log({ users, products });
-
-
-
-    res.render('index', { layout: 'layouts/main' })
+    // await discountModel.create({ name: "Giảm giá 30/4", value: 15, expiry: new Date(), userId: "" })
+    // await discountModel.create({ name: "Giảm giá 1/5", value: 5, expiry: new Date(), userId: "" })
+    // await discountModel.create({ name: "Giảm giá nhập học", value: 10, expiry: new Date(), userId: "" })
+    res.render('index', { layout: 'layouts/main', title: "Dashboard" })
 })
 
 routes.get('/login', (req, res) => {
 
-    res.render('login/index')
+    res.render('login/index', { layout: 'layouts/main' })
 })
 
 routes.post('/login', (req, res) => {
     const { username, password } = req.body
-    console.log({ username, password });
 
     res.render('login/index', { layout: 'layouts/main' })
 })

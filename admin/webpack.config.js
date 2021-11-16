@@ -6,7 +6,7 @@ module.exports = {
     entry: './src/index.js',
     output: {
         path: path.resolve(__dirname, 'build'),
-        filename: pkg.name + '.bundle.js'
+        filename: 'index.min.js'
     },
     externals: [nodeExternals({ modulesFromFile: true })],
     target: 'node',
