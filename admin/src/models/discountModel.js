@@ -8,8 +8,9 @@ const schema = new Schema(
         //value: Phần trăm được giảm
         value: { type: Schema.Types.Number, required: true },
         //userId: ID của chủ sở hữu phiếu giảm giá, rỗng nếu giảm giá cho tất cả người dùng
-        userId: { type: Schema.Types.String, required: true },
-
+        userId: { type: Schema.Types.String },
+        //expiry: Thời gian phiếu giảm giá hết hạn, trống nếu vô hạn
+        expiry: { type: Schema.Types.Date }
     },
     { timestamps: true }
 );

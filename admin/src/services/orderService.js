@@ -19,7 +19,7 @@ const orderService = {
                 cost += parseFloat(product.price) * parseInt(product.quantity)
             }
 
-            data.push({ ...order._doc, name, discount: discountPercent * cost, cost })
+            data.push({ ...order._doc, name, discount: discountPercent * cost / 100, cost })
         }
 
         return data

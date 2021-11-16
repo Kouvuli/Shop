@@ -13,7 +13,7 @@ routes.get('/', async (req, res) => {
         page: page,
         perPage: per_page,
         data,
-        header: ["Mã đơn hàng", "Tên người mua", "Đơn giá", "Khuyến mãi", "Phải thanh toán", "Tình trạng"]
+        header: ["Mã đơn hàng", "Tên người mua", "Ngày mua", "Đơn giá", "Khuyến mãi", "Phải thanh toán", "Tình trạng"]
     }
 
 
