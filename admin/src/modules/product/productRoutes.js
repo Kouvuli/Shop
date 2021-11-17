@@ -8,6 +8,6 @@ routes.get('/', productControllers.index)
 
 routes.get('/top', productControllers.topSeller)
 
-routes.get('/create', productControllers.createProduct)
+routes.all('/create', productControllers.createProduct)
 
 export default routes

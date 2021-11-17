@@ -1,18 +1,17 @@
 <div class="container-fluid">
 
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">{{title}}</h1>
-        <a
-            href="#"
-            class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
-        ><i class="fas fa-user-plus fa-sm text-white-50"></i>
-            Thêm người dùng</a>
-    </div>
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">{{title}}</h1>
+    {{! <p class="mb-4">DataTables is a third party plugin that is used to generate
+        the demo table below. For more information about DataTables, please
+        visit the
+        <a target="_blank" href="https://datatables.net">official DataTables
+            documentation</a>.</p> }}
+
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">{{title}}</h6>
-
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -41,13 +40,12 @@
                         {{#each data}}
                             <tr>
                                 <td>
-                                    <i class="fas fa-user-lock"></i>
                                     {{this.name}}
                                 </td>
-                                <td>{{this.username}}</td>
-                                <td>{{this.email}}</td>
-                                <td>{{this.address}}</td>
-                                <td>{{this.birthday}}</td>
+                                <td>{{this.value}}</td>
+                                <td>{{this.userName}}</td>
+                                <td>{{formatDate this.expiry}}</td>
+
                             </tr>
                         {{/each}}
 
@@ -56,6 +54,7 @@
                 {{> pagination pagination=pagination}}
 
             </div>
+
         </div>
     </div>
 

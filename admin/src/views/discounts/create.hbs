@@ -3,23 +3,33 @@
         <div class="col col-lg-4">
             <h1 class="text-center login-title">Tạo giảm giá</h1>
             <div class="account-wall">
-                <form method="POST">
+                <form method="POST" class="needs-validation" novalidate>
                     <div class="form-group">
-                        <label>Tên của đợt giảm giá<span
-                                class="text-danger"
-                            >*</span></label>
-                        <input name="name" type="text" class="form-control" />
+                        <label for="name" class="form-label">Tên của đợt giảm
+                            giá<span class="text-danger">*</span></label>
+                        <input
+                            name="name"
+                            type="text"
+                            id="name"
+                            class="form-control"
+                            required
+                        />
                         <div class="invalid-feedback">
                             Vui lòng điền tên
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>Phần trăm được giảm<span
-                                class="text-danger"
-                            >*</span></label>
+                        <label for="value" class="form-label">Phần trăm được
+                            giảm<span class="text-danger">*</span></label>
                         <div class="input-group">
 
-                            <input type="text" class="form-control" required />
+                            <input
+                                id="value"
+                                name="value"
+                                type="text"
+                                class="form-control"
+                                required
+                            />
                             <div class="input-group-append">
                                 <span class="input-group-text">%</span>
                             </div>
@@ -29,14 +39,14 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>ID của người nhận
+                        <label for="userId" class="form-label">ID của người nhận
                             <span class="text-danger">(Để trống nếu dành cho tất
                                 cả người dùng)</span></label>
-                        <input
-                            name="password"
-                            type="password"
-                            class="form-control"
-                        />
+                        <input name="userId" id="userId" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label  for="expiry" class="form-label">Hạn sử dụng
+                    <input id="expiry" type="date" class="form-control" name="expiry" width="276" />
                     </div>
                     <div class="row justify-content-md-center"><button
                             class="btn btn-primary"

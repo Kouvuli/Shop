@@ -1,8 +1,10 @@
+import _ from "lodash";
 import moment from "moment"
 
 const helpers = {
 
     formatDate(date) {
+        if (_.isEmpty(date)) return "Không có"
         return moment(date).format('hh:mm DD/MM/YYYY A')
     },
     formatMoney(x) {

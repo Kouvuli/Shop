@@ -10,6 +10,23 @@
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="date"]:required:invalid::-webkit-datetime-edit {
+    color: transparent;
+}
+input[type="date"]:focus::-webkit-datetime-edit {
+    color: black !important;
+}
+
+/* Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
 :root {
     --blue: #4e73df;
     --indigo: #6610f2;
