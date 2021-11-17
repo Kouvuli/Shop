@@ -21,6 +21,7 @@ const schema = new Schema(
         images: { type: Array },
         //comments: Danh sách bình luận của sản phẩm, mỗi comment {userId, content, createdAt}
         comments: { type: Array },
+        active: { type: Number, default: 1 }
 
     },
     { timestamps: true }
