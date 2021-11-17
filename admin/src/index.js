@@ -6,8 +6,8 @@ import express from "express";
 import http from "http";
 import morgan from "morgan";
 import cors from "cors";
-import mongoose from "mongoose";
 import appRoutes from "./appRoutes";
+import databaseService from './services/databaseService'
 import path from "path";
 import helpers from "./helpers";
 import { create } from 'express-handlebars'
@@ -38,8 +38,12 @@ class App {
         this.app.use(express.static("./public"));
     }
     useDatabase() {
-        mongoose.connect(`mongodb+srv://nguyenkhavi:${process.env.MONGODB_PASSWORD}@cluster0.vo4ad.mongodb.net/${process.env.MONGODB_NAME}`, { useNewUrlParser: true, useUnifiedTopology: true });
-        mongoose.connection.once('open', () => console.log('> MongoDB is connected...')).on('error', (e) => { throw e });
+        try {
+            databaseService.connect()
+            console.log('> MongoDB is connected...')
+        } catch (e) {
+            console.log('> Cant connect MongoDB...')
+        }
     }
     useMiddlewares() {
         this.app.use(cors());
