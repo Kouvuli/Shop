@@ -3,7 +3,7 @@ import productService from '../../services/productService'
 const productControllers = {
     async index(req, res) {
 
-        const { page = 1, per_page = 10, type = "Tai nghe" } = req.query
+        const { page = 1, per_page = 10, type = "" } = req.query
         const { data, total } = await productService.getProducts({ page, perPage: per_page, type })
 
         const state = {
@@ -20,7 +20,7 @@ const productControllers = {
 
     async topSeller(req, res) {
 
-        const { page = 1, per_page = 10, type = "Tai nghe" } = req.query
+        const { page = 1, per_page = 10, type = "" } = req.query
         const { data, total } = await productService.getTopSellers({ page, perPage: per_page, type })
 
         const state = {

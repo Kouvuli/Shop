@@ -10,7 +10,9 @@ const userService = {
         return user
     },
     async getUsers({ page = 1, perPage = 10 }) {
-        const data = await userModel.find({}).skip((perPage * page) - perPage).limit(perPage).lean()
+        const p = parseInt(page)
+        const pp = parseInt(perPage)
+        const data = await userModel.find({}).skip((pp * p) - pp).limit(pp).lean()
         const total = await userModel.countDocuments({})
         return { data, page, perPage, total }
     },

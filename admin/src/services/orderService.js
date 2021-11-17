@@ -49,7 +49,9 @@ const orderService = {
         return await orderModel.findByIdAndUpdate(id, { shippedAt: new Date(date), status: "shipped" })
     },
     async getOrders({ page = 1, perPage = 10 }) {
-        const origin = await orderModel.find({}).skip((perPage * page) - perPage).limit(perPage)
+        const p = parseInt(page)
+        const pp = parseInt(perPage)
+        const origin = await orderModel.find({}).skip((pp * p) - pp).limit(pp).lean()
         const total = await orderModel.countDocuments()
         let data = []
         for (const order of origin) {
@@ -69,7 +71,9 @@ const orderService = {
         return { data, page, perPage, total }
     },
     async getOrdersByUserId({ userId = "", page = 1, perPage = 10 }) {
-        const origin = await orderModel.find({ userId }).skip((perPage * page) - perPage).limit(perPage)
+        const p = parseInt(page)
+        const pp = parseInt(perPage)
+        const origin = await orderModel.find({ userId }).skip((pp * p) - pp).limit(pp).lean()
         const total = await orderModel.countDocuments({ userId })
         let data = []
         for (const order of origin) {

@@ -8,10 +8,8 @@ import morgan from "morgan";
 import cors from "cors";
 import appRoutes from "./appRoutes";
 import databaseService from './services/databaseService'
-import path from "path";
 import helpers from "./helpers";
 import { create } from 'express-handlebars'
-
 
 const PORT = process.env.PORT || 5000;
 
