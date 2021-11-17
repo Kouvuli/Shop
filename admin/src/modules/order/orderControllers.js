@@ -15,7 +15,7 @@ const orderControllers = {
             data,
             header: ["Mã đơn hàng", "Tên người mua", "Ngày mua", "Đơn giá", "Khuyến mãi", "Phải thanh toán", "Tình trạng"]
         }
-        res.render('orders/index', { ...state, layout: 'layouts/main' })
+        res.render('orders/index', { ...state })
     },
 
 }

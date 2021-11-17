@@ -31,6 +31,12 @@ class App {
         this.app.use('/', appRoutes);
     }
     useViewEngine() {
+        const hbs = create({
+            defaultLayout: './main.hbs',
+            extname: '.hbs',
+            helpers,
+        });
+        this.app.engine('.hbs', hbs.engine);
         this.app.set("views", "./src/views");
         this.app.set("view engine", "hbs");
     }

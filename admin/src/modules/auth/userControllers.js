@@ -12,12 +12,12 @@ const userControllers = {
             data,
             header: ["Tên người dùng", "Tên đăng nhập", "Email", "Địa chỉ", "Ngày sinh"]
         }
-        res.render('users/index', { ...state, layout: 'layouts/main' })
+        res.render('users/index', { ...state })
     },
 
     async login(req, res) {
 
-        res.render('users/login', { layout: 'layouts/main' })
+        res.render('users/login')
     }
 }
 

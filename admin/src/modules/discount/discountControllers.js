@@ -8,7 +8,7 @@ const discountControllers = {
         }
 
 
-        res.render('discounts/create', { ...state, layout: 'layouts/main' })
+        res.render('discounts/create', { ...state })
 
     },
 
