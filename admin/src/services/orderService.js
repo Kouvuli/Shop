@@ -51,6 +51,8 @@ const orderService = {
     async getOrders({ page = 1, perPage = 10 }) {
         const p = parseInt(page)
         const pp = parseInt(perPage)
+        console.log({ p, pp });
+
         const origin = await orderModel.find({}).skip((pp * p) - pp).limit(pp).lean()
         const total = await orderModel.countDocuments()
         let data = []
@@ -66,7 +68,7 @@ const orderService = {
             for (const product of order.products) {
                 cost += parseFloat(product.price) * parseInt(product.quantity)
             }
-            data.push({ ...order._doc, name, discount: discountPercent * cost / 100, cost })
+            data.push({ ...order, name, discount: discountPercent * cost / 100, cost })
         }
         return { data, page, perPage, total }
     },
@@ -88,7 +90,7 @@ const orderService = {
             for (const product of order.products) {
                 cost += parseFloat(product.price) * parseInt(product.quantity)
             }
-            data.push({ ...order._doc, name, discount: discountPercent * cost / 100, cost })
+            data.push({ ...order, name, discount: discountPercent * cost / 100, cost })
         }
         return { data, page, perPage, total }
     },

@@ -5,9 +5,10 @@ const orderControllers = {
     async index(req, res) {
 
         const { page = 1, perPage = 2 } = req.query
-        console.log({ page, perPage });
 
         const { data, total } = await orderService.getOrders({ page, perPage })
+        console.log({ data });
+
         const state = {
             title: 'Đơn hàng',
             page,

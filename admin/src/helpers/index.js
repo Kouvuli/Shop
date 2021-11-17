@@ -6,6 +6,7 @@ const helpers = {
         return moment(date).format('hh:mm DD/MM/YYYY A')
     },
     formatMoney(x) {
+        if (!x) return ""
         return `$${x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}`;
     },
     resolveStatus(status) {
