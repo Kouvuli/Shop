@@ -6,10 +6,11 @@ const orderControllers = {
 
         const { page = 1, per_page = 10 } = req.query
 
-        const data = await orderService.getOrders()
+        const { data, total } = await orderService.getOrders({ page, perPage: per_page })
         const state = {
             title: 'Đơn hàng',
-            page: page,
+            page,
+            total,
             perPage: per_page,
             data,
             header: ["Mã đơn hàng", "Tên người mua", "Ngày mua", "Đơn giá", "Khuyến mãi", "Phải thanh toán", "Tình trạng"]
