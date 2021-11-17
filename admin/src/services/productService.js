@@ -22,8 +22,13 @@ const productService = {
     async getProductById({ id = "" }) {
         return await productModel.find({ _id: id, active: 1 })
     },
-    async getProducts({ page = 1, perPage = 10 }) {
-        const data = await productModel.find({ active: 1 }).skip((perPage * page) - perPage).limit(perPage)
+    async getProducts({ page = 1, perPage = 10, type = "" }) {
+        let data = []
+        if (type)
+            data = await productModel.find({ active: 1, category: { type } }).skip((perPage * page) - perPage).limit(perPage)
+        else
+            data = await productModel.find({ active: 1 }).skip((perPage * page) - perPage).limit(perPage)
+
         const total = await productModel.countDocuments({ active: 1 })
         return { data, page, perPage, total }
     },
