@@ -22,21 +22,22 @@ const productService = {
     async getProductById({ id = "" }) {
         return await productModel.find({ _id: id, active: 1 }).lean()
     },
-    async getProducts({ page = 1, perPage = 10, type = "" }) {
+    async getProducts({ q = "", page = 1, perPage = 10, type = "" }) {
         const p = parseInt(page)
         const pp = parseInt(perPage)
         let data = []
         let total = 0
         if (type) {
-            data = await productModel.find({ category: { type } }).skip((pp * p) - pp).limit(pp).lean()
-            total = await productModel.countDocuments({ category: { type } })
+            data = await productModel.find({ category: { type }, $or: [{ name: { $regex: q } }, { 'category.type': { $regex: q } }, { 'manufacturer.name': { $regex: q } }] }).skip((pp * p) - pp).limit(pp).lean()
+            total = await productModel.countDocuments({ category: { type }, $or: [{ name: { $regex: q } }, { 'category.type': { $regex: q } }, { 'manufacturer.name': { $regex: q } }] })
         } else {
-            data = await productModel.find({}).skip((pp * p) - pp).limit(pp).lean()
-            total = await productModel.countDocuments({})
+            data = await productModel.find({ $or: [{ name: { $regex: q } }, { 'category.type': { $regex: q } }, { 'manufacturer.name': { $regex: q } }] }).skip((pp * p) - pp).limit(pp).lean()
+            total = await productModel.countDocuments({ $or: [{ name: { $regex: q } }, { 'category.type': { $regex: q } }, { 'manufacturer.name': { $regex: q } }] })
         }
 
         return { data, page, perPage, total }
     },
+
     async getTopSellers({ page = 1, perPage = 10, type = "" }) {
         const p = parseInt(page)
         const pp = parseInt(perPage)

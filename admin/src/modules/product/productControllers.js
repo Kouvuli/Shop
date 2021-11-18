@@ -4,8 +4,8 @@ import productService from '../../services/productService'
 const productControllers = {
     async index(req, res) {
 
-        const { page = 1, perPage = 10, type = "" } = req.query
-        const { data, total } = await productService.getProducts({ page, perPage, type })
+        const { page = 1, perPage = 10, type = "", q = "" } = req.query
+        const { data, total } = await productService.getProducts({ q, page, perPage })
 
         const state = {
             title: 'Sản phẩm',
