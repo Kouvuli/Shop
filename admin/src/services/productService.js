@@ -20,21 +20,35 @@ const productService = {
         return await productModel.findByIdAndUpdate(id, { active: 0 })
     },
     async getProductById({ id = "" }) {
-        return await productModel.find({ _id: id, active: 1 })
+        return await productModel.find({ _id: id, active: 1 }).lean()
     },
     async getProducts({ page = 1, perPage = 10, type = "" }) {
+        const p = parseInt(page)
+        const pp = parseInt(perPage)
         let data = []
-        if (type)
-            data = await productModel.find({ active: 1, category: { type } }).skip((perPage * page) - perPage).limit(perPage)
-        else
-            data = await productModel.find({ active: 1 }).skip((perPage * page) - perPage).limit(perPage)
+        let total = 0
+        if (type) {
+            data = await productModel.find({ category: { type } }).skip((pp * p) - pp).limit(pp).lean()
+            total = await productModel.countDocuments({ category: { type } })
+        } else {
+            data = await productModel.find({}).skip((pp * p) - pp).limit(pp).lean()
+            total = await productModel.countDocuments({})
+        }
 
-        const total = await productModel.countDocuments({ active: 1 })
         return { data, page, perPage, total }
     },
-    async getTopSellers({ page = 1, perPage = 10 }) {
-        const data = await productModel.find({ active: 1 }).skip((perPage * page) - perPage).limit(perPage)
-        const total = await productModel.countDocuments({ active: 1 })
+    async getTopSellers({ page = 1, perPage = 10, type = "" }) {
+        const p = parseInt(page)
+        const pp = parseInt(perPage)
+        let data = []
+        let total = 0
+        if (type) {
+            data = await productModel.find({ category: { type } }).skip((pp * p) - pp).limit(pp).lean()
+            total = await productModel.countDocuments({ category: { type } })
+        } else {
+            data = await productModel.find({}).skip((pp * p) - pp).limit(pp).lean()
+            total = await productModel.countDocuments({})
+        }
         return { data, page, perPage, total }
     },
     /**

@@ -13,7 +13,7 @@ routes.use('/orders', orderRoutes)
 routes.use('/discounts', discountRoutes)
 //Catch not found ***Place end of file**
 routes.use((req, res) => {
-    res.render('error/index', { layout: 'layouts/main' })
+    res.render('error/index')
 })
 
 export default routes

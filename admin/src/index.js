@@ -8,10 +8,8 @@ import morgan from "morgan";
 import cors from "cors";
 import appRoutes from "./appRoutes";
 import databaseService from './services/databaseService'
-import path from "path";
 import helpers from "./helpers";
 import { create } from 'express-handlebars'
-
 
 const PORT = process.env.PORT || 5000;
 
@@ -31,6 +29,12 @@ class App {
         this.app.use('/', appRoutes);
     }
     useViewEngine() {
+        const hbs = create({
+            defaultLayout: './main.hbs',
+            extname: '.hbs',
+            helpers,
+        });
+        this.app.engine('.hbs', hbs.engine);
         this.app.set("views", "./src/views");
         this.app.set("view engine", "hbs");
     }
