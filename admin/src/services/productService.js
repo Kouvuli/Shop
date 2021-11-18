@@ -28,11 +28,11 @@ const productService = {
         let data = []
         let total = 0
         if (type) {
-            data = await productModel.find({ category: { type }, $or: [{ name: { $regex: q } }, { 'category.type': { $regex: q } }, { 'manufacturer.name': { $regex: q } }] }).skip((pp * p) - pp).limit(pp).lean()
-            total = await productModel.countDocuments({ category: { type }, $or: [{ name: { $regex: q } }, { 'category.type': { $regex: q } }, { 'manufacturer.name': { $regex: q } }] })
+            data = await productModel.find({ category: { type }, $or: [{ name: { $regex: q } }, { 'category.type': { $regex: q }, }, { 'manufacturer.name': { $regex: q } }], active: 1 }).skip((pp * p) - pp).limit(pp).lean()
+            total = await productModel.countDocuments({ category: { type }, $or: [{ name: { $regex: q } }, { 'category.type': { $regex: q } }, { 'manufacturer.name': { $regex: q } }], active: 1 })
         } else {
-            data = await productModel.find({ $or: [{ name: { $regex: q } }, { 'category.type': { $regex: q } }, { 'manufacturer.name': { $regex: q } }] }).skip((pp * p) - pp).limit(pp).lean()
-            total = await productModel.countDocuments({ $or: [{ name: { $regex: q } }, { 'category.type': { $regex: q } }, { 'manufacturer.name': { $regex: q } }] })
+            data = await productModel.find({ $or: [{ name: { $regex: q } }, { 'category.type': { $regex: q } }, { 'manufacturer.name': { $regex: q } }], active: 1 }).skip((pp * p) - pp).limit(pp).lean()
+            total = await productModel.countDocuments({ $or: [{ name: { $regex: q } }, { 'category.type': { $regex: q } }, { 'manufacturer.name': { $regex: q } }], active: 1 })
         }
 
         return { data, page, perPage, total }

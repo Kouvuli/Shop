@@ -10,7 +10,8 @@
 
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <form method="get" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+            <form method="get"
+                class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                 <div class="input-group">
                     <input name="q" type="text" class="form-control bg-light border-0 small"
                         placeholder="Nhập từ khóa để tìm kiếm ..." aria-label="Search"
@@ -44,13 +45,9 @@
 
                         {{#each data}}
                         <tr>
-                            <td>
-                                {{#each this.images}}
-                                <img src={{this}} />
-                                {{/each}}
-                            </td>
-                            <td>
 
+                            <td>
+                                <a class="btn " href="/products/delete/{{this._id}}"><i class="fas fa-trash-alt"></i></a>
                                 {{this.name}}
                             </td>
                             <td>{{this.category.type}}</td>
@@ -58,6 +55,11 @@
                             <td>{{this.originPrice}}</td>
                             <td>{{this.currentPrice}}</td>
                             <td>{{this.description}}</td>
+                            <td>
+                                {{#each this.images}}
+                                <img src={{this}} />
+                                {{/each}}
+                            </td>
                         </tr>
                         {{/each}}
 

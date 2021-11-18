@@ -34,11 +34,7 @@
 
                         {{#each data}}
                             <tr>
-                                <td>
-                                    {{#each this.images}}
-                                        <img src={{this}} />
-                                    {{/each}}
-                                </td>
+                                
                                 <td>
 
                                     {{this.name}}
@@ -48,6 +44,11 @@
                                 <td>{{this.originPrice}}</td>
                                 <td>{{this.currentPrice}}</td>
                                 <td>{{this.description}}</td>
+                                <td>
+                                    {{#each this.images}}
+                                        <img src={{this}} />
+                                    {{/each}}
+                                </td>
                             </tr>
                         {{/each}}
 
