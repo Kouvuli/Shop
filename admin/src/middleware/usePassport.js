@@ -14,7 +14,11 @@ const usePassport = (app) => {
                     return done(null, false);
                 }
                 const isOk = bcrypt.compareSync(password, user.password)
-                if (!isOk) { return done(null, false); }
+                if (!isOk) {
+                    return done(null, false);
+                }
+                delete user.password
+                app.locals.user = user;
                 return done(null, user);
             } catch (err) {
                 return done(null, err);

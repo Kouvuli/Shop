@@ -47,13 +47,16 @@
                         <tr>
 
                             <td>
-                                <a class="btn " href="/products/delete/{{this._id}}"><i class="fas fa-trash-alt"></i></a>
+                                <a class="btn " href="/products/confirm/{{this._id}}"><i class="fas fa-trash-alt"></i></a>
+                                <a class="btn " href="/products/edit/{{this._id}}"><i class="fas fa-edit"></i></i></a>
+
                                 {{this.name}}
                             </td>
                             <td>{{this.category.type}}</td>
                             <td>{{this.manufacturer.name}}</td>
                             <td>{{this.originPrice}}</td>
                             <td>{{this.currentPrice}}</td>
+                            <td>{{this.quantity}}</td>
                             <td>{{this.description}}</td>
                             <td>
                                 {{#each this.images}}

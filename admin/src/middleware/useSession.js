@@ -3,6 +3,7 @@ import cookieParser from 'cookie-parser'
 
 
 const useSession = (app) => {
+
     app.use(cookieParser());
     app.use(expressSession({
         secret: process.env.SESSION_SECRET,
