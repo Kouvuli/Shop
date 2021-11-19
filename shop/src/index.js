@@ -5,7 +5,12 @@ import http from "http";
 import morgan from "morgan";
 import cors from "cors";
 import mongoose from "mongoose";
-import appRoutes from "./appRoutes";
+import categoriesRouter from "./routes/category";
+import loginRouter from "./routes/login";
+import usersRouter from "./routes/user";
+import indexRouter from "./routes/index";
+import shopRouter from "./routes/shop";
+import productsRouter from "./routes/product";
 import path from "path";
 // import axios from "axios";
 // import bookModel from "./models/bookModel";
@@ -25,7 +30,12 @@ class App {
     this.run();
   }
   useRoutes() {
-    this.app.use("/", appRoutes);
+    this.app.use("/", indexRouter);
+    this.app.use("/", shopRouter);
+    this.app.use("/tai-khoan", usersRouter);
+    this.app.use("/category", categoriesRouter);
+    this.app.use("/san-pham", productsRouter);
+    this.app.use("/dang-nhap", loginRouter);
   }
   useViewEngine() {
     this.app.set("views", "./src/views");
