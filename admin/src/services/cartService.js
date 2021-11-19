@@ -1,6 +1,5 @@
 import userModel from "../models/userModel"
 import cartModel from '../models/cartModel'
-import discountModel from "../models/discountModel"
 import productModel from "../models/productModel"
 const cartService = {
     /**
@@ -11,7 +10,7 @@ const cartService = {
      * 
      */
     async addToCard({ userId = "", item = {} }) {
-        const cart = await orderModel.find({ userId })
+        const cart = await orderModel.findOne({ userId })
         if (cart == null) {
             return await cartModel.create({ userId, items: [item] })
         } else {
@@ -22,7 +21,7 @@ const cartService = {
 
 
     async getCardByUserId({ userId = "" }) {
-        const cart = await orderModel.find({ userId })
+        const cart = await cartModel.findOne({ userId })
         const { name } = await userModel.findById(userId)
 
         let cost = 0
