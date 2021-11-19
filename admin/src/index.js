@@ -6,12 +6,10 @@ import express from "express";
 import http from "http";
 import morgan from "morgan";
 import cors from "cors";
-import mongoose from "mongoose";
 import appRoutes from "./appRoutes";
-import path from "path";
+import databaseService from './services/databaseService'
 import helpers from "./helpers";
 import { create } from 'express-handlebars'
-
 
 const PORT = process.env.PORT || 5000;
 
@@ -31,6 +29,12 @@ class App {
         this.app.use('/', appRoutes);
     }
     useViewEngine() {
+        const hbs = create({
+            defaultLayout: './main.hbs',
+            extname: '.hbs',
+            helpers,
+        });
+        this.app.engine('.hbs', hbs.engine);
         this.app.set("views", "./src/views");
         this.app.set("view engine", "hbs");
     }
@@ -38,8 +42,12 @@ class App {
         this.app.use(express.static("./public"));
     }
     useDatabase() {
-        mongoose.connect(`mongodb+srv://nguyenkhavi:${process.env.MONGODB_PASSWORD}@cluster0.vo4ad.mongodb.net/${process.env.MONGODB_NAME}`, { useNewUrlParser: true, useUnifiedTopology: true });
-        mongoose.connection.once('open', () => console.log('> MongoDB is connected...')).on('error', (e) => { throw e });
+        try {
+            databaseService.connect()
+            console.log('> MongoDB is connected...')
+        } catch (e) {
+            console.log('> Cant connect MongoDB...')
+        }
     }
     useMiddlewares() {
         this.app.use(cors());

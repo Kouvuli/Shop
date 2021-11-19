@@ -1,0 +1,58 @@
+<nav>
+    <ul class="pagination justify-content-center">
+        <li class="page-item {{#unless (showPrev this.pagination)}} disabled {{/unless}}">
+            <a
+                class="page-link"
+                href="?page={{{prevPage
+                    this.pagination.page
+                }}}&perPage={{{this.pagination.perPage}}}"
+                tabindex="-1"
+            >Trước</a>
+        </li>
+        {{#if (showPrevDots this.pagination)}}
+            <li class="page-item"><a
+                    class="page-link"
+                    href="?page=1&perPage={{{this.pagination.perPage}}}"
+                >1</a></li>
+            <li class="page-item"><a class="page-link">...</a></li>
+        {{/if}}
+        {{#if (showPrev this.pagination)}}
+            <li class="page-item"><a
+                    class="page-link"
+                    href="?page={{{prevPage
+                        this.pagination.page
+                    }}}&perPage={{{this.pagination.perPage}}}"
+                >{{{prevPage this.pagination.page}}}</a></li>
+        {{/if}}
+        <li class="page-item active"><a
+                class="page-link"
+                href="?page={{{this.pagination.page}}}&perPage={{{this.pagination.perPage}}}"
+            >{{{this.pagination.page}}}</a></li>
+
+        {{#if (showNext this.pagination)}}
+            <li class="page-item"><a
+                    class="page-link"
+                    href="?page={{{nextPage
+                        this.pagination.page
+                    }}}&perPage={{{this.pagination.perPage}}}"
+                >{{{nextPage this.pagination.page}}}</a></li>
+        {{/if}}
+        {{#if (showNextDots this.pagination)}}
+            <li class="page-item"><a class="page-link">...</a></li>
+            <li class="page-item"><a
+                    class="page-link"
+                    href="?page={{{this.pagination.limit}}}&perPage={{{this.pagination.perPage}}}"
+                >{{{this.pagination.limit}}}</a></li>
+        {{/if}}
+
+        <li class="page-item {{#unless (showNext this.pagination)}} disabled {{/unless}}">
+            <a
+                class="page-link"
+                href="?page={{{nextPage
+                    this.pagination.page
+                }}}&perPage={{{this.pagination.perPage}}}"
+            >Sau</a>
+        </li>
+
+    </ul>
+</nav>

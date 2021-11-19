@@ -2,99 +2,71 @@
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">{{title}}</h1>
-        <a href="/creator/product"><button
-                type="button"
-                class="btn btn-primary"
-            >
+        <a href="/creator/product"><button type="button" class="btn btn-primary">
                 <i class="fas fa-plus-circle fa-sm text-white-50"></i>
                 Thêm sản phẩm
             </button></a>
     </div>
 
     <div class="card shadow mb-4">
-        <div
-            class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
-        >
-            <h6 class="m-0 font-weight-bold text-primary">
-                Lọc theo
-                <select class="custom-select custom-select-sm">
-                    <option>Không có</option>
-                    <option>Danh mục</option>
-                    <option>Hãng</option>
-                </select>
-            </h6>
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <form method="get"
+                class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                <div class="input-group">
+                    <input name="q" type="text" class="form-control bg-light border-0 small"
+                        placeholder="Nhập từ khóa để tìm kiếm ..." aria-label="Search"
+                        aria-describedby="basic-addon2" />
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fas fa-search fa-sm"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table
-                    class="table table-bordered table-hover"
-                    id="dataTable"
-                    width="100%"
-                    cellspacing="0"
-                >
+                <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             {{#each header}}
-                                <th>{{this}}</th>
+                            <th>{{this}}</th>
                             {{/each}}
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
                             {{#each header}}
-                                <th>{{this}}</th>
+                            <th>{{this}}</th>
                             {{/each}}
                         </tr>
                     </tfoot>
                     <tbody>
 
                         {{#each data}}
-                            <tr>
-                                <td>
-                                    {{#each this.images}}
-                                        <img src={{this}} />
-                                    {{/each}}
-                                </td>
-                                <td>
+                        <tr>
 
-                                    {{this.name}}
-                                </td>
-                                <td>{{this.category.type}}</td>
-                                <td>{{this.manufacturer.name}}</td>
-                                <td>{{this.originPrice}}</td>
-                                <td>{{this.currentPrice}}</td>
-                                <td>{{this.description}}</td>
-                            </tr>
+                            <td>
+                                <a class="btn " href="/products/delete/{{this._id}}"><i class="fas fa-trash-alt"></i></a>
+                                {{this.name}}
+                            </td>
+                            <td>{{this.category.type}}</td>
+                            <td>{{this.manufacturer.name}}</td>
+                            <td>{{this.originPrice}}</td>
+                            <td>{{this.currentPrice}}</td>
+                            <td>{{this.description}}</td>
+                            <td>
+                                {{#each this.images}}
+                                <img src={{this}} />
+                                {{/each}}
+                            </td>
+                        </tr>
                         {{/each}}
 
                     </tbody>
                 </table>
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-end">
-                        <li class="page-item disabled">
-                            <a
-                                class="page-link"
-                                href="#"
-                                tabindex="-1"
-                            >Previous</a>
-                        </li>
-                        <li class="page-item"><a
-                                class="page-link"
-                                href="#"
-                            >1</a></li>
-                        <li class="page-item"><a
-                                class="page-link"
-                                href="#"
-                            >2</a></li>
-                        <li class="page-item"><a
-                                class="page-link"
-                                href="#"
-                            >3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">Next</a>
-                        </li>
-                    </ul>
-                </nav>
+                {{> pagination pagination=pagination}}
+
             </div>
         </div>
     </div>

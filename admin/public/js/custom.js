@@ -9,6 +9,9 @@
             $('.sidebar .collapse').collapse('hide');
         };
     });
+    $('#datepicker').datepicker({
+        uiLibrary: 'bootstrap4'
+    });
 
     // Close any open menu accordions when window is resized below 768px
     $(document).on('resize', (function () {
