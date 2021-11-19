@@ -20,7 +20,7 @@ const productService = {
         return await productModel.findByIdAndUpdate(id, { active: 0 })
     },
     async getProductById({ id = "" }) {
-        return await productModel.find({ _id: id, active: 1 }).lean()
+        return await productModel.findOne({ _id: id, active: 1 }).lean()
     },
     async getProducts({ q = "", page = 1, perPage = 10, type = "" }) {
         const p = parseInt(page)
@@ -44,11 +44,11 @@ const productService = {
         let data = []
         let total = 0
         if (type) {
-            data = await productModel.find({ category: { type } }).skip((pp * p) - pp).limit(pp).lean()
-            total = await productModel.countDocuments({ category: { type } })
+            data = await productModel.find({ category: { type }, active: 1 }).skip((pp * p) - pp).limit(pp).lean()
+            total = await productModel.countDocuments({ category: { type }, active: 1 })
         } else {
-            data = await productModel.find({}).skip((pp * p) - pp).limit(pp).lean()
-            total = await productModel.countDocuments({})
+            data = await productModel.find({ active: 1 }).skip((pp * p) - pp).limit(pp).lean()
+            total = await productModel.countDocuments({ active: 1 })
         }
         return { data, page, perPage, total }
     },

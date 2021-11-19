@@ -20,7 +20,7 @@ const productService = {
         return await productModel.findByIdAndUpdate(id, { active: 0 })
     },
     async getProductById({ id = "" }) {
-        return await productModel.find({ _id: id, active: 1 }).lean()
+        return await productModel.findOne({ _id: id, active: 1 }).lean()
     },
     async getProducts({ q = "", page = 1, perPage = 10, type = "" }) {
         const p = parseInt(page)

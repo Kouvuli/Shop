@@ -13,7 +13,7 @@ const productControllers = {
             perPage,
             data,
             total,
-            header: ["Tên sản phẩm", "Danh mục", "Hãng sản xuất", "Giá nhập", "Giá bán", "Mô tả", "Hình ảnh"]
+            header: ["Tên sản phẩm", "Danh mục", "Hãng sản xuất", "Giá nhập", "Giá bán", "Số lượng", "Mô tả", "Hình ảnh"]
         }
 
         res.render('products/index', { ...state, pagination: { page, limit: Math.ceil(total / perPage), perPage: perPage } })
@@ -38,21 +38,31 @@ const productControllers = {
 
     async createProduct(req, res) {
         if (!_.isEmpty(req.body)) {
-            const { name, categoryType: type, description, manufacturer: manufacturerName, originPrice, currentPrice, quantity } = req.body
-            await productService.createProduct({ name, description, category: { type }, manufacturer: { name: manufacturerName }, quantity, originPrice, currentPrice })
+            const { name, categoryType: type, description, manufacturer: manufacturerName, originPrice, currentPrice, quantity, image1, image2 } = req.body
+            await productService.createProduct({ name, description, category: { type }, manufacturer: { name: manufacturerName }, quantity, originPrice, currentPrice, images: [image1, image2] })
             return res.redirect('/products/create')
+
+        }
+        res.render('products/create')
+    },
+    async editProduct(req, res) {
+        const { id } = req.params
+        if (_.isEmpty(req.body)) {
+            const product = await productService.getProductById({ id })
+            res.render('products/edit', { product, image1: product.images[0] || "", image2: product?.images[1] || "" })
+        } else {
+            const { name, categoryType: type, description, manufacturer: manufacturerName, originPrice, currentPrice, quantity, image1, image2 } = req.body
+            await productService.updateProductById({ id, name, description, category: { type }, manufacturer: { name: manufacturerName }, quantity, originPrice, currentPrice, images: [image1, image2] })
+            return res.redirect('/products')
         }
 
-
-
-        res.render('products/delete')
     },
     async confirmScreen(req, res) {
         const { id = "" } = req.params
 
         const product = await productService.getProductById({ id })
 
-        res.render('products/delete', { productName: product.name, id })
+        res.render('products/confirm', { productName: product.name, id })
     }
     ,
     async deleteProduct(req, res) {

@@ -7,7 +7,7 @@ const discountService = {
         return await discountModel.create({ name, value, userId, expiry })
     },
     async getDiscountById({ id = "" }) {
-        return await discountModel.find({ _id: id }).lean()
+        return await discountModel.findById(id).lean()
     },
     async getDiscounts({ page = 1, perPage = 10 }) {
         const p = parseInt(page)

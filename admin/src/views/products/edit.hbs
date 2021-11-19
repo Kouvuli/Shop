@@ -10,6 +10,7 @@
                             class="form-label"
                         >Tên sản phẩm<span class="text-danger">*</span></label>
                         <input
+                            value="{{product.name}}"
                             name="name"
                             type="text"
                             class="form-control"
@@ -24,6 +25,7 @@
                         <label for="validationCateName" class="form-label">Tên
                             danh mục<span class="text-danger">*</span></label>
                         <input
+                            value="{{product.category.type}}"
                             name="categoryType"
                             type="text"
                             class="form-control"
@@ -39,6 +41,7 @@
                                 class="text-danger"
                             >*</span></label>
                         <input
+                            value="{{product.description}}"
                             name="description"
                             type="text"
                             class="form-control"
@@ -53,6 +56,7 @@
                         <label for="manufacturer" class="form-label">Hãng sản
                             xuất<span class="text-danger">*</span></label>
                         <input
+                            value="{{product.manufacturer.name}}"
                             name="manufacturer"
                             type="text"
                             class="form-control"
@@ -69,6 +73,7 @@
                                 class="text-danger"
                             >(url)</span></label>
                         <input
+                            value="{{image1}}"
                             name="image1"
                             type="text"
                             class="form-control"
@@ -80,6 +85,7 @@
                                 class="text-danger"
                             >(url)</span></label>
                         <input
+                            value="{{image2}}"
                             name="image2"
                             type="text"
                             class="form-control"
@@ -96,6 +102,7 @@
                                     <span class="input-group-text">$</span>
                                 </div>
                                 <input
+                                    value="{{product.originPrice}}"
                                     name="originPrice"
                                     type="number"
                                     min="0"
@@ -116,6 +123,7 @@
                                     <span class="input-group-text">$</span>
                                 </div>
                                 <input
+                                    value="{{product.currentPrice}}"
                                     name="currentPrice"
                                     type="number"
                                     min="0"
@@ -133,6 +141,7 @@
                                 >*</span></label>
                             <div class="input-group">
                                 <input
+                                    value="{{product.quantity}}"
                                     name="quantity"
                                     type="number"
                                     min="0"

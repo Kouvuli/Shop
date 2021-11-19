@@ -4,42 +4,27 @@ dotenv.config({
 })
 import express from "express";
 import http from "http";
-import morgan from "morgan";
-import cors from "cors";
-import appRoutes from "./appRoutes";
+import useAppMdw from './middleware/useAppMdw'
+import useSession from "./middleware/useSession";
+import usePassport from "./middleware/usePassport";
+import useRoutes from "./middleware/useRoutes";
+import useViewEngine from "./middleware/useViewEngine";
 import databaseService from './services/databaseService'
-import helpers from "./helpers";
-import { create } from 'express-handlebars'
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5000
 
 class App {
     constructor(port) {
         this.port = port;
         this.app = express();
         this.server = http.createServer(this.app);
-        this.useStatic()
-        this.useViewEngine();
         this.useDatabase();
-        this.useMiddlewares();
-        this.useRoutes();
+        useViewEngine(this.app)
+        useAppMdw(this.app)
+        useSession(this.app)
+        usePassport(this.app)
+        useRoutes(this.app)
         this.run();
-    }
-    useRoutes() {
-        this.app.use('/', appRoutes);
-    }
-    useViewEngine() {
-        const hbs = create({
-            defaultLayout: './main.hbs',
-            extname: '.hbs',
-            helpers,
-        });
-        this.app.engine('.hbs', hbs.engine);
-        this.app.set("views", "./src/views");
-        this.app.set("view engine", "hbs");
-    }
-    useStatic() {
-        this.app.use(express.static("./public"));
     }
     useDatabase() {
         try {
@@ -48,18 +33,6 @@ class App {
         } catch (e) {
             console.log('> Cant connect MongoDB...')
         }
-    }
-    useMiddlewares() {
-        this.app.use(cors());
-        this.app.use(morgan("dev"));
-        this.app.use(express.json({ limit: "1024mb", extended: true }));
-        this.app.use(
-            express.urlencoded({
-                limit: "1024mb",
-                extended: true,
-                parameterLimit: 50000,
-            })
-        );
     }
     run() {
         this.server.listen(this.port, () => {

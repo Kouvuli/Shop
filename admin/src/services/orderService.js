@@ -75,7 +75,7 @@ const orderService = {
     async getOrdersByUserId({ userId = "", page = 1, perPage = 10 }) {
         const p = parseInt(page)
         const pp = parseInt(perPage)
-        const origin = await orderModel.find({ userId }).skip((pp * p) - pp).limit(pp).lean()
+        const origin = await orderModel.findOne({ userId }).skip((pp * p) - pp).limit(pp).lean()
         const total = await orderModel.countDocuments({ userId })
         let data = []
         for (const order of origin) {
