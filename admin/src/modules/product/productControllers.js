@@ -4,8 +4,8 @@ import productService from '../../services/productService'
 const productControllers = {
     async index(req, res) {
 
-        const { page = 1, perPage = 10, type = "" } = req.query
-        const { data, total } = await productService.getProducts({ page, perPage, type })
+        const { page = 1, perPage = 10, type = "", q = "" } = req.query
+        const { data, total } = await productService.getProducts({ q, page, perPage })
 
         const state = {
             title: 'Sản phẩm',
@@ -13,7 +13,7 @@ const productControllers = {
             perPage,
             data,
             total,
-            header: ["Hình ảnh", "Tên sản phẩm", "Danh mục", "Hãng sản xuất", "Giá nhập", "Giá bán", "Mô tả"]
+            header: ["Tên sản phẩm", "Danh mục", "Hãng sản xuất", "Giá nhập", "Giá bán", "Mô tả", "Hình ảnh"]
         }
 
         res.render('products/index', { ...state, pagination: { page, limit: Math.ceil(total / perPage), perPage: perPage } })
@@ -30,7 +30,7 @@ const productControllers = {
             total,
             perPage,
             data,
-            header: ["Hình ảnh", "Tên sản phẩm", "Danh mục", "Hãng sản xuất", "Giá nhập", "Giá bán", "Mô tả"]
+            header: ["Tên sản phẩm", "Danh mục", "Hãng sản xuất", "Giá nhập", "Giá bán", "Mô tả", "Hình ảnh"]
         }
 
         res.render('products/top', { ...state, pagination: { page, limit: Math.ceil(total / perPage), perPage: perPage } })
@@ -43,12 +43,26 @@ const productControllers = {
             return res.redirect('/products/create')
         }
 
-        const state = {
-            title: 'Đơn hàng',
+
+
+        res.render('products/delete')
+    },
+    async confirmScreen(req, res) {
+        const { id = "" } = req.params
+
+        const product = await productService.getProductById({ id })
+
+        res.render('products/delete', { productName: product.name, id })
+    }
+    ,
+    async deleteProduct(req, res) {
+        const { id = "", status = "canceled" } = req.params
+
+        if (status === "accepted") {
+            await productService.deleteProductById({ id })
         }
+        return res.redirect('/products')
 
-
-        res.render('products/create', { ...state })
     }
 }
 
