@@ -1,8 +1,11 @@
 import userModel from "../models/userModel"
 const userService = {
-
+    async getUserByUsername({ username = "" }) {
+        const user = await userModel.findOne({ username, password })
+        return user
+    },
     async getUser({ username = "", password = "" }) {
-        const user = await userModel.find({ username, password })
+        const user = await userModel.findOne({ username, password })
         return user
     },
     async getUserById({ id = "" }) {
