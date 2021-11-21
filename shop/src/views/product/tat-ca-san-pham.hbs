@@ -76,16 +76,39 @@
                         <button class="btn-flat btn-hover" id="filter-toggle">Lọc</button>
                     </div>
                     <div class="box">
-                        <div class="row" id="products"></div>
-                    </div>
-                    <div class="box">
-                        <div class="pagination">
-                            <ul>
-                    
-                            </ul>
+                        <div class="row" id="products">
+                            {{#each data}}
+                            <div class="col-4 col-md-6 col-sm-12">
+                                <div class="product-card">
+                                    <div class="product-card-img">
+                                        {{#each this.images}}
+                                        <img src={{this}} />
+                                        {{/each}}
+                                    </div>
+                                    <div class="product-card-info">
+                                        <div class="product-btn">
+                                            <a href="./product-detail.html" class="btn-flat btn-hover btn-shop-now">shop now</a>
+                                            <button class="btn-flat btn-hover btn-cart-add">
+                                                <i class='bx bxs-cart-add'></i>
+                                            </button>
+                                            <button class="btn-flat btn-hover btn-cart-add">
+                                                <i class='bx bxs-heart'></i>
+                                            </button>
+                                        </div>
+                                        <div class="product-card-name">
+                                            {{this.name}}
+                                        </div>
+                                        <div class="product-card-price">
+                                            <span><del>{{this.originPrice}}</del></span>
+                                            <span class="curr-price">{{this.currentPrice}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{/each}}
                         </div>
-                    
                     </div>
+                    {{> pagination}}
                 </div>
             </div>
         </div>
