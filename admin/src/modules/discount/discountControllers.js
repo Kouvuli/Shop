@@ -20,7 +20,6 @@ const discountControllers = {
     },
     async createDiscount(req, res) {
         if (!_.isEmpty(req.body)) {
-            console.log({ r: req.body });
 
             const { name, value, userId, expiry } = req.body
             await discountService.createDiscount({ name, value, userId, expiry })
