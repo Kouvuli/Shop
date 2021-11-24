@@ -14,6 +14,7 @@ import shopRouter from "./routes/shopRoute";
 
 import productsRouter from "./routes/productRoute";
 import path from "path";
+import helpers from "./helper/index";
 // import axios from "axios";
 // import bookModel from "./models/bookModel";
 // import bookDetailModel from "./models/bookDetailModel";
@@ -45,6 +46,7 @@ class App {
       extname: ".hbs",
       partialsDir: "src/views/partials",
       layoutsDir: "src/views",
+      helpers,
     });
     this.app.engine(".hbs", hbs.engine);
     this.app.set("views", "./src/views");

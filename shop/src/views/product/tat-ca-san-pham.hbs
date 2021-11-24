@@ -4,7 +4,7 @@
             <div class="breadcumb">
                 <a href="/">Trang chủ</a>
                 <span><i class='bx bxs-chevrons-right'></i></span>
-                <a href="/category/tat-ca-san-pham">Tất cả sản phẩm</a>
+                <a href="/tat-ca-san-pham">Tất cả sản phẩm</a>
             </div>
         </div>
         <div class="box">
@@ -81,13 +81,13 @@
                             <div class="col-4 col-md-6 col-sm-12">
                                 <div class="product-card">
                                     <div class="product-card-img">
-                                        {{#each this.images}}
-                                        <img src={{this}} />
-                                        {{/each}}
+                                        {{#each_upto this.images 2}}
+                                            <img src={{this}} />
+                                        {{/each_upto}}
                                     </div>
                                     <div class="product-card-info">
                                         <div class="product-btn">
-                                            <a href="./product-detail.html" class="btn-flat btn-hover btn-shop-now">shop now</a>
+                                            <a href="/{{this._id}}" class="btn-flat btn-hover btn-shop-now">shop now</a>
                                             <button class="btn-flat btn-hover btn-cart-add">
                                                 <i class='bx bxs-cart-add'></i>
                                             </button>

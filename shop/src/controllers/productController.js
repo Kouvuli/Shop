@@ -15,26 +15,29 @@ const productControllers = {
       page,
       perPage,
       data,
+
       layout: "layouts/main",
     };
+
     res.render("product/tat-ca-san-pham", {
       ...state,
     });
   },
   async productDetail(req, res) {
-    const perPage = 9;
     const { id } = req.params;
-
-    const { data } = await productService.getProductById({ id });
+    const data = await productService.getProductById({ id });
     console.log(data);
     const state = {
       title: data.name,
       data,
+      image1: data.images[0],
       layout: "layouts/main",
     };
-    res.render("product/product-detail", {
-      ...state,
-    });
+    if (_.isEmpty(req.body)) {
+      res.render("product/product-detail", {
+        ...state,
+      });
+    }
   },
 };
 
