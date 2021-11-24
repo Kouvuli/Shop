@@ -24,20 +24,21 @@ class App {
         useSession(this.app)
         usePassport(this.app)
         useRoutes(this.app)
-        this.run();
-    }
-    useDatabase() {
-        try {
-            databaseService.connect()
-            console.log('> MongoDB is connected...')
-        } catch (e) {
-            console.log('> Cant connect MongoDB...')
-        }
     }
     run() {
         this.server.listen(this.port, () => {
             console.log(`> Server is running on ${this.port}...`);
         });
     }
+    async useDatabase() {
+        try {
+            await databaseService.connect()
+            console.log('> MongoDB is connected...')
+            this.run();
+        } catch (e) {
+            console.log('> Cant connect MongoDB...')
+        }
+    }
+
 }
 new App(PORT);
