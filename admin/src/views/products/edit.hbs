@@ -3,7 +3,12 @@
         <div class="col col-lg-4">
             <h1 class="text-center login-title">Thêm sản phẩm</h1>
             <div class="account-wall">
-                <form method="post" class="needs-validation" novalidate>
+                <form
+                    method="post"
+                    class="needs-validation"
+                    novalidate
+                    enctype="multipart/form-data"
+                >
                     <div class="form-group">
                         <label
                             for="validationProductName"
@@ -68,29 +73,35 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="image1" class="form-label">Ảnh 1<span
-                                class="text-danger"
-                            >(url)</span></label>
-                        <input
-                            value="{{image1}}"
-                            name="image1"
-                            type="text"
-                            class="form-control"
-                            id="image1"
-                        />
-                    </div>
-                    <div class="form-group">
-                        <label for="image2" class="form-label">Ảnh 2<span
-                                class="text-danger"
-                            >(url)</span></label>
-                        <input
-                            value="{{image2}}"
-                            name="image2"
-                            type="text"
-                            class="form-control"
-                            id="image2"
-                        />
+                    <div class="form-row">
+
+                        <div class="custom-file col-md-5 mb-5">
+                            <div class="input-group">
+                                <label for="image">Ảnh 1<span
+                                        class="text-danger"
+                                    >*</span></label>
+                                <input
+                                    value="{{image1}}"
+                                    name="image"
+                                    type="file"
+                                    id="image"
+                                />
+                            </div>
+                        </div>
+                        <div class="col-md-2 mb-3"></div>
+                        <div class="custom-file col-md-5 mb-3">
+                            <div class="input-group">
+                                <label for="image">Ảnh 2<span
+                                        class="text-danger"
+                                    >*</span></label>
+                                <input
+                                    value="{{image2}}"
+                                    name="image"
+                                    type="file"
+                                    id="image"
+                                />
+                            </div>
+                        </div>
                     </div>
                     <div class="form-row">
                         <div class="col-md-4 mb-3">
