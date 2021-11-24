@@ -76,22 +76,43 @@
                         <button class="btn-flat btn-hover" id="filter-toggle">Lọc</button>
                     </div>
                     <div class="box">
-                        <div class="row" id="products"></div>
+                        <div class="row" id="products">
+                            {{#each data}}
+                            <div class="col-4 col-md-6 col-sm-12">
+                                <div class="product-card">
+                                    <div class="product-card-img">
+                                        {{#each this.images}}
+                                        <img src={{this}} />
+                                        {{/each}}
+                                    </div>
+                                    <div class="product-card-info">
+                                        <div class="product-btn">
+                                            <a href="./product-detail.html" class="btn-flat btn-hover btn-shop-now">shop now</a>
+                                            <button class="btn-flat btn-hover btn-cart-add">
+                                                <i class='bx bxs-cart-add'></i>
+                                            </button>
+                                            <button class="btn-flat btn-hover btn-cart-add">
+                                                <i class='bx bxs-heart'></i>
+                                            </button>
+                                        </div>
+                                        <div class="product-card-name">
+                                            {{this.name}}
+                                        </div>
+                                        <div class="product-card-price">
+                                            <span><del>{{this.originPrice}}</del></span>
+                                            <span class="curr-price">{{this.currentPrice}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{/each}}
+                        </div>
                     </div>
-                    <div class="box">
-                        <ul class="pagination">
-                            <li><a href="#"><i class='bx bxs-chevron-left'></i></a></li>
-                            <li><a href="#" class="active">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#"><i class='bx bxs-chevron-right'></i></a></li>
-                        </ul>
-                    </div>
+                    {{> pagination}}
                 </div>
             </div>
         </div>
     </div>
 </div>
 <script src="/js/products.js"></script>
+<script src="/js/pagination.js"></script>

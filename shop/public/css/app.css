@@ -840,13 +840,13 @@ footer ul li {
 }
 
 
-.pagination {
+.pagination ul{
     display: flex;
     align-items: center;
     justify-content: flex-end;
 }
 
-.pagination > li > a {
+.pagination li a {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -856,14 +856,15 @@ footer ul li {
     font-size: 20px;
 }
 
-.pagination > li > a.active {
+.pagination li a.active {
     background-color: var(--black);
     color: var(--main-bg-color);
 }
 
-.pagination > li > a:hover {
+.pagination li a:hover {
     border: 2px solid var(--black);
 }
+
 
 .product-img {
     display: flex;
@@ -1348,7 +1349,7 @@ footer ul li {
         left: 0;
     }
 
-    .pagination {
+    .pagination ul {
         justify-content: center;
     }
     
@@ -1379,6 +1380,10 @@ footer ul li {
         height: unset;
     }
 
+    .pagination ul {
+    
+        justify-content: center;
+    }
     
 }
 

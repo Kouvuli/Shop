@@ -5,12 +5,14 @@ import http from "http";
 import morgan from "morgan";
 import cors from "cors";
 import mongoose from "mongoose";
-import categoriesRouter from "./routes/category";
-import loginRouter from "./routes/login";
-import usersRouter from "./routes/user";
-import indexRouter from "./routes/index";
-import shopRouter from "./routes/shop";
-import productsRouter from "./routes/product";
+import { create } from "express-handlebars";
+import categoriesRouter from "./routes/categoryRoute";
+import authRouter from "./routes/authRoute";
+import usersRouter from "./routes/userRoute";
+import indexRouter from "./routes/indexRoute";
+import shopRouter from "./routes/shopRoute";
+
+import productsRouter from "./routes/productRoute";
 import path from "path";
 // import axios from "axios";
 // import bookModel from "./models/bookModel";
@@ -32,12 +34,19 @@ class App {
   useRoutes() {
     this.app.use("/", indexRouter);
     this.app.use("/", shopRouter);
+    this.app.use("/", productsRouter);
     this.app.use("/tai-khoan", usersRouter);
     this.app.use("/category", categoriesRouter);
-    this.app.use("/san-pham", productsRouter);
-    this.app.use("/dang-nhap", loginRouter);
+    this.app.use("/dang-nhap", authRouter);
   }
   useViewEngine() {
+    const hbs = create({
+      defaultLayout: "main",
+      extname: ".hbs",
+      partialsDir: "src/views/partials",
+      layoutsDir: "src/views",
+    });
+    this.app.engine(".hbs", hbs.engine);
     this.app.set("views", "./src/views");
     this.app.set("view engine", "hbs");
   }
