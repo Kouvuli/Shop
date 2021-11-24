@@ -1,5 +1,6 @@
 
 import _ from 'lodash'
+import helpers from '../../helpers'
 import productService from '../../services/productService'
 const productControllers = {
     async index(req, res) {
@@ -38,8 +39,9 @@ const productControllers = {
 
     async createProduct(req, res) {
         if (!_.isEmpty(req.body)) {
-            const { name, categoryType: type, description, manufacturer: manufacturerName, originPrice, currentPrice, quantity, image1, image2 } = req.body
-            await productService.createProduct({ name, description, category: { type }, manufacturer: { name: manufacturerName }, quantity, originPrice, currentPrice, images: [image1, image2] })
+            const { name, categoryType: type, description, manufacturer: manufacturerName, originPrice, currentPrice, quantity } = req.body
+            const images = req.files.map(file => file.path.replace('public/', ''))
+            await productService.createProduct({ name, description, category: { type }, manufacturer: { name: manufacturerName }, quantity, originPrice, currentPrice, images })
             return res.redirect('/products/create')
 
         }
@@ -51,8 +53,9 @@ const productControllers = {
             const product = await productService.getProductById({ id })
             res.render('products/edit', { product, image1: product.images[0] || "", image2: product?.images[1] || "" })
         } else {
-            const { name, categoryType: type, description, manufacturer: manufacturerName, originPrice, currentPrice, quantity, image1, image2 } = req.body
-            await productService.updateProductById({ id, name, description, category: { type }, manufacturer: { name: manufacturerName }, quantity, originPrice, currentPrice, images: [image1, image2] })
+            const { name, categoryType: type, description, manufacturer: manufacturerName, originPrice, currentPrice, quantity } = req.body
+            const images = req.files.map(file => file.path.replace('public/', ''))
+            await productService.updateProductById({ id, name, description, category: { type }, manufacturer: { name: manufacturerName }, quantity, originPrice, currentPrice, images })
             return res.redirect('/products')
         }
 

@@ -51,7 +51,6 @@ const orderService = {
     async getOrders({ page = 1, perPage = 10 }) {
         const p = parseInt(page)
         const pp = parseInt(perPage)
-        console.log({ p, pp });
 
         const origin = await orderModel.find({}).skip((pp * p) - pp).limit(pp).lean()
         const total = await orderModel.countDocuments()
