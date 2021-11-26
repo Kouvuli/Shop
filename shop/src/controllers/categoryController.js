@@ -19,9 +19,11 @@ const categoryControllers = {
             data,
             layout: "layouts/main",
         };
-        res.render("category/loa", {
-            ...state,
-        });
+        if (_.isEmpty(req.body)) {
+            res.render("category/loa", {
+                ...state,
+            });
+        }
     },
     async headphoneProducts(req, res) {
         const perPage = 9;
@@ -40,9 +42,11 @@ const categoryControllers = {
             data,
             layout: "layouts/main",
         };
-        res.render("category/tai-nghe", {
-            ...state,
-        });
+        if (_.isEmpty(req.body)) {
+            res.render("category/tai-nghe", {
+                ...state,
+            });
+        }
     },
     async playerProducts(req, res) {
         const perPage = 9;

@@ -15,13 +15,13 @@ const productControllers = {
       page,
       perPage,
       data,
-
       layout: "layouts/main",
     };
-
-    res.render("product/tat-ca-san-pham", {
-      ...state,
-    });
+    if (_.isEmpty(req.body)) {
+      res.render("product/tat-ca-san-pham", {
+        ...state,
+      });
+    }
   },
   async productDetail(req, res) {
     const { id } = req.params;
