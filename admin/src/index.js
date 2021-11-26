@@ -10,7 +10,6 @@ import usePassport from "./middleware/usePassport";
 import useRoutes from "./middleware/useRoutes";
 import useViewEngine from "./middleware/useViewEngine";
 import databaseService from './services/databaseService'
-
 const PORT = process.env.PORT || 5000
 
 class App {
@@ -35,7 +34,10 @@ class App {
             await databaseService.connect()
             console.log('> MongoDB is connected...')
             this.run();
+
         } catch (e) {
+            console.log({ e });
+
             console.log('> Cant connect MongoDB...')
         }
     }
