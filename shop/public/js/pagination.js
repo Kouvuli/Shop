@@ -1,5 +1,6 @@
 const element = document.querySelector(".pagination ul");
 let totalPages = 20;
+const key = "page";
 const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
 
@@ -14,12 +15,12 @@ function createPagination(totalPages, page) {
   let beforePage = page - 1;
   let afterPage = page + 1;
   if (page > 1) {
-    liTag += `<li ><a href="?page=${
+    liTag += `<li ><a onclick="insertParam(key,${
       page - 1
-    }" ><i class='bx bxs-chevron-left'></i></a></li>`;
+    })" ><i class='bx bxs-chevron-left'></i></a></li>`;
   }
   if (page > 2) {
-    liTag += `<li><a href="?page=1" >1</a></li>`;
+    liTag += `<li  ><a onclick="insertParam(key,1)" >1</a></li>`;
     if (page > 3) {
       liTag += `<li class="dots"><span>...</span></li>`;
     }
@@ -46,20 +47,51 @@ function createPagination(totalPages, page) {
     } else {
       active = "";
     }
-    liTag += `<li  ><a href="?page=${plength}" class=${active} >${plength}</a></li>`;
+    liTag += `<li  ><a onclick="insertParam(key,${plength})" class=${active} >${plength}</a></li>`;
   }
   if (page < totalPages - 1) {
     if (page < totalPages - 2) {
       liTag += `<li class="dots"><span>...</span></li>`;
     }
-    liTag += `<li ><a href="?page=${totalPages}" >${totalPages}</a></li>`;
+    liTag += `<li ><a onclick="insertParam(key,${totalPages})" >${totalPages}</a></li>`;
   }
   if (page < totalPages) {
-    liTag += `<li ><a  href="?page=${
+    liTag += `<li ><a  onclick="insertParam(key,${
       page + 1
-    }" ><i class='bx bxs-chevron-right'></i></a></li>`;
+    })" ><i class='bx bxs-chevron-right'></i></a></li>`;
   }
   element.innerHTML = liTag;
 
   return liTag;
+}
+
+function insertParam(key, value) {
+  key = encodeURIComponent(key);
+  value = encodeURIComponent(value);
+  if (window.location.search == "") {
+    window.location.search = key + "=" + value;
+  } else {
+    // kvp looks like ['key1=value1', 'key2=value2', ...]
+    var kvp = document.location.search.substr(1).split("&");
+    let i = 0;
+
+    for (; i < kvp.length; i++) {
+      if (kvp[i].startsWith(key + "=")) {
+        let pair = kvp[i].split("=");
+        pair[1] = value;
+        kvp[i] = pair.join("=");
+        break;
+      }
+    }
+
+    if (i >= kvp.length) {
+      kvp[kvp.length] = [key, value].join("=");
+    }
+
+    // can return this or...
+    let params = kvp.join("&");
+
+    // reload page with new params
+    document.location.search = params;
+  }
 }
