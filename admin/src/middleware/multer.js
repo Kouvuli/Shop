@@ -1,8 +1,5 @@
 import multer from 'multer'
 let storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, './public/img')
-    },
     filename: function (req, file, cb) {
         const extArray = file.mimetype.split("/");
         const extension = extArray[extArray.length - 1];
@@ -12,5 +9,4 @@ let storage = multer.diskStorage({
     }
 })
 
-const upload = multer({ storage: storage })
-export default upload
+export default multer({ storage: storage })

@@ -44,7 +44,7 @@ const productControllers = {
             const images = []
 
             for (const file of req.files) {
-                const url = await firebaseService.uploadFile(file.path, file.filename)
+                const url = await firebaseService.uploadFile(file)
                 images.push(url)
             }
             await productService.createProduct({ name, description, category: { type }, manufacturer: { name: manufacturerName }, quantity, originPrice, currentPrice, images })

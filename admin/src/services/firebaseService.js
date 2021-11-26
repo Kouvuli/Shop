@@ -9,14 +9,13 @@ admin.initializeApp({
 
 const storageRef = admin.storage().bucket(`gs://vvt-store.appspot.com`);
 
-const uploadFile = async (path, filename) => {
+const uploadFile = async (file) => {
 
-    // Upload the File
-    const storage = await storageRef.upload(path, {
+    const storage = await storageRef.upload(file.path, {
         public: true,
-        destination: `/uploads/hashnode/${filename}`,
+        destination: `/uploads/hashnode/${file.filename}`,
         metadata: {
-            firebaseStorageDownloadTokens: _.uniqueId(filename),
+            firebaseStorageDownloadTokens: _.uniqueId(file),
         }
     });
 
