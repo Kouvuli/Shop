@@ -41,12 +41,7 @@ const productControllers = {
     async createProduct(req, res) {
         if (!_.isEmpty(req.body)) {
             const { name, categoryType: type, description, manufacturer: manufacturerName, originPrice, currentPrice, quantity } = req.body
-            const images = []
-
-            for (const file of req.files) {
-                const url = await firebaseService.uploadFile(file)
-                images.push(url)
-            }
+            const images = await firebaseService.uploadMultipleFiles(req.file);
             await productService.createProduct({ name, description, category: { type }, manufacturer: { name: manufacturerName }, quantity, originPrice, currentPrice, images })
             return res.redirect('/products/create')
 
@@ -60,11 +55,7 @@ const productControllers = {
             res.render('products/edit', { product, image1: product.images[0] || "", image2: product?.images[1] || "" })
         } else {
             const { name, categoryType: type, description, manufacturer: manufacturerName, originPrice, currentPrice, quantity } = req.body
-            const images = []
-            for (const file of req.files) {
-                const url = await firebaseService.uploadFile(file)
-                images.push(url)
-            }
+            const images = await firebaseService.uploadMultipleFiles(req.file);
             await productService.updateProductById({ id, name, description, category: { type }, manufacturer: { name: manufacturerName }, quantity, originPrice, currentPrice, images })
             return res.redirect('/products')
         }

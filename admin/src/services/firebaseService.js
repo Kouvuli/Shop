@@ -26,8 +26,24 @@ const uploadFile = async (file) => {
     }
 }
 
+
+const uploadMultipleFiles = async (files) => {
+    try {
+        let urls = []
+        for (const file of files) {
+            const url = await uploadFile(file)
+            urls.push(url)
+        }
+        return urls
+    }
+    catch (error) {
+        throw error
+    }
+}
+
 const firebaseService = {
-    uploadFile
+    uploadFile,
+    uploadMultipleFiles
 }
 
 export default firebaseService
