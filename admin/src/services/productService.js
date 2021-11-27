@@ -31,33 +31,25 @@ const productService = {
     async getProducts({ q = "", page = 1, perPage = 10, type = "", manufacturerName = "" }) {
         const p = Math.max(parseInt(page), 1)
         const pp = Math.max(parseInt(perPage), 10)
-
+        const filter = { active: 1 }
         const manufacturerKey = helpers.slug(manufacturerName)
         const typeKey = helpers.slug(type)
-        let data = await productModel.find({
-            $or: [{ name: { $regex: q } },
-            { 'category.type': { $regex: q } },
-            { 'manufacturer.name': { $regex: q } }],
-            active: 1
-        }).lean()
-
         if (!_.isEmpty(manufacturerKey)) {
-            const d = await productModel.find({
-                'manufacturer.key': manufacturerKey,
-                active: 1
-            }).lean()
-            data = [...new Set([...d, ...data])]
+            filter['manufacturer.key'] = manufacturerKey
         }
-
         if (!_.isEmpty(typeKey)) {
-            const d = await productModel.find({
-                'category.key': typeKey,
-                active: 1
-            }).lean()
-            data = [...new Set([...d, ...data])]
+            filter['category.key'] = typeKey
         }
-
-        const total = data.length || 0
+        if (_.isEmpty(q)) {
+            filter['$or'] = [{ name: { $regex: q } },
+            { 'category.type': { $regex: q } },
+            { 'manufacturer.name': { $regex: q } }]
+        }
+        const data = await productModel.find(filter)
+            .skip((pp * p) - pp)
+            .limit(pp)
+            .lean()
+        const total = productModel.countDocuments(filter)
         return { data, page, perPage, total, type, manufacturerName }
     },
 
