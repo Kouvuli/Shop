@@ -34,8 +34,6 @@ const productService = {
         const filter = { active: 1 }
         const manufacturerKey = helpers.slug(manufacturerName)
         const typeKey = helpers.slug(type)
-
-
         if (!_.isEmpty(manufacturerKey)) {
             filter['manufacturer.key'] = manufacturerKey
         }
