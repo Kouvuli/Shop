@@ -1,20 +1,17 @@
-import indexRoutes from '../modules/index/indexRoutes'
-import userRoutes from '../modules/auth/userRoutes'
-import productRoutes from '../modules/product/productRoutes'
-import orderRoutes from '../modules/order/orderRoutes'
-import discountRoutes from '../modules/discount/discountRoutes'
-import auth from "../middleware/auth";
 
+import indexRouter from '../routes/indexRoute'
+import productsRouter from '../routes/productRoute'
+import shopRouter from '../routes/shopRoute'
+import usersRouter from '../routes/userRoute'
+import categoriesRouter from '../routes/categoryRoute'
+import authRouter from '../routes/authRoute'
 const useRoutes = (app) => {
-    app.use('/', indexRoutes)
-    app.use('/users', auth, userRoutes)
-    app.use('/products', auth, productRoutes)
-    app.use('/orders', auth, orderRoutes)
-    app.use('/discounts', auth, discountRoutes)
-    //Catch not found ***Place end of file**
-    app.use((req, res) => {
-        res.render('error/index')
-    })
+    app.use("/", indexRouter);
+    app.use("/", shopRouter);
+    app.use("/", productsRouter);
+    app.use("/tai-khoan", usersRouter);
+    app.use("/category", categoriesRouter);
+    app.use("/dang-nhap", authRouter);
 }
 
 
