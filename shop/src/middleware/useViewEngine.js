@@ -1,10 +1,12 @@
-import helpers from "../helpers";
+import helpers from "../helper";
 import { create } from 'express-handlebars'
 
 const useViewEngine = (app) => {
     const hbs = create({
-        defaultLayout: './main.hbs',
-        extname: '.hbs',
+        defaultLayout: "main",
+        extname: ".hbs",
+        partialsDir: "src/views/partials",
+        layoutsDir: "src/views",
         helpers,
     });
     app.engine('.hbs', hbs.engine);
