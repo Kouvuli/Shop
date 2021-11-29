@@ -42,7 +42,7 @@
                         <ul class="filter-list">
                             <li>
                                 <div class="group-checkbox">
-                                    <input type="checkbox" id="status1">
+                                    <input type="checkbox" name="status" id="status1">
                                     <label for="status1">
                                         Đang giảm giá
                                         <i class='bx bx-check'></i>
@@ -51,7 +51,7 @@
                             </li>
                             <li>
                                 <div class="group-checkbox">
-                                    <input type="checkbox" id="status2">
+                                    <input type="checkbox" name="status" id="status2">
                                     <label for="status2">
                                         Còn hàng
                                         <i class='bx bx-check'></i>
@@ -60,7 +60,7 @@
                             </li>
                             <li>
                                 <div class="group-checkbox">
-                                    <input type="checkbox" id="status3">
+                                    <input type="checkbox" name="status" id="status3">
                                     <label for="status3">
                                         Hết hàng
                                         <i class='bx bx-check'></i>
@@ -76,7 +76,7 @@
                         <ul class="filter-list">
                             <li>
                                 <div class="group-checkbox">
-                                    <input type="checkbox" id="remember1">
+                                    <input type="checkbox" name="brand" id="remember1">
                                     <label for="remember1">
                                         Aune
                                         <i class='bx bx-check'></i>
@@ -85,7 +85,7 @@
                             </li>
                             <li>
                                 <div class="group-checkbox">
-                                    <input type="checkbox" id="remember2">
+                                    <input type="checkbox" name="brand" id="remember2">
                                     <label for="remember2">
                                         Benjie
                                         <i class='bx bx-check'></i>
@@ -94,7 +94,7 @@
                             </li>
                             <li>
                                 <div class="group-checkbox">
-                                    <input type="checkbox" id="remember3">
+                                    <input type="checkbox" name="brand" id="remember3">
                                     <label for="remember3">
                                         Cayin
                                         <i class='bx bx-check'></i>
@@ -103,7 +103,7 @@
                             </li>
                             <li>
                                 <div class="group-checkbox">
-                                    <input type="checkbox" id="remember4">
+                                    <input type="checkbox" name="brand" id="remember4">
                                     <label for="remember4">
                                         Colorfly
                                         <i class='bx bx-check'></i>
@@ -112,7 +112,7 @@
                             </li>
                             <li>
                                 <div class="group-checkbox">
-                                    <input type="checkbox" id="remember5">
+                                    <input type="checkbox" name="brand" id="remember5">
                                     <label for="remember5">
                                         Cowon
                                         <i class='bx bx-check'></i>
@@ -121,7 +121,7 @@
                             </li>
                             <li>
                                 <div class="group-checkbox">
-                                    <input type="checkbox" id="remember6">
+                                    <input type="checkbox" name="brand" id="remember6">
                                     <label for="remember6">
                                         FiiO
                                         <i class='bx bx-check'></i>
@@ -130,7 +130,7 @@
                             </li>
                             <li>
                                 <div class="group-checkbox">
-                                    <input type="checkbox" id="remember7">
+                                    <input type="checkbox" name="brand" id="remember7">
                                     <label for="remember7">
                                         HiBy
                                         <i class='bx bx-check'></i>
@@ -139,7 +139,7 @@
                             </li>
                             <li>
                                 <div class="group-checkbox">
-                                    <input type="checkbox" id="remember8">
+                                    <input type="checkbox" name="brand" id="remember8">
                                     <label for="remember8">
                                         Hidizs
                                         <i class='bx bx-check'></i>
@@ -148,7 +148,7 @@
                             </li>
                             <li>
                                 <div class="group-checkbox">
-                                    <input type="checkbox" id="remember9">
+                                    <input type="checkbox" name="brand" id="remember9">
                                     <label for="remember9">
                                         Hifiman
                                         <i class='bx bx-check'></i>
@@ -157,7 +157,7 @@
                             </li>
                             <li>
                                 <div class="group-checkbox">
-                                    <input type="checkbox" id="remember10">
+                                    <input type="checkbox" name="brand" id="remember10">
                                     <label for="remember10">
                                         IBasso
                                         <i class='bx bx-check'></i>
@@ -176,13 +176,43 @@
                         <button class="btn-flat btn-hover" id="filter-toggle">filter</button>
                     </div>
                     <div class="box">
-                        <div class="row" id="products"></div>
+                        <div class="row" id="products">
+                            {{#each data}}
+                            <div class="col-4 col-md-6 col-sm-12">
+                                <div class="product-card">
+                                    <div class="product-card-img">
+                                        {{#each_upto this.images 2}}
+                                        <img src={{this}} />
+                                        {{/each_upto}}
+                                    </div>
+                                    <div class="product-card-info">
+                                        <div class="product-btn">
+                                            <a href="/{{this._id}}" class="btn-flat btn-hover btn-shop-now">shop now</a>
+                                            <button class="btn-flat btn-hover btn-cart-add">
+                                                <i class='bx bxs-cart-add'></i>
+                                            </button>
+                                            <button class="btn-flat btn-hover btn-cart-add">
+                                                <i class='bx bxs-heart'></i>
+                                            </button>
+                                        </div>
+                                        <div class="product-card-name">
+                                            {{this.name}}
+                                        </div>
+                                        <div class="product-card-price">
+                                            <span><del>{{this.originPrice}}</del></span>
+                                            <span class="curr-price">{{this.currentPrice}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{/each}}
+                        </div>
                     </div>
-                    {{> pagination}}
+                    {{>pagination pagination=pagination}}
                 </div>
             </div>
         </div>
     </div>
 </div>
-<script src="/js/pagination.js"></script>
+<script src="/js/filter.js"></script>
 <script src="/js/products.js"></script>

@@ -13,20 +13,25 @@ const productControllers = {
     const state = {
       title: "Tất cả sản phẩm",
       page,
-      perPage,
+      perPage: Math.min(perPage, data.length),
       data,
+      total,
       layout: "layouts/main",
     };
     if (_.isEmpty(req.body)) {
       res.render("product/tat-ca-san-pham", {
         ...state,
+        pagination: {
+          page,
+          limit: Math.ceil(total / perPage),
+          perPage: perPage,
+        },
       });
     }
   },
   async productDetail(req, res) {
     const { id } = req.params;
     const data = await productService.getProductById({ id });
-    console.log(data);
     const state = {
       title: data.name,
       data,

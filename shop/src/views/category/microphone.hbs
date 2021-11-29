@@ -42,7 +42,7 @@
                         <ul class="filter-list">
                             <li>
                                 <div class="group-checkbox">
-                                    <input type="checkbox" id="status1">
+                                    <input type="checkbox" name="status" id="status1">
                                     <label for="status1">
                                         Đang giảm giá
                                         <i class='bx bx-check'></i>
@@ -51,7 +51,7 @@
                             </li>
                             <li>
                                 <div class="group-checkbox">
-                                    <input type="checkbox" id="status2">
+                                    <input type="checkbox" name="status" id="status2">
                                     <label for="status2">
                                         Còn hàng
                                         <i class='bx bx-check'></i>
@@ -60,7 +60,7 @@
                             </li>
                             <li>
                                 <div class="group-checkbox">
-                                    <input type="checkbox" id="status3">
+                                    <input type="checkbox" name="status" id="status3">
                                     <label for="status3">
                                         Hết hàng
                                         <i class='bx bx-check'></i>
@@ -76,7 +76,7 @@
                         <ul class="filter-list">
                             <li>
                                 <div class="group-checkbox">
-                                    <input type="checkbox" id="remember1">
+                                    <input type="checkbox" name="brand" id="remember1">
                                     <label for="remember1">
                                         Razer
                                         <i class='bx bx-check'></i>
@@ -85,7 +85,7 @@
                             </li>
                             <li>
                                 <div class="group-checkbox">
-                                    <input type="checkbox" id="remember2">
+                                    <input type="checkbox" name="brand" id="remember2">
                                     <label for="remember2">
                                         Kingston HyperX
                                         <i class='bx bx-check'></i>
@@ -94,7 +94,7 @@
                             </li>
                             <li>
                                 <div class="group-checkbox">
-                                    <input type="checkbox" id="remember3">
+                                    <input type="checkbox" name="brand" id="remember3">
                                     <label for="remember3">
                                         Audio-Technica
                                         <i class='bx bx-check'></i>
@@ -103,7 +103,7 @@
                             </li>
                             <li>
                                 <div class="group-checkbox">
-                                    <input type="checkbox" id="remember4">
+                                    <input type="checkbox" name="brand" id="remember4">
                                     <label for="remember4">
                                         AKG
                                         <i class='bx bx-check'></i>
@@ -123,13 +123,43 @@
                         <button class="btn-flat btn-hover" id="filter-toggle">filter</button>
                     </div>
                     <div class="box">
-                        <div class="row" id="products"></div>
+                        <div class="row" id="products">
+                            {{#each data}}
+                            <div class="col-4 col-md-6 col-sm-12">
+                                <div class="product-card">
+                                    <div class="product-card-img">
+                                        {{#each_upto this.images 2}}
+                                        <img src={{this}} />
+                                        {{/each_upto}}
+                                    </div>
+                                    <div class="product-card-info">
+                                        <div class="product-btn">
+                                            <a href="/{{this._id}}" class="btn-flat btn-hover btn-shop-now">shop now</a>
+                                            <button class="btn-flat btn-hover btn-cart-add">
+                                                <i class='bx bxs-cart-add'></i>
+                                            </button>
+                                            <button class="btn-flat btn-hover btn-cart-add">
+                                                <i class='bx bxs-heart'></i>
+                                            </button>
+                                        </div>
+                                        <div class="product-card-name">
+                                            {{this.name}}
+                                        </div>
+                                        <div class="product-card-price">
+                                            <span><del>{{this.originPrice}}</del></span>
+                                            <span class="curr-price">{{this.currentPrice}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{/each}}
+                        </div>
                     </div>
-                    {{> pagination}}
+                    {{>pagination pagination=pagination}}
                 </div>
             </div>
         </div>
     </div>
 </div>
-<script src="/js/pagination.js"></script>
 <script src="/js/products.js"></script>
+<script src="/js/filter.js"></script>

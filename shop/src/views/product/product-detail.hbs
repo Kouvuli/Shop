@@ -31,10 +31,13 @@
                         {{data.name}}
                     </h1>
                     <div class="product-info-detail">
-                        <span class="product-info-detail-title">Brand:</span>
-                        <a href="#">{{data.category.type}}</a>
+                        <span class="product-info-detail-title">Hãng sản xuất:</span>
+                        <a >{{data.manufacturer.name}}</a>
                     </div>
-
+                    <div class="product-info-detail">
+                        <span class="product-info-detail-title">Loại:</span>
+                        <a >{{data.category.type}}</a>
+                    </div>
                     <p class="product-description">
                         {{data.description}}
                     </p>
@@ -168,7 +171,7 @@
                         Aspernatur!
                     </div>
                 </div>
-                {{>pagination}}
+                {{!-- {{>pagination pagination=pagination}} --}}
             </div>
         </div>
         <div class="box">
@@ -181,4 +184,3 @@
 </div>
 
 <script src="/js/product-detail.js"></script>
-<script src="/js/pagination.js"></script>

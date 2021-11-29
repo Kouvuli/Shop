@@ -838,8 +838,13 @@ footer ul li {
 .group-checkbox input:checked + label i {
     transform: scale(1);
 }
-
-
+li.disabled {
+    color: #858796;
+    pointer-events: none;
+    cursor: auto;
+    background-color: #fff;
+    border-color: #dddfeb;
+}
 .pagination ul{
     display: flex;
     align-items: center;

@@ -34,59 +34,300 @@ const brandMicrophoneArr = [
   "AKG",
 ];
 
-const typeHeadPhoneArr = [
-  "True Wireless",
-  "Earbud",
-  "Bluetooth",
-  "Noise Cancelling",
-];
 const brandHeadPhoneArr = ["JBL", "Beat", "Logitech", "Samsung", "Sony"];
-document
-  .querySelectorAll(".group-checkbox input[name=status]")
-  .forEach((box) => {
-    box.addEventListener("change", (e) => {
-      e.preventDefault();
-      if (box.checked) {
-        e.preventDefault();
-        if (box.getAttribute("id") == "status1") {
-          window.location.search = insertParams("status[0]", statusArr[0]);
-          localStorage.setItem("status[0]", statusArr[0]);
+
+if (window.location.href.includes("/tat-ca-san-pham")) {
+  document
+    .querySelectorAll(".group-checkbox input[name=status]")
+    .forEach((box) => {
+      box.addEventListener("change", (e) => {
+        if (box.checked) {
+          e.preventDefault();
+          for (var i = 0; i < 3; i++) {
+            var a = "status" + (i + 1);
+            if (box.getAttribute("id") == a) {
+              window.location.search = insertParams("status", statusArr[i]);
+              localStorage.setItem("status", statusArr[i]);
+            }
+          }
+        } else {
+          window.location = removeURLParameter("status");
+          localStorage.removeItem("status");
         }
-        if (box.getAttribute("id") == "status2") {
-          window.location.search = insertParams("status[1]", statusArr[1]);
-          localStorage.setItem("status[1]", statusArr[1]);
-        }
-        if (box.getAttribute("id") == "status3") {
-          window.location.search = insertParams("status[2]", statusArr[2]);
-          localStorage.setItem("status[2]", statusArr[2]);
-        }
-      } else {
-        if (box.getAttribute("id") == "status1") {
-          window.location = removeURLParameter("status[0]");
-          localStorage.removeItem("status[0]");
-        }
-        if (box.getAttribute("id") == "status2") {
-          window.location = removeURLParameter("status[1]");
-          localStorage.removeItem("status[1]");
-        }
-        if (box.getAttribute("id") == "status3") {
-          window.location = removeURLParameter("status[2]");
-          localStorage.removeItem("status[2]");
-        }
-      }
+      });
     });
-  });
-window.onload = () => {
-  if (localStorage.getItem("status[0]") != null) {
-    document.querySelector("input[id=status1]").checked = true;
-  }
-  if (localStorage.getItem("status[1]") != null) {
-    document.querySelector("input[id=status2]").checked = true;
-  }
-  if (localStorage.getItem("status[2]") != null) {
-    document.querySelector("input[id=status3]").checked = true;
-  }
-};
+  window.onload = () => {
+    for (var i = 0; i < 3; i++) {
+      var a = "status" + (i + 1);
+      if (
+        localStorage.getItem("status") != null &&
+        localStorage.getItem("status") == statusArr[i]
+      ) {
+        document.querySelector(`input[id=${a}]`).checked = true;
+      }
+    }
+  };
+}
+
+if (window.location.href.includes("/tai-nghe")) {
+  const brandTotal = 5;
+  document
+    .querySelectorAll(".group-checkbox input[name=status]")
+    .forEach((box) => {
+      box.addEventListener("change", (e) => {
+        if (box.checked) {
+          e.preventDefault();
+          for (var i = 0; i < 3; i++) {
+            var a = "status" + (i + 1);
+            if (box.getAttribute("id") == a) {
+              window.location.search = insertParams("status", statusArr[i]);
+              localStorage.setItem("status", statusArr[i]);
+            }
+          }
+        } else {
+          window.location = removeURLParameter("status");
+          localStorage.removeItem("status");
+        }
+      });
+    });
+
+  document
+    .querySelectorAll(".group-checkbox input[name=brand]")
+    .forEach((box) => {
+      box.addEventListener("change", (e) => {
+        if (box.checked) {
+          e.preventDefault();
+          for (var i = 0; i < brandTotal; i++) {
+            var a = "remember" + (i + 1);
+            if (box.getAttribute("id") == a) {
+              window.location.search = insertParams(
+                "brand",
+                brandHeadPhoneArr[i]
+              );
+              localStorage.setItem("brand", brandHeadPhoneArr[i]);
+            }
+          }
+        } else {
+          window.location = removeURLParameter("brand");
+          localStorage.removeItem("brand");
+        }
+      });
+    });
+  window.onload = () => {
+    for (var i = 0; i < 3; i++) {
+      var a = "status" + (i + 1);
+      if (
+        localStorage.getItem("status") != null &&
+        localStorage.getItem("status") == statusArr[i]
+      ) {
+        document.querySelector(`input[id=${a}]`).checked = true;
+      }
+    }
+    for (var i = 0; i < brandTotal; i++) {
+      var a = "remember" + (i + 1);
+      if (
+        localStorage.getItem("brand") != null &&
+        localStorage.getItem("brand") == brandHeadPhoneArr[i]
+      ) {
+        document.querySelector(`input[id=${a}]`).checked = true;
+      }
+    }
+  };
+}
+
+if (window.location.href.includes("/may-nghe-nhac")) {
+  const brandTotal = 10;
+  document
+    .querySelectorAll(".group-checkbox input[name=status]")
+    .forEach((box) => {
+      box.addEventListener("change", (e) => {
+        if (box.checked) {
+          e.preventDefault();
+          for (var i = 0; i < 3; i++) {
+            var a = "status" + (i + 1);
+            if (box.getAttribute("id") == a) {
+              window.location.search = insertParams("status", statusArr[i]);
+              localStorage.setItem("status", statusArr[i]);
+            }
+          }
+        } else {
+          window.location = removeURLParameter("status");
+          localStorage.removeItem("status");
+        }
+      });
+    });
+
+  document
+    .querySelectorAll(".group-checkbox input[name=brand]")
+    .forEach((box) => {
+      box.addEventListener("change", (e) => {
+        if (box.checked) {
+          e.preventDefault();
+          for (var i = 0; i < brandTotal; i++) {
+            var a = "remember" + (i + 1);
+            if (box.getAttribute("id") == a) {
+              window.location.search = insertParams("brand", brandPlayerArr[i]);
+              localStorage.setItem("brand", brandPlayerArr[i]);
+            }
+          }
+        } else {
+          window.location = removeURLParameter("brand");
+          localStorage.removeItem("brand");
+        }
+      });
+    });
+  window.onload = () => {
+    for (var i = 0; i < 3; i++) {
+      var a = "status" + (i + 1);
+      if (
+        localStorage.getItem("status") != null &&
+        localStorage.getItem("status") == statusArr[i]
+      ) {
+        document.querySelector(`input[id=${a}]`).checked = true;
+      }
+    }
+    for (var i = 0; i < brandTotal; i++) {
+      var a = "remember" + (i + 1);
+      if (
+        localStorage.getItem("brand") != null &&
+        localStorage.getItem("brand") == brandPlayerArr[i]
+      ) {
+        document.querySelector(`input[id=${a}]`).checked = true;
+      }
+    }
+  };
+}
+
+if (window.location.href.includes("/loa")) {
+  const brandTotal = 12;
+  document
+    .querySelectorAll(".group-checkbox input[name=status]")
+    .forEach((box) => {
+      box.addEventListener("change", (e) => {
+        if (box.checked) {
+          e.preventDefault();
+          for (var i = 0; i < 3; i++) {
+            var a = "status" + (i + 1);
+            if (box.getAttribute("id") == a) {
+              window.location.search = insertParams("status", statusArr[i]);
+              localStorage.setItem("status", statusArr[i]);
+            }
+          }
+        } else {
+          window.location = removeURLParameter("status");
+          localStorage.removeItem("status");
+        }
+      });
+    });
+
+  document
+    .querySelectorAll(".group-checkbox input[name=brand]")
+    .forEach((box) => {
+      box.addEventListener("change", (e) => {
+        if (box.checked) {
+          e.preventDefault();
+          for (var i = 0; i < brandTotal; i++) {
+            var a = "remember" + (i + 1);
+            if (box.getAttribute("id") == a) {
+              window.location.search = insertParams(
+                "brand",
+                brandSpeakerArr[i]
+              );
+              localStorage.setItem("brand", brandSpeakerArr[i]);
+            }
+          }
+        } else {
+          window.location = removeURLParameter("brand");
+          localStorage.removeItem("brand");
+        }
+      });
+    });
+  window.onload = () => {
+    for (var i = 0; i < 3; i++) {
+      var a = "status" + (i + 1);
+      if (
+        localStorage.getItem("status") != null &&
+        localStorage.getItem("status") == statusArr[i]
+      ) {
+        document.querySelector(`input[id=${a}]`).checked = true;
+      }
+    }
+    for (var i = 0; i < brandTotal; i++) {
+      var a = "remember" + (i + 1);
+      if (
+        localStorage.getItem("brand") != null &&
+        localStorage.getItem("brand") == brandSpeakerArr[i]
+      ) {
+        document.querySelector(`input[id=${a}]`).checked = true;
+      }
+    }
+  };
+}
+if (window.location.href.includes("/microphone")) {
+  const brandTotal = 4;
+  document
+    .querySelectorAll(".group-checkbox input[name=status]")
+    .forEach((box) => {
+      box.addEventListener("change", (e) => {
+        if (box.checked) {
+          e.preventDefault();
+          for (var i = 0; i < 3; i++) {
+            var a = "status" + (i + 1);
+            if (box.getAttribute("id") == a) {
+              window.location.search = insertParams("status", statusArr[i]);
+              localStorage.setItem("status", statusArr[i]);
+            }
+          }
+        } else {
+          window.location = removeURLParameter("status");
+          localStorage.removeItem("status");
+        }
+      });
+    });
+
+  document
+    .querySelectorAll(".group-checkbox input[name=brand]")
+    .forEach((box) => {
+      box.addEventListener("change", (e) => {
+        if (box.checked) {
+          e.preventDefault();
+          for (var i = 0; i < brandTotal; i++) {
+            var a = "remember" + (i + 1);
+            if (box.getAttribute("id") == a) {
+              window.location.search = insertParams(
+                "brand",
+                brandMicrophoneArr[i]
+              );
+              localStorage.setItem("brand", brandMicrophoneArr[i]);
+            }
+          }
+        } else {
+          window.location = removeURLParameter("brand");
+          localStorage.removeItem("brand");
+        }
+      });
+    });
+  window.onload = () => {
+    for (var i = 0; i < 3; i++) {
+      var a = "status" + (i + 1);
+      if (
+        localStorage.getItem("status") != null &&
+        localStorage.getItem("status") == statusArr[i]
+      ) {
+        document.querySelector(`input[id=${a}]`).checked = true;
+      }
+    }
+    for (var i = 0; i < brandTotal; i++) {
+      var a = "remember" + (i + 1);
+      if (
+        localStorage.getItem("brand") != null &&
+        localStorage.getItem("brand") == brandMicrophoneArr[i]
+      ) {
+        document.querySelector(`input[id=${a}]`).checked = true;
+      }
+    }
+  };
+}
 function insertParams(key, value) {
   //   key = encodeURIComponent(key);
   //   value = encodeURIComponent(value);
