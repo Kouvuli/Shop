@@ -49,7 +49,7 @@ const productService = {
             .skip((pp * p) - pp)
             .limit(pp)
             .lean()
-        const total = productModel.countDocuments(filter)
+        const total = await productModel.countDocuments(filter)
         return { data, page, perPage, total, type, manufacturerName }
     },
 

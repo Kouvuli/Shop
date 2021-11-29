@@ -23,6 +23,7 @@
                     </div>
                 </div>
             </form>
+
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -34,20 +35,21 @@
                             {{/each}}
                         </tr>
                     </thead>
-                    <tfoot>
+                    {{!-- <tfoot>
                         <tr>
                             {{#each header}}
                             <th>{{this}}</th>
                             {{/each}}
                         </tr>
-                    </tfoot>
+                    </tfoot> --}}
                     <tbody>
 
                         {{#each data}}
                         <tr>
 
                             <td>
-                                <a class="btn " href="/products/confirm/{{this._id}}"><i class="fas fa-trash-alt"></i></a>
+                                <a class="btn " href="/products/confirm/{{this._id}}"><i
+                                        class="fas fa-trash-alt"></i></a>
                                 <a class="btn " href="/products/edit/{{this._id}}"><i class="fas fa-edit"></i></i></a>
 
                                 {{this.name}}
@@ -68,6 +70,8 @@
 
                     </tbody>
                 </table>
+                <div>Hiển thị {{perPage}}/{{total}} sản phẩm</div>
+
                 {{> pagination pagination=pagination}}
 
             </div>

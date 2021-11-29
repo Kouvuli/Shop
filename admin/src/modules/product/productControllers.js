@@ -12,7 +12,7 @@ const productControllers = {
         const state = {
             title: 'Sản phẩm',
             page,
-            perPage,
+            perPage: Math.min(perPage, data.length),
             data,
             total,
             header: ["Tên sản phẩm", "Danh mục", "Hãng sản xuất", "Giá nhập", "Giá bán", "Số lượng", "Mô tả", "Hình ảnh"]
