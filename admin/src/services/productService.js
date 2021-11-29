@@ -34,6 +34,8 @@ const productService = {
         const filter = { active: 1 }
         const manufacturerKey = helpers.slug(manufacturerName)
         const typeKey = helpers.slug(type)
+
+
         if (!_.isEmpty(manufacturerKey)) {
             filter['manufacturer.key'] = manufacturerKey
         }
@@ -49,7 +51,7 @@ const productService = {
             .skip((pp * p) - pp)
             .limit(pp)
             .lean()
-        const total = productModel.countDocuments(filter)
+        const total = await productModel.countDocuments(filter)
         return { data, page, perPage, total, type, manufacturerName }
     },
 
