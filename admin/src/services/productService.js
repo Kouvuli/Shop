@@ -42,7 +42,7 @@ const productService = {
         if (!_.isEmpty(typeKey)) {
             filter['category.key'] = typeKey
         }
-        if (_.isEmpty(q)) {
+        if (!_.isEmpty(q)) {
             filter['$or'] = [{ name: { $regex: q } },
             { 'category.type': { $regex: q } },
             { 'manufacturer.name': { $regex: q } }]
