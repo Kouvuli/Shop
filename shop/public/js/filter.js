@@ -36,6 +36,9 @@ const brandMicrophoneArr = [
 
 const brandHeadPhoneArr = ["JBL", "Beat", "Logitech", "Samsung", "Sony"];
 
+// if (!window.referrer.includes(window.location.pathname)) {
+//   localStorage.clear();
+// }
 if (window.location.href.includes("/tat-ca-san-pham")) {
   document
     .querySelectorAll(".group-checkbox input[name=status]")
