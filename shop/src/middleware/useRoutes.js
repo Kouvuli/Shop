@@ -7,7 +7,7 @@ import authRouter from "../routes/authRoute";
 const useRoutes = (app) => {
   app.use("/", indexRouter);
   app.use("/", shopRouter);
-  app.use("/", productsRouter);
+  app.use("/san-pham", productsRouter);
   app.use("/tai-khoan", usersRouter);
   app.use("/category", categoriesRouter);
   app.use("/dang-nhap", authRouter);
