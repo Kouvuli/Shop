@@ -28,7 +28,6 @@ const uploadFile = async (file) => {
 
 
 const uploadMultipleFiles = async (files) => {
-    console.log({ files });
 
     try {
         let urls = []
