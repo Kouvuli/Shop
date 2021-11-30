@@ -74,7 +74,7 @@ const productService = {
     }) {
 
         const p = Math.max(parseInt(page), 1);
-        const pp = Math.max(parseInt(perPage), 10);
+        const pp = parseInt(perPage);
         const filter = { active: 1 };
         const manufacturerKey = helpers.slug(manufacturerName);
         const typeKey = helpers.slug(type);
@@ -104,7 +104,7 @@ const productService = {
 
     async getTopSellers({ page = 1, perPage = 10, type = "" }) {
         const p = Math.max(parseInt(page), 1);
-        const pp = Math.max(parseInt(perPage), 10);
+        const pp = parseInt(perPage)
         let data = [];
         let total = 0;
         if (type) {
