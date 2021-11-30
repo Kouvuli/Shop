@@ -1,8 +1,7 @@
 import express from "express";
+import authController from "../controllers/authController";
 const router = express.Router();
 
-router.get("/", function (req, res, next) {
-  res.render("auth/dang-nhap", { title: "Express", layout: "layouts/login" });
-});
+router.get("/", authController.login);
 
 export default router;
