@@ -7,10 +7,10 @@ import auth from "../middleware/auth";
 
 const useRoutes = (app) => {
     app.use('/', indexRoutes)
-    app.use('/users', auth, userRoutes)
-    app.use('/products', auth, productRoutes)
-    app.use('/orders', auth, orderRoutes)
-    app.use('/discounts', auth, discountRoutes)
+    app.use('/users', userRoutes)
+    app.use('/products', productRoutes)
+    app.use('/orders', orderRoutes)
+    app.use('/discounts', discountRoutes)
     //Catch not found ***Place end of file**
     app.use((req, res) => {
         res.render('error/index')
