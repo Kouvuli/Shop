@@ -19,15 +19,15 @@ const usePassport = (app) => {
                 }
                 delete user.password
                 app.locals.user = user;
-                return done(null, user);
+                return done(null, user._id);
             } catch (err) {
                 return done(null, err);
             }
 
         })
     )
-    passport.serializeUser(function (user, done) {
-        done(null, user);
+    passport.serializeUser(function (id, done) {
+        done(null, id);
     });
 
     passport.deserializeUser(function (id, done) {

@@ -1,7 +1,7 @@
 import userModel from "../models/userModel"
 const userService = {
     async getUserByUsername({ username = "" }) {
-        const user = await userModel.findOne({ username })
+        const user = await userModel.findOne({ username }).lean()
         return user
     },
     async getUser({ username = "", password = "" }) {
@@ -14,7 +14,7 @@ const userService = {
     },
     async getUsers({ page = 1, perPage = 10 }) {
         const p = Math.max(parseInt(page), 1)
-        const pp = Math.max(parseInt(perPage), 10)
+        const pp = parseInt(perPage)
         const data = await userModel.find({}).skip((pp * p) - pp).limit(pp).lean()
         const total = await userModel.countDocuments({})
         return { data, page, perPage, total }

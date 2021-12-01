@@ -11,7 +11,7 @@ const discountService = {
     },
     async getDiscounts({ page = 1, perPage = 10 }) {
         const p = Math.max(parseInt(page), 1)
-        const pp = Math.max(parseInt(perPage), 10)
+        const pp = parseInt(perPage)
         let data = []
         const discounts = await discountModel.find().skip((pp * p) - pp).limit(pp).lean()
 
@@ -33,7 +33,7 @@ const discountService = {
     },
     async getDiscountsByUserId({ userId = "", page = 1, perPage = 10 }) {
         const p = Math.max(parseInt(page), 1)
-        const pp = Math.max(parseInt(perPage), 10)
+        const pp = parseInt(perPage)
         const data = await discountModel.find({ $or: [{ userId }, { userId: "" }], expiry: { $lte: new Date() } }).skip((pp * p) - pp).limit(pp).lean()
         const total = await discountModel.countDocuments({ $or: [{ userId }, { userId: "" }], expiry: { $lte: new Date() } })
         return { data, page, perPage, total }
