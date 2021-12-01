@@ -4,7 +4,7 @@ import indexControllers from "./indexControllers";
 import auth from "../../middleware/auth";
 const routes = express.Router()
 
-routes.get('/', indexControllers.index)
+routes.get('/', auth, indexControllers.index)
 
 
 routes.get('/login', indexControllers.login)
