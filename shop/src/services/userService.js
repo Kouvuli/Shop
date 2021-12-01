@@ -1,7 +1,7 @@
 import userModel from "../models/userModel"
 const userService = {
     async getUserByUsername({ username = "" }) {
-        const user = await userModel.findOne({ username })
+        const user = await userModel.findOne({ username }).lean()
         return user
     },
     async getUser({ username = "", password = "" }) {
