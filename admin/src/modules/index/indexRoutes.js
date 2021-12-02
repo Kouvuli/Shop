@@ -11,7 +11,7 @@ routes.get('/login', indexControllers.login)
 
 routes.post('/login', passport.authenticate('local', {
     successRedirect: '/',
-    failureRedirect: '/login',
+    failureRedirect: '/login?failure=true',
     failureFlash: false
 }))
 

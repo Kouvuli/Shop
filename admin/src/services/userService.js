@@ -1,11 +1,8 @@
 import userModel from "../models/userModel"
+import bcrypt from "bcryptjs"
 const userService = {
     async getUserByUsername({ username = "" }) {
         const user = await userModel.findOne({ username }).lean()
-        return user
-    },
-    async getUser({ username = "", password = "" }) {
-        const user = await userModel.findOne({ username, password })
         return user
     },
     async getUserById({ id = "" }) {
@@ -20,6 +17,10 @@ const userService = {
         return { data, page, perPage, total }
     },
     async createNewUser({ username = "", name = "", password = "", email = "", address = "", birthday = "" }) {
+        const user = await userModel.findOne({ username }).lean()
+        if (user) {
+            throw new Error('Username already exists')
+        }
         return await userModel.create({ username, name, password, email, address, birthday })
     },
 }

@@ -1,0 +1,92 @@
+<div class="container-fluid">
+    <div class="row justify-content-md-center mt-5">
+        <div class="col col-lg-3">
+            <h1 class="text-center login-title">Thêm quản trị viên</h1>
+            {{#if exist}}
+                <div class="alert alert-danger" role="alert">
+                    Tài khoản đã tồn tại
+                </div>
+            {{/if}}
+            {{#if success}}
+                <div class="alert alert-success" role="alert">
+                    Tạo thành công
+                </div>
+            {{/if}}
+            <div class="account-wall">
+                <form
+                    method="POST"
+                    action="/admin/create"
+                    class="needs-validation"
+                    novalidate
+                >
+                    <div class="form-group">
+                        <label for="username">Tên đăng nhập<span
+                                class="text-danger"
+                            >*</span></label>
+                        <input
+                            id="username"
+                            name="username"
+                            type="text"
+                            class="form-control"
+                            required
+                        />
+                        <div class="invalid-feedback">
+                            Vui lòng điền tên đăng nhập
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Mật khẩu<span
+                                class="text-danger"
+                            >*</span></label>
+                        <input
+                            id="password"
+                            name="password"
+                            type="password"
+                            class="form-control"
+                            required
+                        />
+                        <div class="invalid-feedback">
+                            Vui lòng điền mật khẩu
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Tên<span
+                                class="text-danger"
+                            >*</span></label>
+                        <input
+                            id="name"
+                            name="name"
+                            type="text"
+                            class="form-control"
+                            required
+                        />
+                        <div class="invalid-feedback">
+                            Vui lòng điền tên
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email<span
+                                class="text-danger"
+                            >*</span></label>
+                        <input
+                            id="email"
+                            name="email"
+                            type="text"
+                            class="form-control"
+                            required
+                        />
+                        <div class="invalid-feedback">
+                            Vui lòng điền email
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-center"><button
+                            class="btn btn-primary"
+                            type="submit"
+                        >
+                            Thêm mới</button></div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

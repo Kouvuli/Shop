@@ -67,10 +67,30 @@
                 <hr class="sidebar-divider" />
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/users">
-                        <i class="fas fa-users"></i>
+                    <a
+                        class="nav-link"
+                        href="#"
+                        data-toggle="collapse"
+                        data-target="#collapsePages"
+                        aria-expanded="true"
+                        aria-controls="collapsePages"
+                    >
+                        <i class="fas fa-users fa-sm text-white-50"></i>
                         <span>Người dùng</span>
                     </a>
+                    <div
+                        id="collapsePages"
+                        class="collapse show"
+                        aria-labelledby="headingPages"
+                        data-parent="#accordionSidebar"
+                    >
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="/users">Danh sách
+                                người dùng</a>
+                            <a class="collapse-item" href="/admin">Danh sách
+                                quản trị</a>
+                        </div>
+                    </div>
                 </li>
                 <hr class="sidebar-divider" />
                 <li class="nav-item">
@@ -135,6 +155,8 @@
                         data-parent="#accordionSidebar"
                     >
                         <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="/admin/create">Thêm
+                                quản trị</a>
                             <a
                                 class="collapse-item"
                                 href="/discounts/create"
