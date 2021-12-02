@@ -19,6 +19,7 @@ const userControllers = {
 
     async createAdmin(req, res) {
         const { exist = false, success = false } = req.query
+        const title = "Thêm quản trị viên"
         try {
             if (!_.isEmpty(req.body)) {
                 const { username, password, email, name } = req.body
@@ -26,7 +27,7 @@ const userControllers = {
                 return res.redirect('create?success=true')
 
             }
-            res.render('admin/create', { exist, success })
+            res.render('admin/create', { exist, success, title })
         } catch (e) {
             return res.redirect('create?exist=true')
         }

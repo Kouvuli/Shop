@@ -4,7 +4,7 @@ import productRoutes from '../modules/product/productRoutes'
 import orderRoutes from '../modules/order/orderRoutes'
 import discountRoutes from '../modules/discount/discountRoutes'
 import adminRoutes from '../modules/admin/adminRoutes'
-import auth from "../middleware/auth";
+import auth from "./auth";
 
 const useRoutes = (app) => {
     app.use('/', indexRoutes)

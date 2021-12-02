@@ -2,21 +2,21 @@ import express from "express";
 const router = express.Router();
 
 router.get("/", function (req, res, next) {
-  res.render("trang-chu", { title: "Trang chủ", layout: "layouts/main" });
+    res.render("home", { title: "Trang chủ", layout: "layouts/main" });
 });
 
-router.get("/gioi-thieu", function (req, res, next) {
-  res.render("gioi-thieu", {
-    title: "Giới thiệu",
-    layout: "layouts/main",
-  });
+router.get("/intro", function (req, res, next) {
+    res.render("intro", {
+        title: "Giới thiệu",
+        layout: "layouts/main",
+    });
 });
 
-router.get("/lien-he", function (req, res, next) {
-  res.render("lien-he", {
-    title: "Liên hệ",
-    layout: "layouts/main",
-  });
+router.get("/contact", function (req, res, next) {
+    res.render("contact", {
+        title: "Liên hệ",
+        layout: "layouts/main",
+    });
 });
 
 export default router;
