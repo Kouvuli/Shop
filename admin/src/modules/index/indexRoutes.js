@@ -15,5 +15,7 @@ routes.post('/login', passport.authenticate('local', {
     failureFlash: false
 }))
 
+routes.get('/logout', indexControllers.logout)
+
 
 export default routes

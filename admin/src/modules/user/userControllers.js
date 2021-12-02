@@ -6,7 +6,7 @@ const userControllers = {
 
         const { data, total } = await userService.getUsers({ page, perPage })
         const state = {
-            title: 'Người dùng',
+            title: 'Danh sách người dùng',
             page,
             total,
             perPage,

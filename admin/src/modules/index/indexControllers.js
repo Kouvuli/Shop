@@ -2,11 +2,15 @@ import adminService from '../../services/adminService'
 const indexControllers = {
     async index(req, res) {
         res.render('index', { title: "Dashboard" })
-    }
-    ,
+    },
     async login(req, res) {
         const { failure = false } = req.query
-        res.render('users/login', { failure })
+        const title = "Đăng nhập"
+        res.render('users/login', { failure, title })
+    },
+    async logout(req, res) {
+        req.logout();
+        res.redirect('/');
     }
 }
 

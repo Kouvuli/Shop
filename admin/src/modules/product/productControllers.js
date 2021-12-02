@@ -46,13 +46,15 @@ const productControllers = {
             return res.redirect('/products/create')
 
         }
-        res.render('products/create')
+        const title = "Thêm sản phẩm"
+        res.render('products/create', { title })
     },
     async editProduct(req, res) {
         const { id } = req.params
+        const title = "Cập nhật sản phẩm"
         if (_.isEmpty(req.body)) {
             const product = await productService.getProductById({ id })
-            res.render('products/edit', { product, image1: product.images[0] || "", image2: product?.images[1] || "" })
+            res.render('products/edit', { product, image1: product.images[0] || "", image2: product?.images[1] || "", title })
         } else {
             const { name, categoryType: type, description, manufacturer: manufacturerName, originPrice, currentPrice, quantity } = req.body
             const images = await firebaseService.uploadMultipleFiles(req.files);

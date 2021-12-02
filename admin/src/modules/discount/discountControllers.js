@@ -26,7 +26,7 @@ const discountControllers = {
             return res.redirect('/discounts/create')
         }
         const state = {
-            title: 'Đơn hàng',
+            title: 'Tạo khuyến mãi',
         }
 
 
