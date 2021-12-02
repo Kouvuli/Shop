@@ -10,6 +10,7 @@ const userService = {
     },
     async getUserById({ id = "" }) {
         const user = await userModel.findOne({ _id: id }).lean()
+        delete user.password
         return user
     },
     async getUsers({ page = 1, perPage = 10 }) {

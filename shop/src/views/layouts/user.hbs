@@ -57,15 +57,17 @@
                             <i class="bx bx-search-alt"></i>
                         </div>
                         <ul class="user-menu">
-                            <li><a href="/tai-khoan/thong-bao"><i
+                            <li><a href="/users/notifications"><i
                                         class="bx bx-bell"
                                     ></i></a></li>
-                            <li><a href="/tai-khoan/ho-so-ca-nhan"><i
-                                        class="bx bx-user-circle"
-                                    ></i></a></li>
-                            <li><a href="/tai-khoan/gio-hang"><i
+                            <li><a href="/users/cart"><i
                                         class="bx bx-cart"
                                     ></i></a></li>
+                            <li><a href="/users/profile">{{user.name}}</a></li>
+                            <li><a href="/auth/logout"><i
+                                        class="bx bx-log-out"
+                                    ></i></a></li>
+
                         </ul>
                     </div>
                 </div>
@@ -77,11 +79,11 @@
                 <nav class="side-bar">
                     <div class="user-p">
                         <img src="/images/default-user-image.png" />
-                        <h4>User Name</h4>
+                        <h4>{{data.name}}</h4>
                     </div>
                     <ul>
                         <li>
-                            <a href="/tai-khoan/ho-so-ca-nhan">
+                            <a href="/users/profile">
                                 <i
                                     class="bx bxs-user"
                                     style="color:#ffffff"
@@ -90,7 +92,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/tai-khoan/gio-hang">
+                            <a href="/users/cart">
                                 <i
                                     class="bx bxs-cart"
                                     style="color:#ffffff"
@@ -99,7 +101,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/tai-khoan/thong-bao">
+                            <a href="/users/notifications">
                                 <i
                                     class="bx bxs-bell"
                                     style="color:#ffffff"
@@ -108,7 +110,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/tai-khoan/da-thich">
+                            <a href="/users/likes">
                                 <i
                                     class="bx bxs-heart"
                                     style="color:#ffffff"
