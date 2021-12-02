@@ -2,7 +2,7 @@ import userService from '../../services/userService'
 
 const userControllers = {
     async index(req, res) {
-        const { page = 1, perPage = 4 } = req.query
+        const { page = 1, perPage = 10 } = req.query
 
         const { data, total } = await userService.getUsers({ page, perPage })
         const state = {

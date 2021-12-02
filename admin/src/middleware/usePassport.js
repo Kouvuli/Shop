@@ -1,7 +1,7 @@
 import passport from "passport";
 import bcrypt from 'bcryptjs'
 
-import userService from '../services/userService'
+import adminService from '../services/adminService'
 import { Strategy as LocalStrategy } from "passport-local";
 
 
@@ -9,7 +9,7 @@ const usePassport = (app) => {
     passport.use(new LocalStrategy(
         async function (username, password, done) {
             try {
-                const user = await userService.getUserByUsername({ username: username })
+                const user = await adminService.getAdminByUsername({ username: username })
                 if (!user) {
                     return done(null, false);
                 }
