@@ -9,6 +9,9 @@
         {{#if success}}
             <p>Đăng ký thành công!</p>
         {{/if}}
+        {{#if resetSuccess}}
+            <p>Mật khẩu mới đã được gửi về email thành công!</p>
+        {{/if}}
         {{#if failure}}
             <p>Đã có lỗi sảy ra. Vui lòng thử lại!</p>
         {{/if}}
@@ -46,7 +49,11 @@
             />
             {{! <input type='checkbox' class='check-box'><span>Ghi nhớ mật khẩu</span> }}
             <button type="submit" class="submit-btn">Đăng nhập</button>
+            <a href="/auth/forgot-password">
+                <text>Quên mật khẩu?</text>
+            </a>
         </form>
+
         <form
             id="register"
             method="post"

@@ -4,6 +4,10 @@ const userService = {
         const user = await userModel.findOne({ username }).lean()
         return user
     },
+    async getUserByEmail({ email = "" }) {
+        const user = await userModel.findOne({ email }).lean()
+        return user
+    },
     async getUser({ username = "", password = "" }) {
         const user = await userModel.findOne({ username, password })
         return user
@@ -22,6 +26,12 @@ const userService = {
     },
     async createNewUser({ username = "", name = "", password = "", email = "", address = "", birthday = "" }) {
         return await userModel.create({ username, name, password, email, address, birthday })
+    },
+    async updateResetPassword({ id = "", resetPassword = "" }) {
+        return await userModel.updateOne({ _id: id, }, { resetPassword })
+    },
+    async updatePassword({ id = "", password = "" }) {
+        return await userModel.updateOne({ _id: id, }, { password })
     },
 }
 
