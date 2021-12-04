@@ -9,6 +9,8 @@ const schema = new Schema(
         username: { type: Schema.Types.String, required: true },
         //password: mật khẩu đã được hash của người dùng
         password: { type: Schema.Types.String, required: true },
+        //resetPassword: mật khẩu được đặt lại đã được hash của người dùng
+        resetPassword: { type: Schema.Types.String },
         //email: email của người dùng
         email: { type: Schema.Types.String, required: true },
         //address: địa chỉ của người dùng (chưa chắc là địa chỉ giao hàng)

@@ -5,6 +5,8 @@ const router = express.Router();
 
 router.get("/login", authController.login);
 router.get("/logout", authController.logout);
+router.get("/forgot-password", authController.forgot);
+router.post("/forgot-password", authController.sendEmail);
 
 router.post("/register", authController.register);
 router.post('/login', passport.authenticate('local', {

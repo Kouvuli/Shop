@@ -13,13 +13,26 @@ const usePassport = (app) => {
                 if (!user) {
                     return done(null, false);
                 }
+                const userId = user._id
                 const isOk = bcrypt.compareSync(password, user.password)
                 if (!isOk) {
-                    return done(null, false);
+                    const isReset = bcrypt.compareSync(password, user.resetPassword)
+                    if (!isReset || !user.resetPassword) {
+                        return done(null, false);
+                    }
+                    //set password is reset password
+                    await userService.updatePassword({ id: userId, password: user.resetPassword })
+                    //set reset password is empty
+                    await userService.updateResetPassword({ id: userId, resetPassword: "" })
+                } else {
+                    //if have reset password but user use old password then delete reset password
+                    if (user.resetPassword)
+                        await userService.updateResetPassword({ id: userId, resetPassword: "" })
                 }
                 delete user.password
+                delete user.resetPassword
                 app.locals.user = user;
-                return done(null, user._id);
+                return done(null, userId);
             } catch (err) {
                 return done(null, err);
             }
