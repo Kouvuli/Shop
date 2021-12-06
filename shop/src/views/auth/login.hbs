@@ -7,19 +7,19 @@
                 ký</button>
         </div>
         {{#if success}}
-            <p>Đăng ký thành công!</p>
+            <p id="mess-content" class="center-box">Đăng ký thành công!</p>
         {{/if}}
         {{#if resetSuccess}}
-            <p>Mật khẩu mới đã được gửi về email thành công!</p>
+            <p id="mess-content" class="center-box">Mật khẩu mới đã được gửi về email thành công!</p>
         {{/if}}
         {{#if failure}}
-            <p>Đã có lỗi sảy ra. Vui lòng thử lại!</p>
+            <p id="mess-content" class="center-box">Đã có lỗi sảy ra. Vui lòng thử lại!</p>
         {{/if}}
         {{#if wrong}}
-            <p>Tên đăng nhập hoặc mật khẩu không chính xác!</p>
+            <p id="mess-content" class="center-box">Tên đăng nhập hoặc mật khẩu không chính xác!</p>
         {{/if}}
         {{#if exist}}
-            <p>Tên đăng nhập hoặc email đã tồn tại!</p>
+            <p id="mess-content" class="center-box">Tên đăng nhập hoặc email đã tồn tại!</p>
         {{/if}}
         {{#if emptyData}}
             <p>Vui lòng điền đầu đủ thông tin!</p>
@@ -94,8 +94,7 @@
                 placeholder="Nhập lại mật khẩu"
                 required
             />
-            <input type="checkbox" class="check-box" /><span>Tôi đồng ý các điều
-                khoản và dịch vụ</span>
+            <input type="checkbox" class="check-box" /><span>Tôi đồng ý các điều khoản và dịch vụ</span>
             <button type="submit" class="submit-btn">Đăng ký</button>
         </form>
     </div>
