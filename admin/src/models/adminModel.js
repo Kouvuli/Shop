@@ -5,8 +5,8 @@ const schema = new Schema(
     {
         //name: Tên admin
         name: { type: Schema.Types.String, required: true },
-        // //avatar: Ảnh đại diện của người dùng
-        // avatar: { type: Schema.Types.String },
+        //avatar: Ảnh đại diện của admin
+        avatar: { type: Schema.Types.String },
         //username: Tên dùng để đăng nhập
         username: { type: Schema.Types.String, required: true, unique: true },
         //password: mật khẩu đã được hash của admin

@@ -19,12 +19,12 @@ const adminService = {
         const total = await adminModel.countDocuments({})
         return { data, page, perPage, total }
     },
-    async createNewAdmin({ username = "", name = "", password = "", email = "" }) {
+    async createNewAdmin({ username = "", name = "", password = "", email = "", avatar = "" }) {
         const admin = await adminModel.findOne({ username }).lean()
         if (admin) {
             throw new Error('Username already exists')
         }
-        return await adminModel.create({ username, name, password, email })
+        return await adminModel.create({ username, name, password, email, avatar })
     },
 }
 
