@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
-*{
-	padding: 0;
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+* {
+    padding: 0;
     margin: 0;
 
     -webkit-tap-highlight-color: transparent;
@@ -19,12 +19,14 @@ li {
 img {
     max-width: 100%;
 }
-p{
+p {
     line-height: 1.6;
     font-size: 16px;
 }
 
-table, th, td {
+table,
+th,
+td {
     border-collapse: collapse;
     border: 1px solid black;
 }
@@ -34,10 +36,10 @@ input,
 optgroup,
 select,
 textarea {
-  font-family: inherit; /* 1 */
-  font-size: 100%; /* 1 */
-  line-height: 1.15; /* 1 */
-  margin: 0; /* 2 */
+    font-family: inherit; /* 1 */
+    font-size: 100%; /* 1 */
+    line-height: 1.15; /* 1 */
+    margin: 0; /* 2 */
 }
 
 /**
@@ -46,8 +48,9 @@ textarea {
  */
 
 button,
-input { /* 1 */
-  overflow: visible;
+input {
+    /* 1 */
+    overflow: visible;
 }
 
 /**
@@ -56,8 +59,9 @@ input { /* 1 */
  */
 
 button,
-select { /* 1 */
-  text-transform: none;
+select {
+    /* 1 */
+    text-transform: none;
 }
 
 /**
@@ -68,7 +72,7 @@ button,
 [type="button"],
 [type="reset"],
 [type="submit"] {
-  -webkit-appearance: button;
+    -webkit-appearance: button;
 }
 
 /**
@@ -79,17 +83,17 @@ button::-moz-focus-inner,
 [type="button"]::-moz-focus-inner,
 [type="reset"]::-moz-focus-inner,
 [type="submit"]::-moz-focus-inner {
-  border-style: none;
-  padding: 0;
+    border-style: none;
+    padding: 0;
 }
 
 button,
 input {
-  font-family: inherit; /* 1 */
-  font-size: 100%; /* 1 */
-  line-height: 1.15; /* 1 */
-  margin: 0; /* 2 */
-  overflow: auto;
+    font-family: inherit; /* 1 */
+    font-size: 100%; /* 1 */
+    line-height: 1.15; /* 1 */
+    margin: 0; /* 2 */
+    overflow: auto;
 }
 .logo {
     font-size: 40px;
@@ -101,13 +105,12 @@ input {
     font-weight: 700;
 }
 
-
 .logo {
-	font-size: 30px;
+    font-size: 30px;
 }
 
 /* font  */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 /* reset css */
 :root {
@@ -131,15 +134,14 @@ body {
     overflow-x: hidden;
     position: relative;
     background-image: url(/images/boseheadphones.png);
-	background-size: cover;
-	background-repeat: no-repeat;
+    background-size: cover;
+    background-repeat: no-repeat;
     overflow-x: hidden;
 }
 
-
 .bg-main {
     background-color: var(--main-bg-color);
-} 
+}
 
 .mid-header {
     display: flex;
@@ -169,154 +171,123 @@ body {
     position: relative;
 }
 @media only screen and (max-width: 1280px) {
-
-
     .logo {
         font-size: 30px;
     }
-
-    
-    
 }
-
-
 
 /*============================================================*/
-.form-box
-{
-    width:380px;
-	height:480px;
-	position:relative;
-	margin:2% auto;
-	background:rgba(0,0,0,0.3);
-	padding:10px;
+.form-box {
+    width: 380px;
+    height: 480px;
+    position: relative;
+    margin: 2% auto;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 10px;
     overflow: hidden;
 }
-.button-box
-{
-	width:220px;
-	margin:35px auto;
-	position:relative;
-	border-radius: 30px;
+.button-box {
+    width: 220px;
+    margin: 35px auto;
+    position: relative;
+    border-radius: 30px;
     display: flex;
-    
 }
-.toggle-btn
-{
-	padding:10px 30px;
-	cursor:pointer;
-	background:transparent;
-	border:0;
-	outline: none;
-	position: relative;
+.toggle-btn {
+    padding: 10px 30px;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    outline: none;
+    position: relative;
     font-weight: 700;
     text-align: center;
     font-size: 1rem;
-    
 }
-#btn
-{
-	top: 0;
-	left:0;
-	position: absolute;
-	width: 110px;
-	height: 100%;
-	background:#fff;
-	border-radius: 30px;
-	transition: .5s;
+#btn {
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 110px;
+    height: 100%;
+    background: #fff;
+    border-radius: 30px;
+    transition: 0.5s;
 }
-.input-group-login
-{
-	top: 150px;
-	position:absolute;
-	width:280px;
-	transition:.5s;
+.input-group-login {
+    top: 150px;
+    position: absolute;
+    width: 280px;
+    transition: 0.5s;
 }
-.input-group-register
-{
+.input-group-register {
     top: 120px;
-	position:absolute;
-	width:280px;
-	transition:.5s;
+    position: absolute;
+    width: 280px;
+    transition: 0.5s;
 }
-.input-field
-{
-	width: 100%;
-	padding:10px ;
-	margin:5px 0;
-	outline: none;
-	border: 2px solid rgb(255, 255, 255);
-	
-	background: transparent;
+.input-field {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    outline: none;
+    border: 2px solid rgb(255, 255, 255);
+
+    background: transparent;
 }
-.submit-btn
-{
-	width: 85%;
-	padding: 10px 30px;
-	cursor: pointer;
-	display: block;
-	margin: auto;
-	background:#fff;
-	border: 0;
-	outline: none;
-	border-radius: 30px;
-     text-transform: uppercase;
-     font-weight: 700;
+.submit-btn {
+    width: 85%;
+    padding: 10px 30px;
+    cursor: pointer;
+    display: block;
+    margin: auto;
+    background: #fff;
+    border: 0;
+    outline: none;
+    border-radius: 30px;
+    text-transform: uppercase;
+    font-weight: 700;
 }
 
+.check-box {
+    margin: 30px 10px 34px 0;
+}
+span {
+    color: #777;
+    font-size: 12px;
+    bottom: 68px;
+    position: absolute;
+}
+#login {
+    left: 50px;
+}
+#login input {
+    color: black;
 
-
-.check-box
-{
-	margin: 30px 10px 34px 0;
+    font-size: 15;
 }
-span
-{
-	color:#777;
-	font-size:12px;
-	bottom:68px;
-	position:absolute;
+#register {
+    left: 450px;
 }
-#login
-{
-	left:50px;
-}
-#login input
-{
-	color:black;
-
-	font-size:15;
-}
-#register
-{
-	left:450px;
-}
-#register input
-{
-	color:white;
-	font-size: 15;
+#register input {
+    color: white;
+    font-size: 15;
 }
 
-.center-box
-{
-   position: absolute;
-   top:50%;
-   left:50%;
-   transform: translate(-50%, 150%); 
+.center-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 150%);
 }
 
-#mess-content
-{
-    width:300px;
-    height:50px;    
+.mess-content {
+    width: 300px;
+    height: 50px;
     text-align: center;
     background: white;
-    border-radius:3px;
-    box-shadow: 0 2px 12px 0 rgba(0,0,0,4);
+    border-radius: 3px;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 4);
     padding-top: 15px;
     padding-bottom: 10px;
-
 }
-
-
-

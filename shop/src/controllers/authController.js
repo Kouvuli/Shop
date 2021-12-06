@@ -4,12 +4,12 @@ import mailService from "../services/mailService";
 import bcrypt from 'bcryptjs'
 const authController = {
     async login(req, res) {
-        const { emptyData = false, exist = false, success = false, failure = false, logout = false, resetSuccess = false } = req.query
+        const { emptyData = false, exist = false, success = false, failure = false, logout = false, resetSuccess = false, wrong = false } = req.query
         const state = {
             title: "Đăng nhập",
             layout: "layouts/login",
         };
-        res.render("auth/login", { ...state, emptyData, exist, success, failure, logout, resetSuccess });
+        res.render("auth/login", { ...state, emptyData, exist, success, failure, logout, resetSuccess, wrong });
     },
     async forgot(req, res) {
         const { notExist = false } = req.query
