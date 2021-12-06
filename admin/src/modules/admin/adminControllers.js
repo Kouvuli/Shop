@@ -1,7 +1,9 @@
 import _ from 'lodash'
 import adminService from '../../services/adminService'
 import bcrypt from 'bcryptjs'
-const userControllers = {
+import firebaseService from '../../services/firebaseService'
+
+const adminControllers = {
     async index(req, res) {
         const { page = 1, perPage = 10 } = req.query
 
@@ -12,7 +14,7 @@ const userControllers = {
             total,
             perPage,
             data,
-            header: ["Tên người dùng", "Tên đăng nhập", "Email", "Ngày tạo"]
+            header: ["Tên quản trị", "Tên đăng nhập", "Email", "Ngày tạo"]
         }
         res.render('admin/index', { ...state, pagination: { page, limit: Math.ceil(total / perPage), perPage: perPage } })
     },
@@ -23,7 +25,8 @@ const userControllers = {
         try {
             if (!_.isEmpty(req.body)) {
                 const { username, password, email, name } = req.body
-                await adminService.createNewAdmin({ username, name, password: bcrypt.hashSync(password, bcrypt.genSaltSync(10)), email })
+                const avatar = await firebaseService.uploadFile(req.file)
+                await adminService.createNewAdmin({ username, name, password: bcrypt.hashSync(password, bcrypt.genSaltSync(10)), email, avatar })
                 return res.redirect('create?success=true')
 
             }
@@ -31,9 +34,14 @@ const userControllers = {
         } catch (e) {
             return res.redirect('create?exist=true')
         }
+    },
+    async getById(req, res) {
+        const { id } = req.params
+        const data = await adminService.getAdminById({ id })
+        res.render('admin/detail', { data, title: data.name })
     }
 
 
 }
 
-export default userControllers
+export default adminControllers

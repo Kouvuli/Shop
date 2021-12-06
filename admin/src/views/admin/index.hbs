@@ -29,19 +29,14 @@
                             {{/each}}
                         </tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            {{#each header}}
-                                <th>{{this}}</th>
-                            {{/each}}
-                        </tr>
-                    </tfoot>
                     <tbody>
 
                         {{#each data}}
                             <tr>
                                 <td>
-                                    <i class="fas fa-user-lock"></i>
+                                    <a class="btn " href="/admin/{{this._id}}">
+                                        <i class="fas fa-info-circle"></i>
+                                    </a>
                                     {{this.name}}
                                 </td>
                                 <td>{{this.username}}</td>
