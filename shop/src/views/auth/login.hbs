@@ -2,31 +2,37 @@
     <div class="form-box">
         <div class="button-box">
             <div id="btn"></div>
-            <button type="button" onclick="login()" class="toggle-btn">Đăng nhập</button>
-            <button type="button" onclick="register()" class="toggle-btn">Đăng
-                ký</button>
+            <button id="login-toggle-btn" type="button" class="toggle-btn">Đăng
+                nhập</button>
+            <button id="register-toggle-btn" class="toggle-btn">Đăng ký</button>
         </div>
-        {{#if success}}
-            <p id="mess-content" class="center-box">Đăng ký thành công!</p>
-        {{/if}}
-        {{#if resetSuccess}}
-            <p id="mess-content" class="center-box">Mật khẩu mới đã được gửi về email thành công!</p>
-        {{/if}}
-        {{#if failure}}
-            <p id="mess-content" class="center-box">Đã có lỗi sảy ra. Vui lòng thử lại!</p>
-        {{/if}}
-        {{#if wrong}}
-            <p id="mess-content" class="center-box">Tên đăng nhập hoặc mật khẩu không chính xác!</p>
-        {{/if}}
-        {{#if exist}}
-            <p id="mess-content" class="center-box">Tên đăng nhập hoặc email đã tồn tại!</p>
-        {{/if}}
-        {{#if emptyData}}
-            <p>Vui lòng điền đầu đủ thông tin!</p>
-        {{/if}}
-        {{#if logout}}
-            <p>Đăng xuất thành công!</p>
-        {{/if}}
+        <div id="mess-list">
+            {{#if success}}
+                <p class="mess-content center-box">Đăng ký thành công!</p>
+            {{/if}}
+            {{#if resetSuccess}}
+                <p class="mess-content center-box">Mật khẩu mới đã được gửi về
+                    email thành công!</p>
+            {{/if}}
+            {{#if failure}}
+                <p class="mess-content center-box">Đã có lỗi sảy ra. Vui lòng
+                    thử lại!</p>
+            {{/if}}
+            {{#if wrong}}
+                <p class="mess-content center-box">Tên đăng nhập hoặc mật khẩu
+                    không chính xác!</p>
+            {{/if}}
+            {{#if exist}}
+                <p class="mess-content center-box">Tên đăng nhập hoặc email đã
+                    tồn tại!</p>
+            {{/if}}
+            {{#if emptyData}}
+                <p>Vui lòng điền đầu đủ thông tin!</p>
+            {{/if}}
+            {{#if logout}}
+                <p>Đăng xuất thành công!</p>
+            {{/if}}
+        </div>
         <form
             method="post"
             action="/auth/login"
@@ -94,7 +100,8 @@
                 placeholder="Nhập lại mật khẩu"
                 required
             />
-            <input type="checkbox" class="check-box" /><span>Tôi đồng ý các điều khoản và dịch vụ</span>
+            <input type="checkbox" class="check-box" /><span>Tôi đồng ý các điều
+                khoản và dịch vụ</span>
             <button type="submit" class="submit-btn">Đăng ký</button>
         </form>
     </div>
