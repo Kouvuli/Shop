@@ -10,6 +10,7 @@ const indexControllers = {
     },
     async logout(req, res) {
         req.logout();
+        res.locals.user = null
         res.redirect('/');
     }
 }

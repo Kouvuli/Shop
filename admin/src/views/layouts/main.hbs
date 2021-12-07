@@ -265,14 +265,16 @@
                             </li>
 
                             <!-- Nav Item - User Information -->
-                            <li class="nav-item no-arrow fw-bold">
-                                <span
-                                    class="ml-2 d-none d-lg-inline text-uppercase"
-                                >{{user.name}}</span>
-                                <a class="btn" href="/logout">
-                                    <i class="fas fa-sign-out-alt"></i>
-                                </a>
-                            </li>
+                            {{#if user}}
+                                <li class="nav-item no-arrow fw-bold">
+                                    <span
+                                        class="ml-2 d-none d-lg-inline text-uppercase"
+                                    >{{user.name}}</span>
+                                    <a class="btn" href="/logout">
+                                        <i class="fas fa-sign-out-alt"></i>
+                                    </a>
+                                </li>
+                            {{/if}}
 
                         </ul>
 

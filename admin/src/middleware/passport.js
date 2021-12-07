@@ -18,7 +18,6 @@ const usePassport = (app) => {
                     return done(null, false);
                 }
                 delete user.password
-                app.locals.user = user;
                 return done(null, user._id);
             } catch (err) {
                 return done(null, err);
