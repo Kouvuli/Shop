@@ -27,10 +27,11 @@
                     tồn tại!</p>
             {{/if}}
             {{#if emptyData}}
-                <p>Vui lòng điền đầu đủ thông tin!</p>
+                <p class="mess-content center-box">Vui lòng điền đầu đủ thông
+                    tin!</p>
             {{/if}}
             {{#if logout}}
-                <p>Đăng xuất thành công!</p>
+                <p class="mess-content center-box">Đăng xuất thành công!</p>
             {{/if}}
         </div>
         <form
@@ -43,7 +44,7 @@
                 type="text"
                 name="username"
                 class="input-field"
-                placeholder="Email"
+                placeholder="Tên đăng nhập"
                 required
             />
             <input
