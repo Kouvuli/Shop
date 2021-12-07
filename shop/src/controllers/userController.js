@@ -4,7 +4,6 @@ const userControllers = {
     async profile(req, res) {
         const id = req.user
         const data = await userService.getUserById({ id })
-        console.log({ data });
 
         const state = {
             title: "Thông tin cá nhân",
