@@ -1,32 +1,35 @@
 import expressSession from 'express-session'
 import cookieParser from 'cookie-parser'
-import connectRedis from 'connect-redis'
-import * as redis from 'redis'
 import _ from 'lodash'
-
+import connectMongodbSession from 'connect-mongodb-session';
 
 
 const useSession = (app) => {
-    const redisClient = redis.createClient()
-    const RedisStore = connectRedis(expressSession)
+    const MongoDBStore = connectMongodbSession(expressSession)
+
+    const store = new MongoDBStore({
+        uri: `mongodb+srv://nguyenkhavi:${process.env.MONGODB_PASSWORD}@cluster0.vo4ad.mongodb.net/${process.env.MONGODB_NAME}`,
+        collection: 'sessions'
+    });
+
+    store.on('error', function (sessionStoreErr) {
+        console.log({ sessionStoreErr });
+    });
 
     app.use(cookieParser());
     app.use(expressSession({
         genid: (req) => {
-            return _.uniqueId()
+            return _.uniqueId(`TEMP_USER_${req.user ? req.user._id : req.sessionID}`)
         },
-        // store: new RedisStore({ host: 'localhost', port: 6379, client: redisClient }),
+        store: store,
         secret: process.env.SESSION_SECRET,
         resave: false,
-        saveUninitialized: false,
+        saveUninitialized: true,
         cookie: {
             maxAge: 1000 * 60 * 60 * 24 * 30//1 month
         }
     }));
 
-    redisClient.on('error', (err) => {
-        console.log('Redis error: ', err);
-    });
 }
 
 export default useSession

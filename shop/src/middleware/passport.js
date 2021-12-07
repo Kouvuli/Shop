@@ -29,9 +29,6 @@ const usePassport = (app) => {
                     if (user.resetPassword)
                         await userService.updateResetPassword({ id: userId, resetPassword: "" })
                 }
-                delete user.password
-                delete user.resetPassword
-                app.locals.user = user;
                 return done(null, userId);
             } catch (err) {
                 return done(null, err);

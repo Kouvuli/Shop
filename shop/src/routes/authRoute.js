@@ -10,7 +10,7 @@ router.post("/forgot-password", authController.sendEmail);
 
 router.post("/register", authController.register);
 router.post('/login', passport.authenticate('local', {
-    successRedirect: '/',
+    successRedirect: '/?success=true',
     failureRedirect: '/auth/login?wrong=true',
     failureFlash: false
 }))

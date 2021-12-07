@@ -40,7 +40,7 @@ const authController = {
     async logout(req, res) {
 
         req.logout()
-
+        res.locals.user = null
         res.redirect('/auth/login?logout=true')
     },
     async register(req, res) {
