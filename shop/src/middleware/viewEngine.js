@@ -6,7 +6,7 @@ const useViewEngine = (app) => {
         defaultLayout: "main",
         extname: ".hbs",
         partialsDir: "src/views/partials",
-        layoutsDir: "src/views",
+        layoutsDir: "src/views/layouts",
         helpers,
     });
     app.engine('.hbs', hbs.engine);

@@ -1,5 +1,5 @@
 import _ from "lodash";
-import userService from "../services/userService";
+import userService from "../../services/userService";
 const userControllers = {
     async profile(req, res) {
         const id = req.user

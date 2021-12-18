@@ -1,67 +1,8 @@
 import _ from "lodash";
-import helpers from "../helper/index";
 import productModel from "../models/productModel";
-
+import categoryModel from "../models/categoryModel";
+import manufacturerModel from "../models/manufacturerModel";
 const productService = {
-    /**
-     *
-     * @param {category}}
-     * - type
-     * - Các tường còn lại nếu có
-     * @param {manufacturer}}
-     * - name
-     * - Các tường còn lại nếu có
-     */
-    async createProduct({
-        name = "",
-        description = "",
-        category = {},
-        manufacturer = {},
-        quantity = 0,
-        originPrice = 0,
-        currentPrice = 0,
-        images = [],
-    }) {
-        const manufacturerKey = helpers.slug(manufacturer.name);
-        const typeKey = helpers.slug(category.type);
-        return await productModel.create({
-            name,
-            description,
-            category: { ...category, key: typeKey },
-            manufacturer: { ...manufacturer, key: manufacturerKey },
-            quantity,
-            originPrice,
-            currentPrice,
-            images,
-        });
-    },
-    async updateProductById({
-        id = "",
-        name = "",
-        description = "",
-        category = {},
-        manufacturer = {},
-        quantity = 0,
-        originPrice = 0,
-        currentPrice = 0,
-        images = [],
-    }) {
-        const manufacturerKey = helpers.slug(manufacturer.name);
-        const typeKey = helpers.slug(category.type);
-        return await productModel.findByIdAndUpdate(id, {
-            name,
-            description,
-            category: { ...category, key: typeKey },
-            manufacturer: { ...manufacturer, key: manufacturerKey },
-            quantity,
-            originPrice,
-            currentPrice,
-            images,
-        });
-    },
-    async deleteProductById({ id = "" }) {
-        return await productModel.findByIdAndUpdate(id, { active: 0 });
-    },
     async getProductById({ id = "" }) {
         return await productModel.findOne({ _id: id, active: 1 }).lean();
     },
@@ -69,21 +10,18 @@ const productService = {
         q = "",
         page = 1,
         perPage = 10,
-        type = "",
-        manufacturerName = "",
+        category = "",
+        manufacturer = "",
     }) {
 
         const p = Math.max(parseInt(page), 1);
         const pp = parseInt(perPage);
         const filter = { active: 1 };
-        const manufacturerKey = helpers.slug(manufacturerName);
-        const typeKey = helpers.slug(type);
-
-        if (!_.isEmpty(manufacturerKey)) {
-            filter["manufacturer.key"] = manufacturerKey;
+        if (!_.isEmpty(manufacturer)) {
+            filter["manufacturer.key"] = manufacturer;
         }
-        if (!_.isEmpty(typeKey)) {
-            filter["category.key"] = typeKey;
+        if (!_.isEmpty(category)) {
+            filter["category.key"] = category;
         }
         if (!_.isEmpty(q)) {
             filter["$or"] = [
@@ -99,7 +37,19 @@ const productService = {
             .limit(pp)
             .lean();
         const total = await productModel.countDocuments(filter);
-        return { data, page, perPage, total, type, manufacturerName };
+
+        // for (const product of data) {
+        //     const { manufacturer = {} } = product
+        //     const { name, key } = manufacturer
+        //     if (name && key) {
+        //         const manu = await manufacturerModel.findOne({ key })
+        //         if (!manu) {
+        //             await manufacturerModel.create({ key, name })
+        //         }
+        //     }
+        // }
+
+        return { data, page, perPage, total };
     },
 
     async getTopSellers({ page = 1, perPage = 10, type = "" }) {
@@ -138,6 +88,19 @@ const productService = {
             $push: { comments: comment },
         });
     },
+    async getCategories() {
+        return await categoryModel.find({}).lean();
+    },
+    async getCategoryByKey({ key }) {
+        return await categoryModel.findOne({ key });
+    },
+    async getManufacturers() {
+        return await manufacturerModel.find({}).lean();
+    },
+    async getManufacturerByKey({ key }) {
+        return await manufacturerModel.findOne({ key });
+    },
+
 };
 
 export default productService;

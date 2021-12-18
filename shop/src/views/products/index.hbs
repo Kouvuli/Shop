@@ -4,7 +4,7 @@
             <div class="breadcumb">
                 <a href="/">Trang chủ</a>
                 <span><i class='bx bxs-chevrons-right'></i></span>
-                <a href="/category/microphone">Microphone</a>
+                <a href="/products">Tất cả sản phẩm</a>
             </div>
         </div>
         <div class="box">
@@ -18,14 +18,12 @@
                             Danh mục
                         </span>
                         <ul class="filter-list">
-
-                            <li><a href="/category/tai-nghe">Tai nghe</a></li>
-                            <li><a href="/category/may-nghe-nhac">Máy nghe nhạc</a></li>
-                            <li><a href="/category/loa">Loa</a></li>
-                            <li class="active"><a href="/category/microphone">Microphone</a></li>
+                            {{#each categories}}
+                                <li><a name="category" id={{this.key}}>{{this.name}}</a></li>
+                            {{/each}}
                         </ul>
                     </div>
-                    <div class="box">
+                    {{!-- <div class="box">
                         <span class="filter-header">
                             Giá
                         </span>
@@ -34,8 +32,8 @@
                             <span>-</span>
                             <input type="text">
                         </div>
-                    </div>
-                    <div class="box">
+                    </div> --}}
+                    {{!-- <div class="box">
                         <span class="filter-header">
                             Trạng thái
                         </span>
@@ -68,59 +66,31 @@
                                 </div>
                             </li>
                         </ul>
-                    </div>
+                    </div> --}}
                     <div class="box">
                         <span class="filter-header">
-                            Hãng
+                            Hãng sản xuất
                         </span>
                         <ul class="filter-list">
-                            <li>
-                                <div class="group-checkbox">
-                                    <input type="checkbox" name="brand" id="remember1">
-                                    <label for="remember1">
-                                        Razer
-                                        <i class='bx bx-check'></i>
-                                    </label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="group-checkbox">
-                                    <input type="checkbox" name="brand" id="remember2">
-                                    <label for="remember2">
-                                        Kingston HyperX
-                                        <i class='bx bx-check'></i>
-                                    </label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="group-checkbox">
-                                    <input type="checkbox" name="brand" id="remember3">
-                                    <label for="remember3">
-                                        Audio-Technica
-                                        <i class='bx bx-check'></i>
-                                    </label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="group-checkbox">
-                                    <input type="checkbox" name="brand" id="remember4">
-                                    <label for="remember4">
-                                        AKG
-                                        <i class='bx bx-check'></i>
-                                    </label>
-                                </div>
-                            </li>
-
-
+                            {{#each manufacturers}}
+                                <li>
+                                    <div class="group-checkbox">
+                                        <input type="checkbox" name="manufacturer" id={{this.key}}>
+                                        <label for={{this.key}}>
+                                            {{this.name}}
+                                            <i class='bx bx-check'></i>
+                                        </label>
+                                    </div>
+                                </li>
+                            {{/each}}  
                         </ul>
                     </div>
-
 
 
                 </div>
                 <div class="col-9 col-md-12">
                     <div class="box filter-toggle-box">
-                        <button class="btn-flat btn-hover" id="filter-toggle">filter</button>
+                        <button class="btn-flat btn-hover" id="filter-toggle">Lọc</button>
                     </div>
                     <div class="box">
                         <div class="row" id="products">
@@ -129,7 +99,7 @@
                                 <div class="product-card">
                                     <div class="product-card-img">
                                         {{#each_upto this.images 2}}
-                                        <img src={{this}} />
+                                            <img src={{this}} />
                                         {{/each_upto}}
                                     </div>
                                     <div class="product-card-info">
@@ -162,4 +132,3 @@
     </div>
 </div>
 <script src="/js/products.js"></script>
-<script src="/js/filter.js"></script>

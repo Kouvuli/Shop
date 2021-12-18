@@ -2,7 +2,7 @@ import expressSession from 'express-session'
 import cookieParser from 'cookie-parser'
 import _ from 'lodash'
 import connectMongodbSession from 'connect-mongodb-session';
-
+import helpers from '../helper';
 
 const useSession = (app) => {
     const MongoDBStore = connectMongodbSession(expressSession)
@@ -19,7 +19,7 @@ const useSession = (app) => {
     app.use(cookieParser());
     app.use(expressSession({
         genid: (req) => {
-            return _.uniqueId(`TEMP_USER_${req.user ? req.user._id : req.sessionID}`)
+            return helpers.genId()
         },
         store: store,
         secret: process.env.SESSION_SECRET,
