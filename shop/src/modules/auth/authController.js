@@ -1,13 +1,13 @@
 import _ from "lodash";
-import userService from "../services/userService";
-import mailService from "../services/mailService";
+import userService from "../../services/userService";
+import mailService from "../../services/mailService";
 import bcrypt from 'bcryptjs'
 const authController = {
     async login(req, res) {
         const { emptyData = false, exist = false, success = false, failure = false, logout = false, resetSuccess = false, wrong = false } = req.query
         const state = {
             title: "Đăng nhập",
-            layout: "layouts/login",
+
         };
         res.render("auth/login", { ...state, emptyData, exist, success, failure, logout, resetSuccess, wrong });
     },
@@ -15,7 +15,7 @@ const authController = {
         const { notExist = false } = req.query
         const state = {
             title: "Quên mật khẩu",
-            layout: "layouts/login",
+
         };
 
         res.render("auth/forgot-password", { ...state, notExist });

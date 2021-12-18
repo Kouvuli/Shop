@@ -1,5 +1,5 @@
 import express from "express";
-import userControllers from "../controllers/userController";
+import userControllers from "./userController";
 const router = express.Router();
 
 router.get("/profile", userControllers.profile);
