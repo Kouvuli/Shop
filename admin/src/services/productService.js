@@ -1,7 +1,8 @@
 import _ from "lodash"
 import helpers from "../helpers"
 import productModel from "../models/productModel"
-
+import categoryModel from "../models/categoryModel"
+import manufacturerModel from "../models/manufacturerModel"
 const productService = {
     /**
      * 
@@ -14,13 +15,31 @@ const productService = {
      */
     async createProduct({ name = "", description = "", category = {}, manufacturer = {}, quantity = 0, originPrice = 0, currentPrice = 0, images = [] }) {
         const manufacturerKey = helpers.slug(manufacturer.name)
-        const typeKey = helpers.slug(category.type)
-        return await productModel.create({ name, description, category: { ...category, key: typeKey }, manufacturer: { ...manufacturer, key: manufacturerKey }, quantity, originPrice, currentPrice, images })
+        const cateKey = helpers.slug(category.type)
+
+        const cate = await categoryModel.findOne({ key: cateKey })
+        if (!cate) {
+            await categoryModel.create({ key: cateKey, name: category.type })
+        }
+        const manu = await manufacturerModel.findOne({ key: manufacturerKey })
+        if (!manu) {
+            await manufacturerModel.create({ key: manufacturerKey, name: manufacturer.name })
+        }
+        return await productModel.create({ name, description, category: { ...category, key: typeKey }, manufacturer: { ...manufacturer, key: cateKey }, quantity, originPrice, currentPrice, images })
     },
     async updateProductById({ id = "", name = "", description = "", category = {}, manufacturer = {}, quantity = 0, originPrice = 0, currentPrice = 0, images = [] }) {
         const manufacturerKey = helpers.slug(manufacturer.name)
-        const typeKey = helpers.slug(category.type)
-        return await productModel.findByIdAndUpdate(id, { name, description, category: { ...category, key: typeKey }, manufacturer: { ...manufacturer, key: manufacturerKey }, quantity, originPrice, currentPrice, images })
+        const cateKey = helpers.slug(category.type)
+
+        const cate = await categoryModel.findOne({ key: cateKey })
+        if (!cate) {
+            await categoryModel.create({ key: cateKey, name: category.type })
+        }
+        const manu = await manufacturerModel.findOne({ key: manufacturerKey })
+        if (!manu) {
+            await manufacturerModel.create({ key: manufacturerKey, name: manufacturer.name })
+        }
+        return await productModel.findByIdAndUpdate(id, { name, description, category: { ...category, key: cateKey }, manufacturer: { ...manufacturer, key: manufacturerKey }, quantity, originPrice, currentPrice, images })
     },
     async deleteProductById({ id = "" }) {
         return await productModel.findByIdAndUpdate(id, { active: 0 })
