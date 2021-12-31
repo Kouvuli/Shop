@@ -1,25 +1,31 @@
 import _ from "lodash";
 import userService from "../../services/userService";
+import cartService from"../../services/cartService";
+
 const userControllers = {
     async profile(req, res) {
         const id = req.user
         const data = await userService.getUserById({ id })
 
         const state = {
-            title: "Thông tin cá nhân",
+            title:"Thông tin cá nhân",
             data,
-            layout: "layouts/user",
+            layout: "user",
         };
         res.render("user/profile", { ...state });
     },
     async cart(req, res) {
+        const id = req.user
+        const data = await cartService.getCartByUserId({userId:id})
+        console.log(data)
+    
         const state = {
             title: "Giỏ hàng",
-            layout: "layouts/user",
+            data,
+            layout: "user",
         };
-        if (_.isEmpty(req.body)) {
-            res.render("user/cart", { ...state });
-        }
+        res.render("user/cart", { ...state });
+        
     },
 
     async notification(req, res) {
@@ -43,3 +49,4 @@ const userControllers = {
 };
 
 export default userControllers;
+
