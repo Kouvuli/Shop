@@ -3,6 +3,7 @@ import helpers from "../helpers"
 import productModel from "../models/productModel"
 import categoryModel from "../models/categoryModel"
 import manufacturerModel from "../models/manufacturerModel"
+import orderModel from '../models/orderModel'
 const productService = {
     /**
      * 
@@ -74,19 +75,23 @@ const productService = {
         return { data, page, perPage, total, type, manufacturerName }
     },
 
-    async getTopSellers({ page = 1, perPage = 10, type = "" }) {
-        const p = Math.max(parseInt(page), 1)
-        const pp = parseInt(perPage)
-        let data = []
-        let total = 0
-        if (type) {
-            data = await productModel.find({ category: { type }, active: 1 }).skip((pp * p) - pp).limit(pp).lean()
-            total = await productModel.countDocuments({ category: { type }, active: 1 })
-        } else {
-            data = await productModel.find({ active: 1 }).skip((pp * p) - pp).limit(pp).lean()
-            total = await productModel.countDocuments({ active: 1 })
+    async getTopSellers({ perPage = 10 }) {
+        const orders = await orderModel.find({}).lean()
+        const soldProducts = orders.map(order => order.products).flat()
+
+        const sumById = soldProducts.reduce((acc, val) => {
+            acc[val.productId] = acc[val.productId] === undefined ? val.quantity : acc[val.productId] += val.quantity;
+            return acc;
+        }, {});
+
+        let list = []
+
+        for (const key of Object.keys(sumById)) {
+            const product = await productModel.findById(key).lean()
+            list.push({ ...product, sold: sumById[key] })
         }
-        return { data, page, perPage, total }
+        const data = list.sort((p, n) => (n.sold - p.sold)).slice(0, parseInt(perPage, 10))
+        return { data, perPage }
     },
     /**
      * 
