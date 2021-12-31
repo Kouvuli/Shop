@@ -32,7 +32,7 @@ const productControllers = {
             total,
             perPage,
             data,
-            header: ["Tên sản phẩm", "Danh mục", "Hãng sản xuất", "Giá nhập", "Giá bán", "Mô tả", "Hình ảnh"]
+            header: ["Tên sản phẩm", "Danh mục", "Hãng sản xuất", "Giá nhập", "Giá bán", "Đã bán", "Mô tả", "Hình ảnh"]
         }
 
         res.render('products/top', { ...state, pagination: { page, limit: Math.ceil(total / perPage), perPage: perPage } })
