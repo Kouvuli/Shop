@@ -9,7 +9,7 @@ const cartService = {
      * - productId: ID của sản phẩm
      * 
      */
-    async addToCard({ userId = "", item = {} }) {
+    async addToCart({ userId = "", item = {} }) {
         const cart = await orderModel.findOne({ userId })
         if (cart == null) {
             return await cartModel.create({ userId, items: [item] })
@@ -18,21 +18,21 @@ const cartService = {
         }
     },
 
-
-
-    async getCardByUserId({ userId = "" }) {
-        const cart = await cartModel.findOne({ userId })
-        const { name } = await userModel.findById(userId)
+    async getCartByUserId({ userId = "" }) {
+        const cart = await cartModel.findOne({ userId }).lean() ||{}
+        const { name: userName } = await userModel.findById(userId)
 
         let cost = 0
-        for (const item of cart.products) {
-            const product = await productModel.findById(item.productId)
-            cost += parseFloat(product.currentPrice) * parseInt(item.quantity)
+        let list=[]
+        for (const item of (cart.items||[])) {
+            const product = await productModel.findById(item.productId)            
+            const totalPriceItem= parseFloat(product.currentPrice) * parseInt(item.quantity)
+            cost += totalPriceItem
+            list.push({name: product.name, currentPrice: product.currentPrice, quantity: item.quantity, totalPrice:totalPriceItem, img: product.images[0]})
         }
-        return { ...cart._doc, name, cost }
+        return { ...cart, userName, list, cost}
     },
 
 }
-
 
 export default cartService

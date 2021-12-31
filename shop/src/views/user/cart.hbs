@@ -13,89 +13,39 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {{#each data.list}}
                         <tr>
                             <td>
                                 <div class="main">
                                     <div class="d-flex">
                                         <!--W=145 H=98--> <img
-                                            src="/images/JBL-Endurance-Sprint_Alt_Red-1605x1605px.webp" alt="">
+                                            src={{this.img}} alt="">
                                     </div>
                                     <div class="des">
-                                        <p>lorem ipsum</p>
+                                        <p>{{this.name}}</p>
                                     </div>
                                 </div>
                             </td>
                             <td>
-                                <h6>$20.00</h6>
+                                <h6>{{this.currentPrice}}</h6>
                             </td>
                             <td>
+                                <!--
                                 <div class="counter">
                                     <i class='bx bxs-down-arrow'></i>
                                     <input class="input-number" type="text" value="1" min="0" max="10">
                                     <i class='bx bxs-up-arrow'></i>
                                 </div>
+                                -->
+                                <h6>{{this.quantity}}</h6>
+
                             </td>
                             <td>
-                                <h6>$20.00</h6>
+                                <h6>{{this.totalPrice}}</h6>
                             </td>
                         </tr>
                         <!----->
-                        <tr>
-                            <td>
-                                <div class="main">
-                                    <div class="d-flex">
-                                        <!--W=145 H=98--> <img
-                                            src="/images/190402_E1_FW19_EarbudsWCase_S13_0033-1_1605x1605_HERO.png"
-                                            alt="">
-                                    </div>
-                                    <div class="des">
-                                        <p>lorem ipsum</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <h6>$20.00</h6>
-                            </td>
-                            <td>
-                                <div class="counter">
-                                    <i class='bx bxs-down-arrow'></i>
-                                    <input class="input-number" type="text" value="1" min="0" max="10">
-                                    <i class='bx bxs-up-arrow'></i>
-                                </div>
-                            </td>
-                            <td>
-                                <h6>$20.00</h6>
-                            </td>
-                        </tr>
-                        <!----->
-                        <tr>
-                            <td>
-                                <div class="main">
-                                    <div class="d-flex">
-                                        <!--W=145 H=98--> <img
-                                            src="/images/190402_E1_FW19_EarbudsWCase_S13_0033-1_1605x1605_BACK.png"
-                                            alt="">
-                                    </div>
-                                    <div class="des">
-                                        <p>lorem ipsum</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <h6>$20.00</h6>
-                            </td>
-                            <td>
-                                <div class="counter">
-                                    <i class='bx bxs-down-arrow'></i>
-                                    <input class="input-number" type="text" value="1" min="0" max="10">
-                                    <i class='bx bxs-up-arrow'></i>
-                                </div>
-                            </td>
-                            <td>
-                                <h6>$20.00</h6>
-                            </td>
-                        </tr>
-                        <!----->
+                        {{/each}}
                     </tbody>
                 </table>
             </div>
@@ -105,11 +55,13 @@
 
 <div class="checkout">
     <ul>
+        <!--
         <li class="subtotal">Thành tiền
-            <span>$60.00</span>
+            <span>{{data.cost}}</span>
         </li>
+        -->
         <li class="cart-total">Tổng cộng
-            <span>$60.00</span>
+            <span>{{data.cost}}</span>
         </li>
     </ul>
     <a href="#" class="btn-flat btn-hover">Thanh toán</a>

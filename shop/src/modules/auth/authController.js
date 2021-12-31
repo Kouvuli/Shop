@@ -9,7 +9,7 @@ const authController = {
             title: "Đăng nhập",
 
         };
-        res.render("auth/login", { ...state, emptyData, exist, success, failure, logout, resetSuccess, wrong });
+        res.render("auth/login", { ...state, layout:"login", emptyData, exist, success, failure, logout, resetSuccess, wrong });
     },
     async forgot(req, res) {
         const { notExist = false } = req.query
