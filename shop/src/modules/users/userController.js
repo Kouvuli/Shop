@@ -41,20 +41,18 @@ const userControllers = {
     async notification(req, res) {
         const state = {
             title: "Thông báo",
-            layout: "layouts/user",
+            layout: "user",
         };
-        if (_.isEmpty(req.body)) {
-            res.render("user/notifications", { ...state });
-        }
+        res.render("user/notifications",{...state});
     },
+    
     async liked(req, res) {
         const state = {
             title: "Đã thích",
-            layout: "layouts/user",
+            layout: "user",
         };
-        if (_.isEmpty(req.body)) {
-            res.render("user/likes", { ...state });
-        }
+        res.render("user/likes", { ...state });
+
     },
 };
 
