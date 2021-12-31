@@ -1,4 +1,55 @@
+<div style="padding-left: 35%;"><h1>Thông tin giao hàng</h1></div>
+
+
+<div class="personal-profile">
+    <form>
+        <label for="last-name">Tên người nhận </label>
+        <input
+            type="text"
+            id="last-name"
+            name="last-name"
+            placeholder="Tên"
+        />
+        <br />
+        <label for="phone">Số điện thoại</label>
+        <input
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder="Số điện thoại"
+        />
+        <br />
+        <label for="email">Email</label>
+        <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Email"
+            value="{{data.email}}"
+        />
+        <br />
+        <label for="address">Địa chỉ</label>
+        <input
+            type="text"
+            id="address"
+            name="address"
+            placeholder="Địa chỉ"
+            value="{{data.address}}"
+        />
+        <br />
+        <label for="mess">Nội dung tin nhắn</label>
+        <input
+            type="text"
+            id="mess"
+            name="mess"
+            placeholder="Nội dung tin nhắn"
+        />
+    </form>
+</div>
+
 <!--Cart Section-->
+<br>
+<div style="padding-left: 45%;"><h2>Đơn hàng</h2></div>
 <section class="mt-5">
     <div class="container">
         <div class="cart">
@@ -53,16 +104,41 @@
     </div>
 </section>
 
+<div style="padding: 40px">
+  
+        <label for="payCart" class="pay">Hình thức thanh toán</label>
+        <br>
+        <br>
+        <input
+            type="radio"
+            id="payOut1"
+            name="payOut"
+        /> Thanh toán khi nhận hàng (COD)<br>
+        <br>
+         <input
+            type="radio"
+            id="payOut2"
+            name="payOut"
+        /> Thanh toán qua MoMo<br>
+        <br>
+         <input
+            type="radio"
+            id="payOut3"
+            name="payOut"
+        /> Thanh toán qua ZaloPay<br>
+        <br>
+         <input
+            type="radio"
+            id="payOut4"
+            name="payOut"
+        /> Chuyển khoản ngân hàng
+</div>
+
 <div class="checkout">
     <ul>
-        <!--
-        <li class="subtotal">Thành tiền
-            <span>{{data.cost}}</span>
-        </li>
-        -->
-        <li class="cart-total">Tổng cộng
+            <li class="cart-total">Tổng cộng
             <span>{{data.cost}}</span>
         </li>
     </ul>
-    <a href="../users/payCart" class="btn-flat btn-hover">Thanh toán</a>
+    <a class="btn-flat btn-hover">Thanh toán</a>
 </div>

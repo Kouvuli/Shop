@@ -17,8 +17,7 @@ const userControllers = {
     async cart(req, res) {
         const id = req.user
         const data = await cartService.getCartByUserId({userId:id})
-        console.log(data)
-    
+            
         const state = {
             title: "Giỏ hàng",
             data,
@@ -27,7 +26,18 @@ const userControllers = {
         res.render("user/cart", { ...state });
         
     },
-
+    async payCart(req, res) {
+        const id = req.user
+        const data = await cartService.getCartByUserId({userId:id})
+            
+        const state = {
+            title: "Thanh toán",
+            data,
+            layout: "user",
+        };
+        res.render("user/payCart", { ...state });
+        
+    },
     async notification(req, res) {
         const state = {
             title: "Thông báo",
