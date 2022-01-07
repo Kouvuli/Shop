@@ -41,6 +41,9 @@
                         {{#each data}}
                             <tr id={{this._id}} class="user-row">
                                 <td>
+                                    <a class="btn " href="/users/{{this._id}}">
+                                        <i class="fas fa-info-circle"></i>
+                                    </a>
                                     {{#if this.active}}
                                         <i  class="fas fa-user-lock pointer"></i>
                                     {{else}}

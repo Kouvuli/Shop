@@ -20,9 +20,7 @@ for (const element of elements) {
                 const classes = ICON_CLASSES[active];
                 icon.className = classes;
             },
-            error: function (jqXHR) {
-                console.log({ jqXHR });
-            },
+            error: function (jqXHR) {},
         });
     };
 }
