@@ -13,6 +13,8 @@ const schema = new Schema(
         email: { type: Schema.Types.String, required: true },
         //address: địa chỉ của người dùng (chưa chắc là địa chỉ giao hàng)
         address: { type: Schema.Types.String },
+        //active:
+        active: { type: Schema.Types.Boolean, required: true, default: true },
         //birthday: sinh nhật người dùng
         birthday: { type: Schema.Types.String },
     },
