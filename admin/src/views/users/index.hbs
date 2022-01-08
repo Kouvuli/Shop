@@ -39,9 +39,16 @@
                     <tbody>
 
                         {{#each data}}
-                            <tr>
+                            <tr id={{this._id}} class="user-row">
                                 <td>
-                                    <i class="fas fa-user-lock"></i>
+                                    <a class="btn " href="/users/{{this._id}}">
+                                        <i class="fas fa-info-circle"></i>
+                                    </a>
+                                    {{#if this.active}}
+                                        <i  class="fas fa-user-lock pointer"></i>
+                                    {{else}}
+                                        <i  class="fas fa-lock-open pointer"></i>
+                                    {{/if}}
                                     {{this.name}}
                                 </td>
                                 <td>{{this.username}}</td>
@@ -58,5 +65,5 @@
             </div>
         </div>
     </div>
-
 </div>
+<script src="/js/user.js"></script>
