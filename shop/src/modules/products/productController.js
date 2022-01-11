@@ -6,13 +6,16 @@ const productControllers = {
         const { page = 1, category = "", manufacturer = "" } = req.query;
         const perPage = 9;
         const categories = await productService.getCategories();
-        const manufacturers = await productService.getManufacturers()
-        const { name = "" } = await productService.getCategoryByKey({ key: category }) || await productService.getManufacturerByKey({ key: category }) || {}
+        const manufacturers = await productService.getManufacturers();
+        const { name = "" } =
+            (await productService.getCategoryByKey({ key: category })) ||
+            (await productService.getManufacturerByKey({ key: category })) ||
+            {};
         const { data, total } = await productService.getProducts({
             page,
             perPage,
             category,
-            manufacturer
+            manufacturer,
         });
         const state = {
             title: name || "Tất cả sản phẩm",
@@ -39,10 +42,9 @@ const productControllers = {
             title: data.name,
             data,
             image1: data.images[0],
-
         };
         if (_.isEmpty(req.body)) {
-            res.render("product/product-detail", {
+            res.render("products/detail", {
                 ...state,
             });
         }
