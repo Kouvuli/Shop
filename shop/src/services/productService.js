@@ -13,7 +13,6 @@ const productService = {
         category = "",
         manufacturer = "",
     }) {
-
         const p = Math.max(parseInt(page), 1);
         const pp = parseInt(perPage);
         const filter = { active: 1 };
@@ -51,32 +50,30 @@ const productService = {
 
         return { data, page, perPage, total };
     },
-
-    async getTopSellers({ page = 1, perPage = 10, type = "" }) {
+    async getRelatedProducts({ page = 1, perPage = 10, product = {} }) {
         const p = Math.max(parseInt(page), 1);
-        const pp = parseInt(perPage)
-        let data = [];
-        let total = 0;
-        if (type) {
-            data = await productModel
-                .find({ category: { type }, active: 1 })
-                .skip(pp * p - pp)
-                .limit(pp)
-                .lean();
-            total = await productModel.countDocuments({
-                category: { type },
-                active: 1,
-            });
-        } else {
-            data = await productModel
-                .find({ active: 1 })
-                .skip(pp * p - pp)
-                .limit(pp)
-                .lean();
-            total = await productModel.countDocuments({ active: 1 });
-        }
+        const pp = parseInt(perPage);
+
+        const cateKey = product?.category?.key;
+        const manufacturerKey = product?.manufacturer?.key;
+        const filter = {
+            active: 1,
+            $or: [
+                { "category.key": cateKey },
+                { "manufacturer.key": manufacturerKey },
+            ],
+        };
+
+        const data = await productModel
+            .find(filter)
+            .skip(pp * p - pp)
+            .limit(pp)
+            .lean();
+        const total = await productModel.countDocuments(filter);
+
         return { data, page, perPage, total };
     },
+
     /**
      *
      * @param {comment}
@@ -100,7 +97,6 @@ const productService = {
     async getManufacturerByKey({ key }) {
         return await manufacturerModel.findOne({ key });
     },
-
 };
 
 export default productService;

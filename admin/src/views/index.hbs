@@ -23,7 +23,7 @@
                                 Người dùng</div>
                             <div
                                 class="h5 mb-0 font-weight-bold text-gray-800"
-                            >40,000</div>
+                            >{{totalUser}}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-users fa-2x text-gray-300"></i>
@@ -45,11 +45,11 @@
                                 Sản phẩm</div>
                             <div
                                 class="h5 mb-0 font-weight-bold text-gray-800"
-                            >215,000</div>
+                            >{{totalProduct}}</div>
                         </div>
                         <div class="col-auto">
                             <i
-                                class="fas fa-dollar-sign fa-2x text-gray-300"
+                                class="fas fa-headphones fa-2x text-gray-300"
                             ></i>
                         </div>
                     </div>
@@ -71,9 +71,9 @@
                                 <div class="col-auto">
                                     <div
                                         class="h5 mb-0 mr-3 font-weight-bold text-gray-800"
-                                    >$1,000,000</div>
+                                    >{{formatMoney totalSales}}</div>
                                 </div>
-                                <div class="col">
+                                {{!-- <div class="col">
                                     <div class="progress progress-sm mr-2">
                                         <div
                                             class="progress-bar bg-info"
@@ -84,7 +84,7 @@
                                             aria-valuemax="100"
                                         ></div>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                         <div class="col-auto">
@@ -109,7 +109,7 @@
                                 Đơn hàng</div>
                             <div
                                 class="h5 mb-0 font-weight-bold text-gray-800"
-                            >1,800</div>
+                            >{{totalOrder}}</div>
                         </div>
                         <div class="col-auto">
                             <i
@@ -135,12 +135,12 @@
                 >
                     <h6 class="m-0 font-weight-bold text-primary">
                         Danh thu theo
-                        <select class="custom-select custom-select-sm">
-                            <option>Ngày</option>
-                            <option>Tuần</option>
-                            <option>Tháng</option>
-                            <option>Năm</option>
-                            <option>Quý</option>
+                        <select id="filter" class="custom-select custom-select-sm">
+                            <option value="day">Ngày</option>
+                            <option value="week">Tuần</option>
+                            <option value="month">Tháng</option>
+                            <option value="year">Năm</option>
+                            <option value="quarter">Quý</option>
                         </select>
                     </h6>
                     <div class="dropdown no-arrow">

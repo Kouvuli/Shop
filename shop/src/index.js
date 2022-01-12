@@ -1,9 +1,9 @@
 import dotenv from "dotenv";
-dotenv.config();
+dotenv.config({});
 import express from "express";
 import http from "http";
 import databaseService from "../src/services/databaseService";
-import appMdw from './middleware/appMdw'
+import appMdw from "./middleware/appMdw";
 import session from "./middleware/session";
 import passport from "./middleware/passport";
 import routes from "./middleware/routes";
@@ -13,24 +13,24 @@ const PORT = process.env.PORT || 5000;
 class App {
     constructor(port) {
         this.port = port;
+        this.environment = process.env.NODE_ENV || "development";
         this.app = express();
         this.server = http.createServer(this.app);
         this.useDatabase();
-        viewEngine(this.app)
-        appMdw(this.app)
-        session(this.app)
-        passport(this.app)
-        routes(this.app)
+        viewEngine(this.app);
+        appMdw(this.app, this.environment);
+        session(this.app);
+        passport(this.app);
+        routes(this.app);
     }
     async useDatabase() {
         try {
-            await databaseService.connect()
-            console.log('> MongoDB is connected...')
+            await databaseService.connect();
+            console.log("> MongoDB is connected...");
             this.run();
-
         } catch (e) {
             console.log({ e });
-            console.log('> Cant connect MongoDB...')
+            console.log("> Cant connect MongoDB...");
         }
     }
 
