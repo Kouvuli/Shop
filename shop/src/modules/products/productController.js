@@ -38,9 +38,20 @@ const productControllers = {
     async productDetail(req, res) {
         const { id } = req.params;
         const data = await productService.getProductById({ id });
+
+        const { data: relatedProducts } =
+            await productService.getRelatedProducts({
+                product: data,
+            });
+
         const state = {
             title: data.name,
             data,
+            relatedProducts: relatedProducts.map((pro) => {
+                pro.image1 = pro.images[0];
+                pro.image2 = pro.images[2];
+                return pro;
+            }),
             image1: data.images[0],
         };
         if (_.isEmpty(req.body)) {

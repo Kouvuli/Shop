@@ -186,7 +186,45 @@
             <div class="box-header">
                 Sản phẩm liên quan
             </div>
-            <div class="row" id="related-products"></div>
+            <div class="row" id="related-products">
+                {{#each relatedProducts}}
+                    <div class="col-4 col-md-6 col-sm-12">
+                        <div class="product-card">
+                            <div class="product-card-img">
+                                <img src="{{this.image1}}" alt="" />
+                                <img src="{{this.image2}}" alt="" />
+                            </div>
+                            <div class="product-card-info">
+                                <div class="product-btn">
+                                    <a
+                                        href="/products/{{this._id}}"
+                                        class="btn-flat btn-hover btn-shop-now"
+                                    >shop now</a>
+                                    <button
+                                        class="btn-flat btn-hover btn-cart-add"
+                                    >
+                                        <i class="bx bxs-cart-add"></i>
+                                    </button>
+                                    <button
+                                        class="btn-flat btn-hover btn-cart-add"
+                                    >
+                                        <i class="bx bxs-heart"></i>
+                                    </button>
+                                </div>
+                                <div class="product-card-name">
+                                    {{this.name}}
+                                </div>
+                                <div class="product-card-price">
+                                    <span><del>{{this.oldPrice}}</del></span>
+                                    <span
+                                        class="curr-price"
+                                    >{{this.currentPrice}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
         </div>
     </div>
 </div>
