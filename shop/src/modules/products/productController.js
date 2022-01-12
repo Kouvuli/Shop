@@ -1,10 +1,11 @@
 import _ from "lodash";
 import productService from "../../services/productService";
-
+import logService from "../../services/logService";
 const productControllers = {
     async allProducts(req, res) {
         const { page = 1, category = "", manufacturer = "" } = req.query;
         const perPage = 9;
+        const userId = req.user || req.sessionID;
         const categories = await productService.getCategories();
         const manufacturers = await productService.getManufacturers();
         const { name = "" } =
@@ -17,6 +18,14 @@ const productControllers = {
             category,
             manufacturer,
         });
+        //Log
+        for (const pro of data) {
+            logService.create({
+                userId,
+                action: "view",
+                objectId: pro?._id,
+            });
+        }
         const state = {
             title: name || "Tất cả sản phẩm",
             page,
@@ -37,13 +46,27 @@ const productControllers = {
     },
     async productDetail(req, res) {
         const { id } = req.params;
+        const userId = req.user || req.sessionID;
+
         const data = await productService.getProductById({ id });
+
+        logService.create({
+            userId,
+            action: "view",
+            objectId: data?._id,
+        });
 
         const { data: relatedProducts } =
             await productService.getRelatedProducts({
                 product: data,
             });
-
+        for (const pro of relatedProducts) {
+            logService.create({
+                userId,
+                action: "view",
+                objectId: pro?._id,
+            });
+        }
         const state = {
             title: data.name,
             data,
@@ -52,13 +75,12 @@ const productControllers = {
                 pro.image2 = pro.images[2];
                 return pro;
             }),
+            views: (data.views || []).length,
             image1: data.images[0],
         };
-        if (_.isEmpty(req.body)) {
-            res.render("products/detail", {
-                ...state,
-            });
-        }
+        res.render("products/detail", {
+            ...state,
+        });
     },
 };
 
