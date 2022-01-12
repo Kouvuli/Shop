@@ -2,9 +2,12 @@ import _ from "lodash";
 import productModel from "../models/productModel";
 import categoryModel from "../models/categoryModel";
 import manufacturerModel from "../models/manufacturerModel";
+import logService from "./logService";
 const productService = {
     async getProductById({ id = "" }) {
-        return await productModel.findOne({ _id: id, active: 1 }).lean();
+        const views = await logService.getLogsByObjectId({ objectId: id });
+        const data = await productModel.findOne({ _id: id, active: 1 }).lean();
+        return { ...data, views };
     },
     async getProducts({
         q = "",
@@ -58,6 +61,7 @@ const productService = {
         const manufacturerKey = product?.manufacturer?.key;
         const filter = {
             active: 1,
+            _id: { $ne: product._id },
             $or: [
                 { "category.key": cateKey },
                 { "manufacturer.key": manufacturerKey },

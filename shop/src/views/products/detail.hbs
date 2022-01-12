@@ -29,6 +29,8 @@
                 <div class="product-info">
                     <h1>
                         {{data.name}}
+                        ({{views}}
+                        lượt xem)
                     </h1>
                     <div class="product-info-detail">
                         <span class="product-info-detail-title">Hãng sản xuất:</span>
@@ -46,13 +48,16 @@
                         <span class="product-quantity-btn">
                             <i class="bx bx-minus"></i>
                         </span>
-                        <span class="product-quantity">1</span>
+                        <div class="product-quantity">1</div>
                         <span class="product-quantity-btn">
                             <i class="bx bx-plus"></i>
                         </span>
                     </div>
                     <div>
-                        <button class="btn-flat btn-hover">Thêm vào giỏ hàng</button>
+                        <button
+                            id="{{data._id}}"
+                            class="btn-flat btn-hover add-to-cart"
+                        >Thêm vào giỏ hàng</button>
                     </div>
                 </div>
             </div>
@@ -65,12 +70,12 @@
                 <div class="product-detail-description-content">
                     <p>{{data.description}}</p>
                 </div>
-                <button
+                {{! <button
                     class="btn-flat btn-hover btn-view-description"
                     id="view-all-description"
                 >
                     Xem tất cả
-                </button>
+                </button> }}
             </div>
         </div>
         <div class="box">
@@ -223,7 +228,7 @@
                             </div>
                         </div>
                     </div>
-                {{/each}}                
+                {{/each}}
             </div>
         </div>
     </div>

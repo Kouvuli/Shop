@@ -6,11 +6,11 @@ const schema = new Schema(
         userId: { type: Schema.Types.ObjectId, required: true },
         //products: Mảng các products, mỗi products có { price, quantity, productId}
         products: {
-            type: Array
+            type: Array,
         },
         //address: Địa chỉ giao hàng
-        address: { type: Schema.Types.String, required: true },
-        //status: Đang chờ, đã giao, 
+        address: { type: Schema.Types.Object, required: true },
+        //status: Đang chờ, đã giao,
         status: { type: Schema.Types.String, required: true },
         //shippedAt: Thời gian người dùng nhận hàng
         shippedAt: { type: Schema.Types.Date },
@@ -20,8 +20,8 @@ const schema = new Schema(
         totalCost: { type: Schema.Types.Number, required: true },
 
         //payment: Thông tin của giao dịch giao dịch, rỗng nếu chưa thanh toán {method, transactionId, createdAt, ...}
-        payment: { type: Schema.Types.Object }
-
+        payment: { type: Schema.Types.Object },
+        extra: { type: Schema.Types.Object },
     },
     { timestamps: true }
 );
