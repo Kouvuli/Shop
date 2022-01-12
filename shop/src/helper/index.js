@@ -1,5 +1,6 @@
 import _ from "lodash";
 import moment from "moment";
+import { Types } from "mongoose";
 const helpers = {
     each_upto(ary, max, options) {
         if (!ary || ary.length == 0) return options.inverse(this);
@@ -71,6 +72,15 @@ const helpers = {
     genId() {
         const timestamp = (Date.now() / 1000).toString(16).substr(0, 8)
         return timestamp + 'xx'.replace(/[x]/g, () => Math.random().toString(16).substr(2, 8)).toLowerCase()
+    },
+    //const ObjectId = require('mongoose').Types.ObjectId;
+    isValidObjectId(id){
+    if(Types.ObjectId.isValid(id)){
+        if((String)(new Types.ObjectId(id)) === id)
+            return true;
+        return false;
+    }
+    return false;
     }
 };
 

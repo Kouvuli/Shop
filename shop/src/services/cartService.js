@@ -1,6 +1,8 @@
 import userModel from "../models/userModel"
 import cartModel from '../models/cartModel'
+import orderModel from "../models/orderModel"
 import productModel from "../models/productModel"
+import helpers from "../helper"
 const cartService = {
     /**
      * 
@@ -9,26 +11,32 @@ const cartService = {
      * - productId: ID của sản phẩm
      * 
      */
-    async addToCart({ userId = "", item = {} }) {
-        const cart = await orderModel.findOne({ userId })
-        if (cart == null) {
-            return await cartModel.create({ userId, items: [item] })
+    async addToCart({ userId = "", productId = " " }) {
+        const cart = await orderModel.findOne({ userId }) //orderModel 
+        const item = await productModel.findById(productId)
+        if (cart == null) { // tao mot cart moi neu khong co user
+            return await cartModel.create({ userId, items : [item] })
         } else {
-            return await cartModel.findOneAndUpdate({ userId }, { $push: { items: item } })
+            return await cartModel.findOneAndUpdate({ userId }, { $push: { items: item } }) //Them san pham vao 
         }
     },
 
     async getCartByUserId({ userId = "" }) {
         const cart = await cartModel.findOne({ userId }).lean() ||{}
-        const { name: userName } = await userModel.findById(userId)
+        let userName=" "
+        if (helpers.isValidObjectId(userId)){
+        userName = (await userModel.findById(userId))?.name //Neu khong co thi NULL
+        }
 
         let cost = 0
         let list=[]
         for (const item of (cart.items||[])) {
-            const product = await productModel.findById(item.productId)            
+            const product = await productModel.findById(item.productId)     
+            if(product!=null){       
             const totalPriceItem= parseFloat(product.currentPrice) * parseInt(item.quantity)
             cost += totalPriceItem
             list.push({name: product.name, currentPrice: product.currentPrice, quantity: item.quantity, totalPrice:totalPriceItem, img: product.images[0]})
+            }
         }
         return { ...cart, userName, list, cost}
     },

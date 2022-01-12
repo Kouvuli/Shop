@@ -15,8 +15,8 @@ const userControllers = {
         res.render("user/profile", { ...state });
     },
     async cart(req, res) {
-        const id = req.user
-        const data = await cartService.getCartByUserId({userId:id})
+        const id = req.user||req.sessionID //middleware
+        const data = await cartService.getCartByUserId({userId:id}) 
             
         const state = {
             title: "Giỏ hàng",

@@ -24,8 +24,6 @@ function switchToLogin() {
     z.style.left = "5px";
     removeAllMessages()
 }
-
-
-
 loginToggleButton.onclick = switchToLogin
 registerToggleButton.onclick = switchToRegister
+console.log(registerToggleButton, loginToggleButton)

@@ -24,13 +24,14 @@
                     {{#if user}}
 
                     <li><a href="/users/notifications"><i class='bx bx-bell'></i></a></li>
-                    <li><a href="/users/cart"><i class='bx bx-cart'></i></a></li>
                     <li><a href="/users/profile">{{user.name}}</a></li>
                     <li><a href="/auth/logout"><i class='bx bx-log-out'></i></a></li>
 
                     {{else}}
-                    <li><a href="/auth/login">Đăng nhập</i></a></li>
+                    <li><a href="/auth/login">Đăng nhập</i></a></li>                    
                     {{/if}}
+                    <li><a href="/users/cart"><i class='bx bx-cart'></i></a></li>
+                   
                 </ul>
             </div>
         </div>
@@ -40,9 +41,7 @@
             <div class="bottom-header container">
                 <ul class="main-menu">
                     <li><a href="/">Trang chủ</a></li>
-                    <!-- mega menu -->
-                    {{> dropdown}}
-                    <!-- end mega menu -->
+                    <li> <a href="/products">Sản phẩm</a></li>
                     <li><a href="/intro">Giới thiệu</a></li>
                     <li><a href="/contact">Liên hệ</a></li>
                 </ul>

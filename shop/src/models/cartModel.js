@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 const schema = new Schema(
     {
         //sessionId: Đã đăng nhập ? id của user : id của session
-        userId: { type: Schema.Types.ObjectId, required: true },
+        userId: { type: Schema.Types.String, required: true },
         //items: Mảng các item, mỗi item có { productId, quantity, createdAt}
         items: {
             type: Array
