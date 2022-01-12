@@ -30,15 +30,11 @@
                                 <h6>{{this.currentPrice}}</h6>
                             </td>
                             <td>
-                                <!--
                                 <div class="counter">
-                                    <i class='bx bxs-down-arrow'></i>
-                                    <input class="input-number" type="text" value="1" min="0" max="10">
-                                    <i class='bx bxs-up-arrow'></i>
+                                    {{!-- <i class='bx bxs-down-arrow'></i> --}}
+                                    <input id="{{this.productId}}" class="input-number" name="change-quantity" type="number" value="{{this.quantity}}" min="0" max="10">
+                                    {{!-- <i class='bx bxs-up-arrow'></i> --}}
                                 </div>
-                                -->
-                                <h6>{{this.quantity}}</h6>
-
                             </td>
                             <td>
                                 <h6>{{this.totalPrice}}</h6>

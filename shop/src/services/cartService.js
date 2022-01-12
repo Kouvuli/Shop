@@ -1,6 +1,7 @@
 import userModel from "../models/userModel";
 import cartModel from "../models/cartModel";
 import orderModel from "../models/orderModel";
+
 import productModel from "../models/productModel";
 import helpers from "../helper";
 const cartService = {
@@ -18,18 +19,18 @@ const cartService = {
             quantity,
         };
 
-        const exist =
-            cart.items.findIndex(
-                (item) => item?.productId && item.productId === productId
-            ) > -1;
-
-        if (exist) {
-            return cart;
-        }
         if (cart == null) {
             // tao mot cart moi neu khong co user
             return await cartModel.create({ userId, items: [item] });
         } else {
+            const exist =
+                cart.items.findIndex(
+                    (item) => item?.productId && item.productId === productId
+                ) > -1;
+
+            if (exist) {
+                return cart;
+            }
             return await cartModel.findOneAndUpdate(
                 { userId },
                 { $push: { items: item } }
@@ -55,6 +56,7 @@ const cartService = {
                     parseFloat(product.currentPrice) * parseInt(item.quantity);
                 cost += totalPriceItem;
                 list.push({
+                    productId: item?.productId || item?._id,
                     name: product.name,
                     currentPrice: product.currentPrice,
                     quantity: item.quantity,
@@ -72,6 +74,20 @@ const cartService = {
     },
     async deleteById(id) {
         return cartModel.deleteOne({ _id: id });
+    },
+    async updateItemCart({ userId, productId, quantity }) {
+        const cart = await cartModel.findOne({ userId });
+        const idx = cart.items.findIndex(
+            (i) => i?.productId && i?.productId == productId
+        );
+        cart.items[idx].quantity = parseInt(quantity, 10);
+        const newItems =
+            parseInt(quantity, 10) === 0
+                ? cart.items.filter((i, index) => index !== idx)
+                : cart.items;
+        return await cartModel.findByIdAndUpdate(cart?._id, {
+            $set: { items: newItems },
+        });
     },
 };
 

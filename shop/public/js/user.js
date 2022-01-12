@@ -19,7 +19,7 @@ const getFormData = () => {
     return formData;
 };
 
-const handleCreateOrder = () => {
+const handleCreateOrder = (payBtn) => {
     const data = getFormData();
     $.ajax({
         url: `/api/v1/order`,
@@ -33,17 +33,52 @@ const handleCreateOrder = () => {
         success: function (res) {
             const data = res.data;
             // console.log(data);
+            payBtn.innerHTML = "Thành công";
+
             window.location.href = "/";
         },
         error: function (jqXHR) {
-            console.log(jqXHR);
+            payBtn.innerHTML = "Có lỗi sảy ra";
         },
     });
 };
 
 const payBtn = document.querySelector(".pay-btn");
-payBtn.onclick = () => {
-    // console.log({ payBtn });
-    payBtn.disabled = true;
-    handleCreateOrder();
+
+if (payBtn) {
+    payBtn.onclick = () => {
+        // console.log({ payBtn });
+        payBtn.disabled = true;
+        payBtn.innerHTML = "Đang tải...";
+        handleCreateOrder(payBtn);
+    };
+}
+
+const handleUpdateCartItem = (productId, quantity) => {
+    $.ajax({
+        url: `/api/v1/cart/update`,
+        method: "POST",
+        data: {
+            productId,
+            quantity,
+        },
+        success: function (res) {
+            const data = res.data;
+            window.location.reload();
+        },
+        error: function (jqXHR) {},
+    });
 };
+
+const changeQuantityEle = document.querySelectorAll(
+    "input[name=change-quantity]"
+);
+if (changeQuantityEle.length > 0) {
+    changeQuantityEle.forEach((element) => {
+        element.onchange = (event) => {
+            const quantity = event.target.value;
+            const productId = element.id;
+            handleUpdateCartItem(productId, quantity);
+        };
+    });
+}

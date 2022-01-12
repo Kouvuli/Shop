@@ -12,6 +12,17 @@ const apiControllers = {
         }); //userId:userId
         res.json({ success: true, data });
     },
+    async updateCart(req, res) {
+        const userId = req.user || req.sessionID;
+        const { productId, quantity } = req.body;
+        const data = await cartService.updateItemCart({
+            productId,
+            quantity,
+            userId,
+        });
+
+        res.json({ success: true, data });
+    },
     async createOrder(req, res) {
         const userId = req.user || null;
         const { address = {}, payment = {} } = req.body;
