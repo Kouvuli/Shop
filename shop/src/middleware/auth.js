@@ -9,13 +9,13 @@ const auth = async (req, res, next) => {
     }
 };
 
-export const authRedirect = async (req, res, next) => {
+export const authRedirect = (key) => async (req, res, next) => {
     if (req.isAuthenticated()) {
         const user = await userService.getUserById({ id: req.user });
         res.locals.user = user;
         next();
     } else {
-        res.redirect("/auth/login");
+        res.redirect(`/auth/login?${key}=true`);
     }
 };
 

@@ -1,14 +1,14 @@
 <div style="padding-left: 35%;"><h1>Thông tin giao hàng</h1></div>
-
-
 <div class="personal-profile">
-    <form>
+    <form id="payment-form">
         <label for="last-name">Tên người nhận </label>
         <input
+            value="{{user.name}}"
             type="text"
-            id="last-name"
-            name="last-name"
+            id="name"
+            name="name"
             placeholder="Tên"
+            required
         />
         <br />
         <label for="phone">Số điện thoại</label>
@@ -17,24 +17,28 @@
             id="phone"
             name="phone"
             placeholder="Số điện thoại"
+            required
         />
         <br />
         <label for="email">Email</label>
         <input
+        value={{user.email}}
             type="email"
             id="email"
             name="email"
             placeholder="Email"
             value="{{data.email}}"
+            required
         />
         <br />
         <label for="address">Địa chỉ</label>
         <input
+            value="{{user.address}}"
             type="text"
             id="address"
             name="address"
             placeholder="Địa chỉ"
-            value="{{data.address}}"
+            required
         />
         <br />
         <label for="mess">Nội dung tin nhắn</label>
@@ -44,6 +48,14 @@
             name="mess"
             placeholder="Nội dung tin nhắn"
         />
+        <br />
+        <label for="payCart" class="pay">Hình thức thanh toán</label>
+        <select class="payment-method" name="method" value="cod">
+            <option value="cod">Thanh toán khi nhận hàng (COD)</option>
+            <option value="momo">Thanh toán qua MoMo</option>
+            <option value="zalopay">Thanh toán qua ZaloPay</option>
+            <option value="bank">Chuyển khoản ngân hàng</option>
+        </select>
     </form>
 </div>
 
@@ -104,35 +116,6 @@
     </div>
 </section>
 
-<div style="padding: 40px">
-  
-        <label for="payCart" class="pay">Hình thức thanh toán</label>
-        <br>
-        <br>
-        <input
-            type="radio"
-            id="payOut1"
-            name="payOut"
-        /> Thanh toán khi nhận hàng (COD)<br>
-        <br>
-         <input
-            type="radio"
-            id="payOut2"
-            name="payOut"
-        /> Thanh toán qua MoMo<br>
-        <br>
-         <input
-            type="radio"
-            id="payOut3"
-            name="payOut"
-        /> Thanh toán qua ZaloPay<br>
-        <br>
-         <input
-            type="radio"
-            id="payOut4"
-            name="payOut"
-        /> Chuyển khoản ngân hàng
-</div>
 
 <div class="checkout">
     <ul>
@@ -140,5 +123,6 @@
             <span>{{data.cost}}</span>
         </li>
     </ul>
-    <a class="btn-flat btn-hover">Thanh toán</a>
+    <button  class="btn-flat btn-hover pay-btn">Thanh toán</button>
 </div>
+

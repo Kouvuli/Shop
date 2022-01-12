@@ -65,6 +65,14 @@ const cartService = {
         }
         return { ...cart, userName, list, cost };
     },
+    async setUserIdByCartId({ userId = "", cartId = "" }) {
+        return await cartModel.findByIdAndUpdate(cartId, {
+            $set: { userId },
+        });
+    },
+    async deleteById(id) {
+        return cartModel.deleteOne({ _id: id });
+    },
 };
 
 export default cartService;

@@ -18,6 +18,8 @@ const userControllers = {
         const id = req.user || req.sessionID; //middleware
         const data = await cartService.getCartByUserId({ userId: id });
 
+        req.session.cartId = data._id;
+
         const state = {
             title: "Giỏ hàng",
             data,
@@ -26,13 +28,15 @@ const userControllers = {
         res.render("user/cart", { ...state });
     },
     async payCart(req, res) {
-        const id = req.user;
+        const id = req.user || null;
         const data = await cartService.getCartByUserId({ userId: id });
+        const user = id !== null ? await userService.getUserById({ id }) : {};
 
         const state = {
             title: "Thanh toán",
             data,
             layout: "user",
+            user,
         };
         res.render("user/payCart", { ...state });
     },
@@ -50,6 +54,13 @@ const userControllers = {
             layout: "user",
         };
         res.render("user/likes", { ...state });
+    },
+    async logs(req, res) {
+        const state = {
+            title: "Lịch sử",
+            layout: "user",
+        };
+        res.render("user/logs", { ...state });
     },
 };
 

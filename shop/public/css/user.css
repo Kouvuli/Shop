@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 :root {
     --main-bg-color: #fff;
@@ -24,7 +24,7 @@
 }
 
 [class*="col-"] {
-    padding: 0 ;
+    padding: 0;
     margin-bottom: 0;
 }
 body {
@@ -52,12 +52,14 @@ li {
 img {
     max-width: 100%;
 }
-p{
+p {
     line-height: 1.6;
     font-size: 16px;
 }
 
-table, th, td {
+table,
+th,
+td {
     border-collapse: collapse;
     border: 1px solid black;
 }
@@ -67,11 +69,11 @@ input,
 optgroup,
 select,
 textarea {
-  font-family: inherit; /* 1 */
-  font-size: 100%; /* 1 */
-  line-height: 1.15; /* 1 */
-  margin: 0; /* 2 */
-  overflow: auto;
+    font-family: inherit; /* 1 */
+    font-size: 100%; /* 1 */
+    line-height: 1.15; /* 1 */
+    margin: 0; /* 2 */
+    overflow: auto;
 }
 
 /* nav bar  */
@@ -159,113 +161,107 @@ textarea {
 
 /* sidebar  */
 .user-p {
-	text-align: center;
-	padding-left: 10px;
-	padding-top: 25px;
+    text-align: center;
+    padding-left: 10px;
+    padding-top: 25px;
 }
 .user-p img {
-	width: 100px;
-	border-radius: 50%;
+    width: 100px;
+    border-radius: 50%;
 }
 .user-p h4 {
-	color: #ccc;
-	padding: 5px 0;
-
+    color: #ccc;
+    padding: 5px 0;
 }
 .side-bar {
-	width: 100%;
-	background: var(--black);
-	min-height: 100vh;
-    
-	transition: 500ms width;
+    width: 100%;
+    background: var(--black);
+    min-height: 100vh;
+
+    transition: 500ms width;
 }
 .body {
-	display: flex;
+    display: flex;
 }
 
 .side-bar ul {
-	margin-top: 20px;
-	list-style: none;
+    margin-top: 20px;
+    list-style: none;
 }
 .side-bar ul li {
-	font-size: 16px;
-	padding: 15px 0px;
-	padding-left: 32px;
-	transition: 500ms background;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+    font-size: 16px;
+    padding: 15px 0px;
+    padding-left: 32px;
+    transition: 500ms background;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .side-bar ul li:hover {
-	background:var(--orange);
-    
+    background: var(--orange);
 }
 .side-bar ul li a {
-	text-decoration: none;
-	color: #eee;
-	cursor: pointer;
-	letter-spacing: 1px;
+    text-decoration: none;
+    color: #eee;
+    cursor: pointer;
+    letter-spacing: 1px;
 }
 .side-bar ul li a i {
-	display: inline-block;
-	padding-right: 10px;
-	font-size: 23px;
+    display: inline-block;
+    padding-right: 10px;
+    font-size: 23px;
 }
 #navbtn {
-	display: inline-block;
-	margin-left: 70px;
-	font-size: 20px;
-	transition: 500ms color;
+    display: inline-block;
+    margin-left: 70px;
+    font-size: 20px;
+    transition: 500ms color;
 }
 #checkbox {
-	display: none;
+    display: none;
 }
 #checkbox:checked ~ .body .side-bar {
-	width: 60px;
+    width: 60px;
 }
-#checkbox:checked ~ .body .side-bar .user-p{
-	visibility: hidden;
+#checkbox:checked ~ .body .side-bar .user-p {
+    visibility: hidden;
 }
-#checkbox:checked ~ .body .side-bar a span{
-	display: none;
+#checkbox:checked ~ .body .side-bar a span {
+    display: none;
 }
 
 /* tai khoan cua toi */
-.personal-profile form{
+.personal-profile form {
     display: flex;
-    padding:0 60px 0 40px;
+    padding: 0 60px 0 40px;
     flex-direction: column;
-    
 }
 
-
-.personal-profile label{
+.personal-profile label {
     padding-top: 8px;
     font-size: 20px;
     font-weight: 600;
-    
 }
 
-.personal-profile input{
+.personal-profile input {
     margin-top: 10px;
     outline: none;
     padding: 10px;
     border-radius: 5px;
-    background:var(--second-bg-color);
-    border:none;
-    
+    background: var(--second-bg-color);
+    border: none;
 }
 
-#gender{
+#gender {
     max-width: 200px;
 }
 
-#date-of-birth{
+#date-of-birth {
     max-width: 300px;
 }
 
 @media only screen and (max-width: 1280px) {
-    .side-bar{
+    .side-bar {
         display: none;
     }
 
@@ -303,29 +299,25 @@ textarea {
     .search {
         width: 100%;
     }
-    
+
     .pagination {
         justify-content: center;
     }
 }
 
-
-
-
-
-#hero .hero-logo{
+#hero .hero-logo {
     margin: 20px;
     max-width: 100%;
 }
-#hero .hero-container{
-    background: rgba(0,0,0,0.2);
+#hero .hero-container {
+    background: rgba(0, 0, 0, 0.2);
     display: table-cell;
     margin: 0;
-    padding:0;
+    padding: 0;
     text-align: center;
     vertical-align: middle;
 }
-#hero h1{
+#hero h1 {
     margin: 30px 0 10px 0;
     font-weight: bold;
     line-height: 48px;
@@ -333,73 +325,69 @@ textarea {
     color: #fff;
 }
 
-
 /* giỏ hàng */
-.cart .table-responsive{
+.cart .table-responsive {
     display: flex;
     justify-content: center;
-    
 }
 
-.cart .table{
+.cart .table {
     width: 80%;
     margin-bottom: 30px;
     margin-top: 30px;
     border-bottom: 1px solid #fff;
 }
-.cart .table thead tr th{
-    border-top:0px;
-    font-size:16px;
+.cart .table thead tr th {
+    border-top: 0px;
+    font-size: 16px;
     font-weight: bold;
-    border-bottom:0px;
+    border-bottom: 0px;
 }
-.cart .table thead tr td{
-    padding-top:30px;
+.cart .table thead tr td {
+    padding-top: 30px;
     padding-bottom: 30px;
     vertical-align: middle;
     align-self: center;
 }
-.cart .table tbody tr td h6{
+.cart .table tbody tr td h6 {
     text-align: center;
 }
-.cart .table tbody tr td .main .d-flex{
+.cart .table tbody tr td .main .d-flex {
     display: flex;
     justify-content: center;
 }
-.cart .table tbody tr td .main .d-flex img{
+.cart .table tbody tr td .main .d-flex img {
     width: 100px;
     height: 100px;
-    
+
     border-radius: 3px;
 }
-.cart .table tbody tr td .main .des{
+.cart .table tbody tr td .main .des {
     vertical-align: middle;
-    text-align: center ;
+    text-align: center;
 }
-.cart .table tbody tr td .main .des p{
-    margin-bottom:0px;
-}
-.cart .table tbody tr td h6{
-    font-size:16px;
-    color:#000;
+.cart .table tbody tr td .main .des p {
     margin-bottom: 0px;
 }
-.cart .table tbody tr td .counter{
+.cart .table tbody tr td h6 {
+    font-size: 16px;
+    color: #000;
+    margin-bottom: 0px;
+}
+.cart .table tbody tr td .counter {
     display: flex;
     justify-content: center;
 }
-.counter i{
+.counter i {
     vertical-align: middle;
     padding: 7px;
     display: inline-block;
-    
 }
-.cart .table tbody tr td .counter input{
-    
+.cart .table tbody tr td .counter input {
     width: 100px;
     text-align: center;
     height: 40px;
-    outline:none;
+    outline: none;
     box-shadow: none;
 }
 
@@ -407,48 +395,47 @@ textarea {
     margin-left: 60px;
     margin-right: 60px;
 }
-.checkout ul{
-    
+.checkout ul {
     background: var(--second-bg-color);
-    padding-left:25px;
-    padding-right:25px;
-    padding-top:16px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 16px;
     padding-bottom: 20px;
 }
-.checkout ul li{
+.checkout ul li {
     list-style: none;
-    font-size:16px;
+    font-size: 16px;
     font-weight: bold;
-    color:#252525;
+    color: #252525;
     text-transform: uppercase;
     overflow: hidden;
 }
-.checkout ul li.subtotal{
+.checkout ul li.subtotal {
     font-weight: bold;
     text-transform: uppercase;
 
-    border-bottom:1px solid #fff;
+    border-bottom: 1px solid #fff;
     padding-bottom: 14px;
 }
-.checkout ul li.subtotal span{
+.checkout ul li.subtotal span {
     font-weight: bold;
 }
-.checkout ul li.cart-total{
-    padding-top: 10px
+.checkout ul li.cart-total {
+    padding-top: 10px;
 }
-.checkout ul li.cart-total span{
-    color:#e7ab3c;
+.checkout ul li.cart-total span {
+    color: #e7ab3c;
 }
-.checkout ul li span{
-    float:right;
+.checkout ul li span {
+    float: right;
 }
-.checkout .proceed-btn{
-    font-size:15px;
+.checkout .proceed-btn {
+    font-size: 15px;
     font-weight: bold;
-    color:#fff;
-    background:#252525;
+    color: #fff;
+    background: #252525;
     text-transform: uppercase;
-    padding:15px 25px 14px 25px;
+    padding: 15px 25px 14px 25px;
     display: block;
     text-align: center;
 }
@@ -479,8 +466,6 @@ textarea {
     padding: 20px;
 }
 
-
-
 .user-comment {
     margin-bottom: 40px;
 }
@@ -489,11 +474,9 @@ textarea {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-   
 }
 
 .user-avt {
-
     width: 100px;
     border-radius: 50%;
     overflow: hidden;
@@ -542,10 +525,8 @@ textarea {
     border: 2px solid var(--black);
 }
 
-.pay{
+.pay {
     padding-top: 8px;
-    padding-bottom: 30%;
+    padding-bottom: 16px;
     font-size: 20px;
-    font-weight: 600;
-    
 }
