@@ -1,100 +1,46 @@
-<div class="box">
-    <div>
-        <div class="user-comment">
-            <div class="user-info">
-                <div class="user-avt">
-                    <img src="/images/tuat.jpg" alt="">
-                </div>
-                <div class="user-name">
-                    <span class="name">tuat tran anh</span>
-                    <div class="user-comment-content">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio ea iste, veritatis nobis
-                        amet illum,
-                        cum alias magni dolores odio, eius quo excepturi veniam ipsa voluptatibus natus voluptas vero?
-                        Aspernatur!
-                    </div>
-                </div>
+<section class="mt-5">
+    <div class="container">
+        <div class="cart">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col" class="text-white">Ngày</th>
+                            <th scope="col" class="text-white">Địa chỉ</th>
+                            <th scope="col" class="text-white">Trạng thái</th>
+                            <th scope="col" class="text-white">Giá</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each orders}}
+                        <tr>
+                            <td>
+                                <div>{{formatDate this.createdAt}}</div>
+                            </td>
+                            <td>
+                                
+                                {{#if this.address.address}}
+                                <div>{{this.address.address}} </div>
+                                {{/if}}
+                                {{#if this.address.email}}
+                                <div>{{this.address.email}} </div>
+                                {{/if}}
+                                {{#if this.address.phone}}
+                                <div>{{this.address.phone}} </div>
+                                {{/if}}
+                            </td>
+                            <td>
+                                <div>{{resolveStatus this.status}}</div>
+                            </td>
+                            <td>
+                                <div>{{formatMoney this.totalCost}}</div>
+                            </td>
+                        </tr>
+                        <!----->
+                        {{/each}}
+                    </tbody>
+                </table>
             </div>
-        </div>
-        <div class="user-comment">
-            <div class="user-info">
-                <div class="user-avt">
-                    <img src="/images/tuat.jpg" alt="">
-                </div>
-                <div class="user-name">
-                    <span class="name">tuat tran anh</span>
-
-                    <div class="user-comment-content">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio ea iste, veritatis nobis
-                        amet illum,
-                        cum alias magni dolores odio, eius quo excepturi veniam ipsa voluptatibus natus voluptas vero?
-                        Aspernatur!
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="user-comment">
-            <div class="user-info">
-                <div class="user-avt">
-                    <img src="/images/tuat.jpg" alt="">
-                </div>
-                <div class="user-name">
-                    <span class="name">tuat tran anh</span>
-
-                    <div class="user-comment-content">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio ea iste, veritatis nobis
-                        amet illum,
-                        cum alias magni dolores odio, eius quo excepturi veniam ipsa voluptatibus natus voluptas vero?
-                        Aspernatur!
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="user-comment">
-            <div class="user-info">
-                <div class="user-avt">
-                    <img src="/images/tuat.jpg" alt="">
-                </div>
-                <div class="user-name">
-                    <span class="name">tuat tran anh</span>
-
-                    <div class="user-comment-content">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio ea iste, veritatis nobis
-                        amet illum,
-                        cum alias magni dolores odio, eius quo excepturi veniam ipsa voluptatibus natus voluptas vero?
-                        Aspernatur!
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="user-comment">
-            <div class="user-info">
-                <div class="user-avt">
-                    <img src="/images/tuat.jpg" alt="">
-                </div>
-                <div class="user-name">
-                    <span class="name">tuat tran anh</span>
-
-                    <div class="user-comment-content">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio ea iste, veritatis nobis
-                        amet illum,
-                        cum alias magni dolores odio, eius quo excepturi veniam ipsa voluptatibus natus voluptas vero?
-                        Aspernatur!
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="box">
-            <ul class="pagination">
-                <li><a href="#"><i class='bx bxs-chevron-left'></i></a></li>
-                <li><a href="#" class="active">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#"><i class='bx bxs-chevron-right'></i></a></li>
-            </ul>
         </div>
     </div>
-</div>
+</section>

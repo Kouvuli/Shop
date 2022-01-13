@@ -79,61 +79,63 @@
         </header>
 
         <div class="row">
-            <div class="col-3">
-                <nav class="side-bar">
-                    <div class="user-p">
-                        <img src="/images/default-user-image.png" />
-                        <h4>{{data.name}}</h4>
-                    </div>
-                    <ul>
-                        <li>
-                            <a href="/users/profile">
-                                <i
-                                    class="bx bxs-user"
-                                    style="color:#ffffff"
-                                ></i>
-                                <span>Tài khoản của tôi</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/users/cart">
-                                <i
-                                    class="bx bxs-cart"
-                                    style="color:#ffffff"
-                                ></i>
-                                <span>Giỏ hàng</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/users/notifications">
-                                <i
-                                    class="bx bxs-bell"
-                                    style="color:#ffffff"
-                                ></i>
-                                <span>Thông báo</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/users/likes">
-                                <i
-                                    class="bx bxs-heart"
-                                    style="color:#ffffff"
-                                ></i>
-                                <span>Đã thích</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i
-                                    class="bx bxs-log-out"
-                                    style="color:#ffffff"
-                                ></i>
-                                <span>Đăng xuất</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+            {{#if user.name}}
+                <div class="col-3">
+                    <nav class="side-bar">
+                        <div class="user-p">
+                            <img src="/images/default-user-image.png" />
+                            <h4>{{data.name}}</h4>
+                        </div>
+                        <ul>
+                            <li>
+                                <a href="/users/profile">
+                                    <i
+                                        class="bx bxs-user"
+                                        style="color:#ffffff"
+                                    ></i>
+                                    <span>Tài khoản của tôi</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/users/cart">
+                                    <i
+                                        class="bx bxs-cart"
+                                        style="color:#ffffff"
+                                    ></i>
+                                    <span>Giỏ hàng</span>
+                                </a>
+                            </li>
+                            {{! <li>
+                                <a href="/users/notifications">
+                                    <i
+                                        class="bx bxs-bell"
+                                        style="color:#ffffff"
+                                    ></i>
+                                    <span>Thông báo</span>
+                                </a>
+                            </li> }}
+                            <li>
+                                <a href="/users/logs">
+                                    <i
+                                        class="bx bx-history"
+                                        style="color:#ffffff"
+                                    ></i>
+                                    <span>Lịch sử</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/auth/login?logout=true">
+                                    <i
+                                        class="bx bxs-log-out"
+                                        style="color:#ffffff"
+                                    ></i>
+                                    <span>Đăng xuất</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            {{/if}}
 
             <div class="col-9 col-md-12">
                 {{{body}}}

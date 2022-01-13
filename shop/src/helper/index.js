@@ -11,7 +11,6 @@ const helpers = {
         return result.join("");
     },
     formatDate(date) {
-        if (_.isEmpty(date)) return "Không có";
         return moment(date).format("hh:mm DD/MM/YYYY A");
     },
     formatMoney(x) {
@@ -70,18 +69,22 @@ const helpers = {
         return str;
     },
     genId() {
-        const timestamp = (Date.now() / 1000).toString(16).substr(0, 8)
-        return timestamp + 'xx'.replace(/[x]/g, () => Math.random().toString(16).substr(2, 8)).toLowerCase()
+        const timestamp = (Date.now() / 1000).toString(16).substr(0, 8);
+        return (
+            timestamp +
+            "xx"
+                .replace(/[x]/g, () => Math.random().toString(16).substr(2, 8))
+                .toLowerCase()
+        );
     },
     //const ObjectId = require('mongoose').Types.ObjectId;
-    isValidObjectId(id){
-    if(Types.ObjectId.isValid(id)){
-        if((String)(new Types.ObjectId(id)) === id)
-            return true;
+    isValidObjectId(id) {
+        if (Types.ObjectId.isValid(id)) {
+            if (String(new Types.ObjectId(id)) === id) return true;
+            return false;
+        }
         return false;
-    }
-    return false;
-    }
+    },
 };
 
 export default helpers;

@@ -1,6 +1,7 @@
 import _ from "lodash";
 import userService from "../../services/userService";
 import cartService from "../../services/cartService";
+import orderService from "../../services/orderService";
 
 const userControllers = {
     async profile(req, res) {
@@ -56,10 +57,18 @@ const userControllers = {
         res.render("user/likes", { ...state });
     },
     async logs(req, res) {
+        const userId = req.user;
+
+        // const data = await userService.getLogsByUserId({ userId });
+        const { data: orders } = await orderService.getOrdersByUserId({
+            userId,
+        });
         const state = {
             title: "Lịch sử",
+            orders,
             layout: "user",
         };
+
         res.render("user/logs", { ...state });
     },
 };
