@@ -8,7 +8,9 @@ document
     .querySelector("#filter-close")
     .addEventListener("click", () => filter_col.classList.toggle("active"));
 
-const handleAddToCard = (productId) => () => {
+const handleAddToCard = (productId, ele) => () => {
+    ele.innerHTML = "...";
+    ele.disabled = true;
     $.ajax({
         url: `api/v1/cart/add`,
         method: "POST",
@@ -27,5 +29,5 @@ const addBtns = document.querySelectorAll(".btn-cart-add");
 
 addBtns.forEach((ele) => {
     const id = ele.id;
-    ele.onclick = handleAddToCard(id);
+    ele.onclick = handleAddToCard(id, ele);
 });
