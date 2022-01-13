@@ -18,10 +18,12 @@ const productService = {
         perPage = 10,
         category = "",
         manufacturer = "",
+        isAsc = 1,
     }) {
         const p = Math.max(parseInt(page), 1);
         const pp = parseInt(perPage);
         const filter = { active: 1 };
+        const sort = { currentPrice: isAsc ? 1 : -1 };
         if (!_.isEmpty(manufacturer)) {
             filter["manufacturer.key"] = manufacturer;
         }
@@ -38,8 +40,10 @@ const productService = {
 
         const data = await productModel
             .find(filter)
+            .sort(sort)
             .skip(pp * p - pp)
             .limit(pp)
+
             .lean();
         const total = await productModel.countDocuments(filter);
 
