@@ -16,8 +16,10 @@ const quantityArrowMinus = document.querySelector(".bx-minus");
 const quantityArrowPlus = document.querySelector(".bx-plus");
 const quantityNum = document.querySelector(".product-quantity");
 
-quantityArrowMinus.onclick = quantityMinus;
-quantityArrowPlus.onclick = quantityPlus;
+if (quantityArrowMinus && quantityArrowPlus) {
+    quantityArrowMinus.onclick = quantityMinus;
+    quantityArrowPlus.onclick = quantityPlus;
+}
 
 function quantityMinus() {
     if (parseInt(quantityNum.innerHTML) > 1) {
@@ -50,20 +52,22 @@ const handleAddToCardDetail =
         });
     };
 
-const id = addBtn.id;
+const id = addBtn?.id || "";
 
-addBtn.onclick = handleAddToCardDetail({
-    productId: id,
-});
+if (addBtn) {
+    addBtn.onclick = handleAddToCardDetail({
+        productId: id,
+    });
+}
 
 const renderComments = (productId = id, page = 1, perPage = 10) => {
     const commentsSection = document.querySelector(".comments-section");
     const commentsPagination = document.querySelector(".comment-pagination");
 
-    commentsSection.innerHTML = "";
-    commentsPagination.innerHTML = "";
-
     if (commentsSection) {
+        //reset
+        commentsSection.innerHTML = "";
+        commentsPagination.innerHTML = "";
         $.ajax({
             url: `/api/v1/products/${productId}/comments?page=${page}&perPage=${perPage}`,
             method: "GET",

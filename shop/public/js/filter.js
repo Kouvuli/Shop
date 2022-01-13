@@ -1,6 +1,4 @@
-
 if (window.location.href.includes("/")) {
-
     //filter manufacturers
     document
         .querySelectorAll(".group-checkbox input[name=manufacturer]")
@@ -8,7 +6,10 @@ if (window.location.href.includes("/")) {
             box.onchange = (e) => {
                 e.preventDefault();
                 if (e.target.checked) {
-                    window.location.search = insertParams("manufacturer", box.id);
+                    window.location.search = insertParams(
+                        "manufacturer",
+                        box.id
+                    );
                     localStorage.setItem("@query-manufacturer", box.id);
                 } else {
                     window.location = removeURLParameter("manufacturer");
@@ -16,36 +17,65 @@ if (window.location.href.includes("/")) {
                 }
             };
         });
-
-    //filter categories
+    //sort by price
     document
-        .querySelectorAll("a[name=category]")
-        .forEach((tag) => {
-            tag.onclick = (e) => {
+        .querySelectorAll(".group-checkbox input[name=price]")
+        .forEach((box) => {
+            box.onchange = (e) => {
                 e.preventDefault();
-                window.location.search = insertParams("category", tag.id);
+                if (e.target.checked) {
+                    window.location.search = insertParams("price", box.id);
+                    localStorage.setItem("@query-price", box.id);
+                } else {
+                    window.location = removeURLParameter("price");
+                    localStorage.removeItem("@query-price");
+                }
             };
         });
-    let timerId = null
+
+    //filter categories
+    document.querySelectorAll("a[name=category]").forEach((tag) => {
+        tag.onclick = (e) => {
+            e.preventDefault();
+            window.location.search = insertParams("category", tag.id);
+        };
+    });
+    let timerId = null;
     document.querySelector("#search-bar").oninput = (e) => {
-        clearTimeout(timerId)
+        clearTimeout(timerId);
         console.log({ start: timerId });
         timerId = setTimeout(() => {
             const search = insertParams("q", e.target.value);
-            window.location.search = search
+            window.location.search = search;
             localStorage.setItem("@query-q", e.target.value);
-        }, 1000)
+        }, 1000);
         console.log({ timerId });
-    }
-
-
+    };
 
     window.onload = () => {
-        const manufacturer = localStorage.getItem("@query-manufacturer")
-        const q = localStorage.getItem("@query-q")
+        const manufacturer = localStorage.getItem("@query-manufacturer");
+        const q = localStorage.getItem("@query-q");
+        const price = localStorage.getItem("@query-price");
+        console.log({ price });
+
         if (manufacturer) {
-            document.querySelector(`input[id=${manufacturer}]`).checked = true;
-            localStorage.removeItem("@query-manufacturer");
+            const manufacturerList = document.querySelector(
+                `div[name=manufacturer]`
+            );
+            manufacturerList.querySelector(
+                `input[id=${manufacturer}]`
+            ).checked = true;
+
+            // localStorage.removeItem("@query-manufacturer");
+            // localStorage.removeItem("@query-price");
+        }
+        if (price) {
+            const priceList = document.querySelector(`div[name=price]`);
+
+            priceList.querySelector(`input[id=${price}]`).checked = true;
+
+            // localStorage.removeItem("@query-manufacturer");
+            // localStorage.removeItem("@query-price");
         }
         if (q) {
             document.querySelector(`#search-bar`).value = q;
@@ -435,4 +465,3 @@ function removeURLParameter(parameter) {
 //         }
 //     };
 // }
-

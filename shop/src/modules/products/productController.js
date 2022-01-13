@@ -3,7 +3,12 @@ import productService from "../../services/productService";
 import logService from "../../services/logService";
 const productControllers = {
     async allProducts(req, res) {
-        const { page = 1, category = "", manufacturer = "" } = req.query;
+        const {
+            page = 1,
+            category = "",
+            manufacturer = "",
+            price = "",
+        } = req.query;
         const perPage = 9;
         const userId = req.user || req.sessionID;
         const categories = await productService.getCategories();
@@ -17,6 +22,7 @@ const productControllers = {
             perPage,
             category,
             manufacturer,
+            isAsc: price === "asc",
         });
         //Log
         for (const pro of data) {
