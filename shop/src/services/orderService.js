@@ -1,8 +1,6 @@
 import orderModel from "../models/orderModel";
 import discountModel from "../models/discountModel";
 import userModel from "../models/userModel";
-import cartService from "./cartService";
-
 const orderService = {
     /**
      *

@@ -3,6 +3,9 @@ import productModel from "../models/productModel";
 import categoryModel from "../models/categoryModel";
 import manufacturerModel from "../models/manufacturerModel";
 import logService from "./logService";
+import commentModel from "../models/commentModel";
+import userModel from "../models/userModel";
+
 const productService = {
     async getProductById({ id = "" }) {
         const views = await logService.getLogsByObjectId({ objectId: id });
@@ -84,10 +87,31 @@ const productService = {
      * - userId
      * - content
      */
-    async createCommentByProductId({ id = "", comment = {} }) {
-        return await productModel.findByIdAndUpdate(id, {
-            $push: { comments: comment },
-        });
+    async createCommentByProductId({
+        productId = "",
+        userId = "",
+        content = "",
+    }) {
+        return await commentModel.create({ productId, userId, content });
+    },
+    async getCommentsByProductId({ productId = "", page = 1, perPage = 10 }) {
+        const p = Math.max(parseInt(page), 1);
+        const pp = parseInt(perPage);
+        const filter = { productId };
+        const comments = await commentModel
+            .find(filter)
+            .skip(pp * p - pp)
+            .limit(pp)
+            .lean();
+        let data = [];
+        for (const comment of comments) {
+            const user = comment?.userId
+                ? await userModel.findById(comment.userId)
+                : {};
+            data.push({ ...comment, user });
+        }
+        const total = await commentModel.countDocuments(filter);
+        return { data, total, page, perPage };
     },
     async getCategories() {
         return await categoryModel.find({}).lean();
