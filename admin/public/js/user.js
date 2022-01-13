@@ -6,9 +6,11 @@ const ICON_CLASSES = {
 };
 
 for (const element of elements) {
-    const icon = element.querySelector(".fas");
+    const icon = element.querySelector("i[name=block");
     const id = element.id;
     icon.onclick = () => {
+        icon.innerHTML = "...";
+        icon.className = "";
         $.ajax({
             url: "api/v1/block",
             method: "POST",
@@ -19,8 +21,13 @@ for (const element of elements) {
                 const active = res.data?.active;
                 const classes = ICON_CLASSES[active];
                 icon.className = classes;
+                icon.innerHTML = "";
+
+                console.log({ active });
             },
-            error: function (jqXHR) {},
+            error: function (jqXHR) {
+                console.log({ jqXHR });
+            },
         });
     };
 }

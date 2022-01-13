@@ -134,19 +134,21 @@ const renderChart = (data = []) => {
 
 const filterElement = document.querySelector("#filter");
 
-filterElement.onchange = (event) => {
-    event.preventDefault();
-    const key = event.target.value;
-    $.ajax({
-        url: `api/v1/analytics?filter=${key}`,
-        method: "GET",
-        success: function (res) {
-            const data = res.data;
-            renderChart(data);
-        },
-        error: function (jqXHR) {},
-    });
-};
+if (filterElement) {
+    filterElement.onchange = (event) => {
+        event.preventDefault();
+        const key = event.target.value;
+        $.ajax({
+            url: `api/v1/analytics?filter=${key}`,
+            method: "GET",
+            success: function (res) {
+                const data = res.data;
+                renderChart(data);
+            },
+            error: function (jqXHR) {},
+        });
+    };
+}
 
 $(document).ready(function () {
     console.log("ready!");
