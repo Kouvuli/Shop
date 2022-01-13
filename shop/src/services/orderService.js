@@ -96,10 +96,12 @@ const orderService = {
         const p = Math.max(parseInt(page), 1);
         const pp = parseInt(perPage);
         const origin = await orderModel
-            .findOne({ userId })
+            .find({ userId })
             .skip(pp * p - pp)
             .limit(pp)
             .lean();
+        console.log({ origin });
+
         const total = await orderModel.countDocuments({ userId });
         let data = [];
         for (const order of origin) {
