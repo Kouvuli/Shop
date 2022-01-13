@@ -50,5 +50,39 @@ const apiControllers = {
 
         res.json({ data, _id });
     },
+    async createComment(req, res) {
+        const userId = req.user || req.sessionID;
+        const { id: productId } = req.params;
+        const { content } = req.body;
+        try {
+            const data = await productService.createCommentByProductId({
+                productId,
+                userId,
+                content,
+            });
+            res.json({ data });
+        } catch (e) {
+            console.log({ e });
+
+            res.status(500).json({ e });
+        }
+    },
+    async getCommentsByProductId(req, res) {
+        const { page = 1, perPage = 10 } = req.query;
+        const { id: productId } = req.params;
+        try {
+            const { data, total } = await productService.getCommentsByProductId(
+                {
+                    page,
+                    perPage,
+                    productId,
+                }
+            );
+            res.json({ data, total });
+        } catch (e) {
+            console.log({ e });
+            res.status(500).json({ e });
+        }
+    },
 };
 export default apiControllers;

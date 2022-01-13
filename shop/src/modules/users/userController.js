@@ -17,7 +17,6 @@ const userControllers = {
     async cart(req, res) {
         const id = req.user || req.sessionID; //middleware
         const data = await cartService.getCartByUserId({ userId: id });
-        console.log({ data: data.list });
 
         req.session.cartId = data._id;
 

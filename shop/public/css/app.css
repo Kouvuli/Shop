@@ -187,13 +187,27 @@ ul.devided > li:last-child {
     height: 40px;
     position: relative;
 }
-
 .search input {
     height: 100%;
     width: 100%;
     font-size: 16px;
     outline: 0;
     padding: 0 20px;
+    border-radius: 10px;
+    border: 0;
+    background-color: var(--second-bg-color);
+}
+.comment {
+    width: 600px;
+    height: 150px;
+    position: relative;
+}
+.comment textarea {
+    height: 100%;
+    width: 100%;
+    font-size: 16px;
+    outline: 0;
+    padding: 20px 20px;
     border-radius: 10px;
     border: 0;
     background-color: var(--second-bg-color);

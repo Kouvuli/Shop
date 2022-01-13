@@ -16,11 +16,10 @@ const handleAddToCard = (productId, ele) => () => {
         method: "POST",
         data: { productId },
         success: function (res) {
-            const data = res.data;
-            console.log(data);
+            ele.innerHTML = "Thành công";
         },
         error: function (jqXHR) {
-            console.log(jqXHR);
+            ele.innerHTML = "Có lỗi xảy ra";
         },
     });
 };
