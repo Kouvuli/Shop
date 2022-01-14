@@ -1,22 +1,27 @@
 <div class="personal-profile">
-    <form>
+    <form id="update-form" method="post"  onsubmit="return checkValue()" >
+        
+        <input style="display:none;" type="text" name="id" id="" value={{data._id}}>
         <label for="last-name">Tên</label>
         <input
             type="text"
             id="last-name"
-            name="last-name"
+            name="last_name"
             placeholder="Tên"
             value="{{data.name}}"
+            autocomplete="off" 
         />
+        <h5 id="last-name-error" style="color:rgb(248, 16, 16)" class="txt-none" ></h5>
         <br />
         <label for="last-name">Tên đăng nhập</label>
         <input
             type="text"
-            id="last-name"
-            name="last-name"
+            id="user-name"
+            name="user_name"
             placeholder="Tên"
             value="{{data.username}}"
         />
+        <h5 id="user-name-error" style="color:rgb(248, 16, 16)" class="txt-none" ></h5>
         <br />
         <label for="email">Email</label>
         <input
@@ -26,6 +31,7 @@
             placeholder="Email"
             value="{{data.email}}"
         />
+        <h5 id="email-error" style="color:rgb(248, 16, 16)" class="txt-none" ></h5>
         <br />
         <label for="address">Địa chỉ</label>
         <input
@@ -35,14 +41,28 @@
             placeholder="Địa chỉ"
             value="{{data.address}}"
         />
+        <h4 id="address-error" style="color:rgb(248, 16, 16)" class="txt-none" ></h4>
         <br />
-        <label for="date-of-birth">Ngày sinh</label>
-        <input
+        <label for="birthday">Ngày sinh</label>
+        {{!-- <input
             type="text"
             id="date-of-birth"
             name="date-of-birth"
             placeholder="Ngày sinh"
-            value="{{formatDate data.birthday}}"
-        />
+            
+        /> --}}
+        
+        <div class='input-group date' id='datetimepicker3'>
+            <input type='text' class="form-control" type="text" name="birthday" value="{{data.birthday}}"/>
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-time"></span>
+            </span>
+            
+        </div>
+        <h5 id="birthday-error" style="color:rgb(248, 16, 16)" class="txt-none" ></h5>
+        <div class="row ">
+            <button style="width:50%;margin:15px auto;" class="col-9 btn-flat btn-hover" type="submit" id="submit-btn" value="nut">Xác nhận</button>
+        </div>
     </form>
+    
 </div>

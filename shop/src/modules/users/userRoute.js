@@ -10,4 +10,5 @@ router.get("/payCart", authRedirect("payment"), userControllers.payCart);
 router.get("/notifications", userControllers.notification);
 router.get("/likes", userControllers.liked);
 router.get("/logs", userControllers.logs);
+router.post("/profile", userControllers.updateUser);
 export default router;
