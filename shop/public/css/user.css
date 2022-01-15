@@ -123,7 +123,56 @@ textarea {
     padding: 0 20px;
     position: relative;
 }
+/*main menu*/
+.bg-second {
+    background-color: var(--second-bg-color);
+}
 
+.bottom-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-menu {
+    display: flex;
+    height: var(--bottom-header-size);
+}
+
+.main-menu > li > a {
+    display: flex;
+    align-items: center;
+    margin: 0 20px;
+    font-weight: 700;
+    height: 100%;
+    text-transform: uppercase;
+}
+
+li {
+    list-style-type: none;
+}
+.main-menu > li {
+    border-bottom: 2px solid transparent;
+    border-top: 2px solid transparent;
+}
+
+.main-menu > li:hover {
+    border-bottom: 2px solid var(--red);
+}
+
+.main-menu > li.active {
+    border-bottom: 2px solid var(--red);
+}
+
+.main-menu {
+    flex-direction: column;
+    height: unset;
+}
+
+.main-menu a {
+    padding: 10px 0;
+}
+/*main menu*/
 .logo {
     font-size: 40px;
     font-weight: 700;
