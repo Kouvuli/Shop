@@ -131,10 +131,15 @@ const productService = {
         const soldProducts = orders.map((order) => order.products).flat();
 
         const sumById = soldProducts.reduce((acc, val) => {
-            acc[val.productId] =
-                acc[val.productId] === undefined
-                    ? val.quantity
-                    : (acc[val.productId] += val.quantity);
+            if (val.productId) {
+                acc[val.productId] =
+                    acc[val.productId] === undefined
+                        ? val.quantity
+                        : (acc[val.productId] += parseInt(
+                              val.quantity || 0,
+                              10
+                          ));
+            }
             return acc;
         }, {});
 
