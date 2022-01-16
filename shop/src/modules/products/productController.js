@@ -8,6 +8,7 @@ const productControllers = {
             category = "",
             manufacturer = "",
             price = "",
+            q = "",
         } = req.query;
         const perPage = 9;
         const userId = req.user || req.sessionID;
@@ -22,6 +23,7 @@ const productControllers = {
             perPage,
             category,
             manufacturer,
+            q,
             isAsc: price === "asc",
         });
         //Log
