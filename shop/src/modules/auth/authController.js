@@ -50,7 +50,7 @@ const authController = {
         const newPass = `${parseInt(10000000 + Math.random() * 10000000 - 1)}`;
         await userService.updateResetPassword({
             id: user._id,
-            resetPassword: bcrypt.hashSync(newPass, bcrypt.genSaltSync(10)),
+            resetPassword,
         });
         const message = `Mật khẩu mới của bạn là ${newPass}`;
         mailService.sendForgotPassword({ email, username: user.name, message });
@@ -76,7 +76,7 @@ const authController = {
             await userService.createNewUser({
                 username,
                 name,
-                password: bcrypt.hashSync(password, bcrypt.genSaltSync(10)),
+                password,
                 email,
             });
             res.redirect("/auth/login?success=true");

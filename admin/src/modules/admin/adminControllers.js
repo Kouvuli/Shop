@@ -36,7 +36,7 @@ const adminControllers = {
                 await adminService.createNewAdmin({
                     username,
                     name,
-                    password: bcrypt.hashSync(password, bcrypt.genSaltSync(10)),
+                    password,
                     email,
                     avatar,
                 });
@@ -67,7 +67,7 @@ const adminControllers = {
                     id: data?._id,
                     username,
                     name,
-                    password: bcrypt.hashSync(password, bcrypt.genSaltSync(10)),
+                    password,
                     email,
                     avatar,
                 });

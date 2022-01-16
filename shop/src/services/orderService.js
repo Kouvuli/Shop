@@ -38,60 +38,7 @@ const orderService = {
 
         return newOrder;
     },
-    /**
-     *
-     * @param {payment}
-     * - method: crash | credit
-     * - transactionId:
-     * - Các tường còn lại nếu có
-     */
-    async updatePaymentById({ id = "", payment = {} }) {
-        return await orderModel.findByIdAndUpdate(id, {
-            payment: { ...payment, createdAt: new Date() },
-        });
-    },
-    /**
-     *
-     * @param {date} Ngày giao
-     * @returns
-     */
-    async updateShippedById({ id = "", date = new Date() }) {
-        return await orderModel.findByIdAndUpdate(id, {
-            shippedAt: new Date(date),
-            status: "shipped",
-        });
-    },
-    async getOrders({ page = 1, perPage = 10 }) {
-        const p = Math.max(parseInt(page), 1);
-        const pp = parseInt(perPage);
-        const origin = await orderModel
-            .find({})
-            .skip(pp * p - pp)
-            .limit(pp)
-            .lean();
-        const total = await orderModel.countDocuments();
-        let data = [];
-        for (const order of origin) {
-            const { name } = await userModel.findById(order.userId);
-            let discountPercent = 0;
-            for (const discount of order.discounts) {
-                const { value } = await discountModel.findById(discount);
-                discountPercent += parseFloat(value);
-            }
 
-            let cost = 0;
-            for (const product of order.products) {
-                cost += parseFloat(product.price) * parseInt(product.quantity);
-            }
-            data.push({
-                ...order,
-                name,
-                discount: (discountPercent * cost) / 100,
-                cost,
-            });
-        }
-        return { data, page, perPage, total };
-    },
     async getOrdersByUserId({ userId = "", page = 1, perPage = 10 }) {
         const p = Math.max(parseInt(page), 1);
         const pp = parseInt(perPage);
@@ -124,25 +71,6 @@ const orderService = {
             });
         }
         return { data, page, perPage, total };
-    },
-    async getOrderById({ id = "" }) {
-        const order = await orderModel.findById(id);
-        const { name } = await userModel.findById(order.userId);
-        let discountPercent = 0;
-        for (const discount of order.discounts) {
-            const { value } = await discountModel.findById(discount);
-            discountPercent += parseFloat(value);
-        }
-        let cost = 0;
-        for (const product of order.products) {
-            cost += parseFloat(product.price) * parseInt(product.quantity);
-        }
-        return {
-            ...order._doc,
-            name,
-            discount: (discountPercent * cost) / 100,
-            cost,
-        };
     },
 };
 
