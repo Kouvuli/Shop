@@ -46,6 +46,12 @@ const orderService = {
         }
         return { total };
     },
+    async changeStatusByOrderId({ id = "", status = "" }) {
+        if (id && status) {
+            return await orderModel.findByIdAndUpdate(id, { status });
+        }
+        return Promise.reject(null);
+    },
 };
 
 export default orderService;

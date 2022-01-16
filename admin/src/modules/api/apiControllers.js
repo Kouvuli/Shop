@@ -44,5 +44,19 @@ const apiControllers = {
         }
         res.json({ data });
     },
+    async updateStatusByOrderId(req, res) {
+        const { status = "shipping" } = req.body;
+        const { id = "" } = req.params;
+
+        try {
+            const data = await orderService.changeStatusByOrderId({
+                id,
+                status,
+            });
+            res.json({ data });
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    },
 };
 export default apiControllers;
