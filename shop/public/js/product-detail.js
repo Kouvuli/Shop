@@ -94,7 +94,7 @@ const renderComments = (productId = id, page = 1, perPage = 10) => {
                         div.innerHTML = `<div class="user-comment">
                         <div class="user-info">
                             <b class="user-name">${
-                                comment.user?.name || comment.userId
+                                comment.user?.name || `Ẩn danh`
                             }
                             </b>
                             
