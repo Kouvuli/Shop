@@ -27,6 +27,8 @@ const helpers = {
             case "delivered":
             case "shipped":
                 return "Đã giao";
+            case "cancelled":
+                return "Đã hủy";
             default:
                 return status;
         }
