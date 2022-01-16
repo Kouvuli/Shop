@@ -41,14 +41,11 @@ if (window.location.href.includes("/")) {
         };
     });
 
-    console.log({ href: window.location.href });
-
     let timerId = null;
     document.querySelector("#search-bar").onkeypress = (e) => {
         if (e.keyCode == 13) {
             clearTimeout(timerId);
             const search = insertParams("q", e.target.value);
-            console.log({ search });
             if (!window.location.href.includes("products")) {
                 window.location.href = `products?${search}`;
             } else {

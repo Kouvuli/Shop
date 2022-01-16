@@ -11,9 +11,12 @@ const userService = {
         return user;
     },
     async getUserById({ id = "" }) {
-        const user = await userModel.findOne({ _id: id }).lean();
-        delete user.password;
-        return user;
+        try {
+            const user = await userModel.findOne({ _id: id }).lean();
+            return user;
+        } catch (e) {
+            return null;
+        }
     },
     async createNewUser({
         username = "",
@@ -36,10 +39,7 @@ const userService = {
         return await userModel.updateOne(
             { _id: id },
             {
-                resetPassword: bcrypt.hashSync(
-                    resetPassword,
-                    bcrypt.genSaltSync(10)
-                ),
+                resetPassword,
             }
         );
     },

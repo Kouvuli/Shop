@@ -86,7 +86,6 @@ const userControllers = {
 
         const state2 = { title: "Thông tin cá nhân", data, layout: "user" };
         res.render("user/profile", { ...state2 });
-        console.log(data);
     },
 };
 

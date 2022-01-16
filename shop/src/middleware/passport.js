@@ -17,10 +17,13 @@ const usePassport = (app) => {
                 const userId = user._id;
                 const isOk = bcrypt.compareSync(password, user.password);
                 if (!isOk) {
-                    const isReset = bcrypt.compareSync(
-                        password,
-                        user.resetPassword
-                    );
+                    let isReset = false;
+                    if (user.resetPassword) {
+                        isReset = bcrypt.compareSync(
+                            password,
+                            user.resetPassword
+                        );
+                    }
                     if (!isReset || !user.resetPassword) {
                         return done(null, false);
                     }
@@ -39,6 +42,7 @@ const usePassport = (app) => {
                             resetPassword: "",
                         });
                 }
+
                 return done(null, userId);
             } catch (err) {
                 return done(null, err);

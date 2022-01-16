@@ -13,6 +13,7 @@ const authController = {
             resetSuccess = false,
             wrong = false,
             payment = false,
+            change = false,
         } = req.query;
         const state = {
             title: "Đăng nhập",
@@ -28,15 +29,28 @@ const authController = {
             resetSuccess,
             wrong,
             payment,
+            change,
         });
     },
     async forgot(req, res) {
         const { notExist = false } = req.query;
         const state = {
             title: "Quên mật khẩu",
+            layout: "login",
         };
 
         res.render("auth/forgot-password", { ...state, notExist });
+    },
+    async changePassword(req, res) {
+        const { notMatch = false, wrong = false } = req.query;
+        const state = {
+            title: "Đổi mật khẩu",
+            layout: "login",
+            notMatch,
+            wrong,
+        };
+
+        res.render("auth/change-password", { ...state });
     },
     async sendEmail(req, res) {
         const { email } = req.body;
@@ -50,7 +64,10 @@ const authController = {
         const newPass = `${parseInt(10000000 + Math.random() * 10000000 - 1)}`;
         await userService.updateResetPassword({
             id: user._id,
-            resetPassword,
+            resetPassword: bcrypt.hashSync(
+                resetPassword,
+                bcrypt.genSaltSync(10)
+            ),
         });
         const message = `Mật khẩu mới của bạn là ${newPass}`;
         mailService.sendForgotPassword({ email, username: user.name, message });
@@ -85,6 +102,26 @@ const authController = {
 
             res.redirect("/auth/login?failure=true");
         }
+    },
+    async handler(req, res) {
+        const { password, newPassword, confirmPassword } = req.body;
+        const id = req.user;
+        const user = await userService.getUserById({ id });
+
+        const isOk = bcrypt.compareSync(password, user.password);
+
+        if (!isOk) {
+            return res.redirect("/auth/change-password?wrong=true");
+        }
+
+        if (newPassword !== confirmPassword) {
+            return res.redirect("/auth/change-password?notMatch=true");
+        }
+        await userService.updatePassword({
+            id,
+            password: bcrypt.hashSync(newPassword, bcrypt.genSaltSync(10)),
+        });
+        res.redirect("/auth/login?change=true");
     },
 };
 
