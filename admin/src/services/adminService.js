@@ -1,11 +1,8 @@
 import adminModel from "../models/adminModel";
+import bcrypt from "bcryptjs";
 const adminService = {
     async getAdminByUsername({ username = "" }) {
         const user = await adminModel.findOne({ username }).lean();
-        return user;
-    },
-    async getAdmin({ username = "", password = "" }) {
-        const user = await adminModel.findOne({ username, password }).lean();
         return user;
     },
     async getAdminById({ id = "" }) {
@@ -37,7 +34,7 @@ const adminService = {
         return await adminModel.create({
             username,
             name,
-            password,
+            password: bcrypt.hashSync(password, bcrypt.genSaltSync(10)),
             email,
             avatar,
         });
@@ -64,7 +61,10 @@ const adminService = {
             newData.avatar = avatar;
         }
         if (password) {
-            newData.password = password;
+            newData.password = bcrypt.hashSync(
+                password,
+                bcrypt.genSaltSync(10)
+            );
         }
         return await adminModel.findByIdAndUpdate(id, newData);
     },

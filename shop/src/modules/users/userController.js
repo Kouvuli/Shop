@@ -59,7 +59,6 @@ const userControllers = {
     async logs(req, res) {
         const userId = req.user;
 
-        // const data = await userService.getLogsByUserId({ userId });
         const { data: orders } = await orderService.getOrdersByUserId({
             userId,
         });

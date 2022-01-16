@@ -1,10 +1,6 @@
 import userModel from "../models/userModel";
 import bcrypt from "bcryptjs";
 const userService = {
-    async getUserByUsername({ username = "" }) {
-        const user = await userModel.findOne({ username }).lean();
-        return user;
-    },
     async getUserById({ id = "" }) {
         const user = await userModel.findOne({ _id: id }).lean();
         return user;

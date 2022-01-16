@@ -149,17 +149,6 @@ const productService = {
             .slice(0, parseInt(perPage, 10));
         return { data, perPage };
     },
-    /**
-     *
-     * @param {comment}
-     * - userId
-     * - content
-     */
-    async createCommentByProductId({ id = "", comment = {} }) {
-        return await productModel.findByIdAndUpdate(id, {
-            $push: { comments: comment },
-        });
-    },
 };
 
 export default productService;
