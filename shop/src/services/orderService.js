@@ -47,7 +47,6 @@ const orderService = {
             .skip(pp * p - pp)
             .limit(pp)
             .lean();
-        console.log({ origin });
 
         const total = await orderModel.countDocuments({ userId });
         let data = [];

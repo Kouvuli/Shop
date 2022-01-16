@@ -7,11 +7,16 @@ router.get("/login", authController.login);
 router.get("/logout", authController.logout);
 router.get("/forgot-password", authController.forgot);
 router.post("/forgot-password", authController.sendEmail);
+router.get("/change-password", authController.changePassword);
+router.post("/change-password", authController.handler);
 
 router.post("/register", authController.register);
-router.post('/login', passport.authenticate('local', {
-    successRedirect: '/?success=true',
-    failureRedirect: '/auth/login?wrong=true',
-    failureFlash: false
-}))
+router.post(
+    "/login",
+    passport.authenticate("local", {
+        successRedirect: "/?success=true",
+        failureRedirect: "/auth/login?wrong=true",
+        failureFlash: false,
+    })
+);
 export default router;
