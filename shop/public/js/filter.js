@@ -40,23 +40,38 @@ if (window.location.href.includes("/")) {
             window.location.search = insertParams("category", tag.id);
         };
     });
+
+    console.log({ href: window.location.href });
+
     let timerId = null;
-    document.querySelector("#search-bar").oninput = (e) => {
-        clearTimeout(timerId);
-        console.log({ start: timerId });
-        timerId = setTimeout(() => {
+    document.querySelector("#search-bar").onkeypress = (e) => {
+        if (e.keyCode == 13) {
+            clearTimeout(timerId);
             const search = insertParams("q", e.target.value);
-            window.location.search = search;
+            console.log({ search });
+            if (!window.location.href.includes("products")) {
+                window.location.href = `products?${search}`;
+            } else {
+                window.location.search = search;
+            }
+
             localStorage.setItem("@query-q", e.target.value);
-        }, 1000);
-        console.log({ timerId });
+        }
     };
+
+    // document.querySelector("#search-bar").oninput = (e) => {
+    //     clearTimeout(timerId);
+    //     timerId = setTimeout(() => {
+    //         const search = insertParams("q", e.target.value);
+    //         window.location.search = search;
+    //         localStorage.setItem("@query-q", e.target.value);
+    //     }, 1000);
+    // };
 
     window.onload = () => {
         const manufacturer = localStorage.getItem("@query-manufacturer");
         const q = localStorage.getItem("@query-q");
         const price = localStorage.getItem("@query-price");
-        console.log({ price });
 
         if (manufacturer) {
             const manufacturerList = document.querySelector(

@@ -27,8 +27,7 @@
             href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
             rel="stylesheet"
         />
-        
-        
+
         <title>{{title}}</title>
     </head>
 
@@ -61,9 +60,8 @@
                                             class="bx bx-bell"
                                         ></i></a></li>
 
-                                <li><a
-                                        href="/users/profile"
-                                    >{{user.name}}</a></li>
+                                <li><a href="/users/profile"><h6
+                                        >{{user.name}}</h6></a></li>
                                 <li><a href="/auth/logout"><i
                                             class="bx bx-log-out"
                                         ></i></a></li>
@@ -74,7 +72,7 @@
                         </ul>
                     </div>
                 </div>
-            </div>  
+            </div>
         </header>
 
         <div class="row">
@@ -150,21 +148,32 @@
         crossorigin="anonymous"
         referrerpolicy="no-referrer"
     ></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"
+    ></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"
+    ></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"
+    ></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"
+    ></script>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css"
+    />
     <script src="/js/user.js"></script>
     <link rel="stylesheet" href="/css/grid.css" />
     <link rel="stylesheet" href="/css/user.css" />
     <script type="text/javascript">
-         $(document).ready(function () {
-             $('#datetimepicker3').datetimepicker({
-                 format: 'DD/MM/YYYY',
-             });
-         });
-      </script>
+        $(document).ready(function () { $('#datetimepicker3').datetimepicker({
+        format: 'DD/MM/YYYY', }); });
+    </script>
 </html>
