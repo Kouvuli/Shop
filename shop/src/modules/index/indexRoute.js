@@ -23,39 +23,39 @@ router.get("/contact", function (req, res, next) {
         title: "Liên hệ",
     });
 });
-router.get("/chinh-sach-bao-mat", function (req, res, next) {
-    res.render("shop/chinh-sach-bao-mat", {
-        title: "Express",
+router.get("/privacy-policy", function (req, res, next) {
+    res.render("shop/privacy-policy", {
+        title: "Chính sách bảo mật",
     });
 });
 
-router.get("/chinh-sach-doi-tra-hoan-tien", function (req, res, next) {
-    res.render("shop/chinh-sach-doi-tra-hoan-tien", {
-        title: "Express",
+router.get("/exchange-refund-policy", function (req, res, next) {
+    res.render("shop/exchange-refund-policy", {
+        title: "Chính sách đổi trả",
     });
 });
 
-router.get("/chinh-sach-khach-si", function (req, res, next) {
-    res.render("shop/chinh-sach-khach-si", {
-        title: "Express",
+router.get("/wholesale-customer-policy", function (req, res, next) {
+    res.render("shop/wholesale-customer-policy", {
+        title: "Chính sách khách sỉ",
     });
 });
 
-router.get("/dieu-khoan-dich-vu", function (req, res, next) {
-    res.render("shop/dieu-khoan-dich-vu", {
-        title: "Express",
+router.get("/terms-of-service", function (req, res, next) {
+    res.render("shop/terms-of-service", {
+        title: "Điều khoản dịch vụ",
     });
 });
 
-router.get("/phuong-thuc-van-chuyen", function (req, res, next) {
-    res.render("shop/phuong-thuc-van-chuyen", {
-        title: "Express",
+router.get("/shipping-method", function (req, res, next) {
+    res.render("shop/shipping-method", {
+        title: "Phương thức vận chuyển",
     });
 });
 
-router.get("/thoi-gian-lam-viec", function (req, res, next) {
-    res.render("shop/thoi-gian-lam-viec", {
-        title: "Express",
+router.get("/working-time", function (req, res, next) {
+    res.render("shop/working-time", {
+        title: "Thời gian làm việc",
     });
 });
 

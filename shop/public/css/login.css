@@ -108,9 +108,6 @@ input {
 .logo {
     font-size: 30px;
 }
-.tc {
-    text-align: center;
-}
 
 /* font  */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
@@ -145,13 +142,18 @@ body {
 .bg-main {
     background-color: var(--main-bg-color);
 }
-
+.logo {
+    font-size: 40px;
+    font-weight: 700;
+}
 .mid-header {
+    max-width: 1344px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: 80px;
     background-color: var(--main-bg-color);
+    margin: auto;
 }
 
 .mid-header > * {
@@ -234,8 +236,8 @@ body {
     padding: 10px;
     margin: 5px 0;
     outline: none;
-    border: 2px solid rgb(255, 255, 255);
-
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 12px;
     background: transparent;
 }
 .submit-btn {
@@ -243,7 +245,7 @@ body {
     padding: 10px 30px;
     cursor: pointer;
     display: block;
-    margin: auto;
+    margin: 15px auto;
     background: #fff;
     border: 0;
     outline: none;
@@ -253,13 +255,13 @@ body {
 }
 
 .check-box {
-    margin: 30px 10px 34px 0;
+    margin: 15px  0;
 }
 span {
     color: #777;
     font-size: 12px;
-    bottom: 68px;
-    position: absolute;
+    margin: 5px 10px;
+
 }
 #login {
     left: 50px;
