@@ -64,10 +64,7 @@ const authController = {
         const newPass = `${parseInt(10000000 + Math.random() * 10000000 - 1)}`;
         await userService.updateResetPassword({
             id: user._id,
-            resetPassword: bcrypt.hashSync(
-                resetPassword,
-                bcrypt.genSaltSync(10)
-            ),
+            resetPassword: bcrypt.hashSync(newPass, bcrypt.genSaltSync(10)),
         });
         const message = `Mật khẩu mới của bạn là ${newPass}`;
         mailService.sendForgotPassword({ email, username: user.name, message });
