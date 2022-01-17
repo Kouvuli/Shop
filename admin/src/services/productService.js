@@ -41,8 +41,8 @@ const productService = {
         return await productModel.create({
             name,
             description,
-            category: { ...category, key: typeKey },
-            manufacturer: { ...manufacturer, key: cateKey },
+            category: { ...category, key: cateKey },
+            manufacturer: { ...manufacturer, key: manufacturerModel },
             quantity,
             originPrice,
             currentPrice,
