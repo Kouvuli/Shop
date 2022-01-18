@@ -32,9 +32,9 @@ const productService = {
         }
         if (!_.isEmpty(q)) {
             filter["$or"] = [
-                { name: { $regex: q } },
-                { "category.type": { $regex: q } },
-                { "manufacturer.name": { $regex: q } },
+                { name: { $regex: new RegExp(q, "i") } },
+                { "category.type": { $regex: new RegExp(q, "i") } },
+                { "manufacturer.name": { $regex: new RegExp(q, "i") } },
             ];
         }
 
@@ -46,17 +46,6 @@ const productService = {
 
             .lean();
         const total = await productModel.countDocuments(filter);
-
-        // for (const product of data) {
-        //     const { manufacturer = {} } = product
-        //     const { name, key } = manufacturer
-        //     if (name && key) {
-        //         const manu = await manufacturerModel.findOne({ key })
-        //         if (!manu) {
-        //             await manufacturerModel.create({ key, name })
-        //         }
-        //     }
-        // }
 
         return { data, page, perPage, total };
     },
