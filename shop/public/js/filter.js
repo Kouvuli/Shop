@@ -10,10 +10,8 @@ if (window.location.href.includes("/")) {
                         "manufacturer",
                         box.id
                     );
-                    localStorage.setItem("@query-manufacturer", box.id);
                 } else {
                     window.location = removeURLParameter("manufacturer");
-                    localStorage.removeItem("@query-manufacturer");
                 }
             };
         });
@@ -25,10 +23,8 @@ if (window.location.href.includes("/")) {
                 e.preventDefault();
                 if (e.target.checked) {
                     window.location.search = insertParams("price", box.id);
-                    localStorage.setItem("@query-price", box.id);
                 } else {
                     window.location = removeURLParameter("price");
-                    localStorage.removeItem("@query-price");
                 }
             };
         });
@@ -51,8 +47,6 @@ if (window.location.href.includes("/")) {
             } else {
                 window.location.search = search;
             }
-
-            localStorage.setItem("@query-q", e.target.value);
         }
     };
 
@@ -64,36 +58,6 @@ if (window.location.href.includes("/")) {
     //         localStorage.setItem("@query-q", e.target.value);
     //     }, 1000);
     // };
-
-    window.onload = () => {
-        const manufacturer = localStorage.getItem("@query-manufacturer");
-        const q = localStorage.getItem("@query-q");
-        const price = localStorage.getItem("@query-price");
-
-        if (manufacturer) {
-            const manufacturerList = document.querySelector(
-                `div[name=manufacturer]`
-            );
-            manufacturerList.querySelector(
-                `input[id=${manufacturer}]`
-            ).checked = true;
-
-            // localStorage.removeItem("@query-manufacturer");
-            // localStorage.removeItem("@query-price");
-        }
-        if (price) {
-            const priceList = document.querySelector(`div[name=price]`);
-
-            priceList.querySelector(`input[id=${price}]`).checked = true;
-
-            // localStorage.removeItem("@query-manufacturer");
-            // localStorage.removeItem("@query-price");
-        }
-        if (q) {
-            document.querySelector(`#search-bar`).value = q;
-            localStorage.removeItem("@query-q");
-        }
-    };
 }
 
 function insertParams(key, value) {

@@ -787,6 +787,9 @@ footer ul li {
 .filter-list > li > a:hover {
     color: var(--red);
 }
+.active-category {
+    color: var(--red);
+}
 .filter-toggle-box {
     display: none;
 }

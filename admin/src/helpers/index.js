@@ -9,6 +9,7 @@ const helpers = {
         if (!x) return "";
         return `$${x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}`;
     },
+
     resolveStatus(status) {
         switch (status) {
             case "processing":

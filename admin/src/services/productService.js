@@ -112,9 +112,9 @@ const productService = {
         }
         if (!_.isEmpty(q)) {
             filter["$or"] = [
-                { name: { $regex: q } },
-                { "category.type": { $regex: q } },
-                { "manufacturer.name": { $regex: q } },
+                { name: { $regex: new RegExp(q, "i") } },
+                { "category.type": { $regex: new RegExp(q, "i") } },
+                { "manufacturer.name": { $regex: new RegExp(q, "i") } },
             ];
         }
         const data = await productModel

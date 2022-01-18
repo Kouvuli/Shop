@@ -10,6 +10,10 @@ const helpers = {
             result.push(options.fn(ary[i]));
         return result.join("");
     },
+    compare(arg1, arg2, options) {
+        if (!arg1 || !arg2) return options.inverse(this);
+        return arg1 === arg2 ? options.fn(this) : options.inverse(this);
+    },
     formatDate(date) {
         return moment(date).format("hh:mm DD/MM/YYYY A");
     },

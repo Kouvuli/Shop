@@ -19,54 +19,10 @@
                         </span>
                         <ul class="filter-list">
                             {{#each categories}}
-                                <li><a name="category" class="pointer" id={{this.key}}>{{this.name}}</a></li>
+                                <li><a  name="category" class="pointer {{#compare ../category this.key }}active-category{{/compare}}" id={{this.key}}>{{this.name}}</a></li>
                             {{/each}}
                         </ul>
                     </div>
-                    {{!-- <div class="box">
-                        <span class="filter-header">
-                            Giá
-                        </span>
-                        <div class="price-range">
-                            <input type="text">
-                            <span>-</span>
-                            <input type="text">
-                        </div>
-                    </div> --}}
-                    {{!-- <div class="box">
-                        <span class="filter-header">
-                            Trạng thái
-                        </span>
-                        <ul class="filter-list">
-                            <li>
-                                <div class="group-checkbox">
-                                    <input type="checkbox" name="status" id="status1">
-                                    <label for="status1">
-                                        Đang giảm giá
-                                        <i class='bx bx-check'></i>
-                                    </label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="group-checkbox">
-                                    <input type="checkbox" name="status" id="status2">
-                                    <label for="status2">
-                                        Còn hàng
-                                        <i class='bx bx-check'></i>
-                                    </label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="group-checkbox">
-                                    <input type="checkbox" name="status" id="status3">
-                                    <label for="status3">
-                                        Hết hàng
-                                        <i class='bx bx-check'></i>
-                                    </label>
-                                </div>
-                            </li>
-                        </ul>
-                    </div> --}}
                     <div class="box" name="price">
                         <span class="filter-header">
                            Giá
@@ -74,7 +30,7 @@
                         <ul class="filter-list">
                                 <li>
                                     <div class="group-checkbox">
-                                        <input type="checkbox" name="price" id="asc">
+                                        <input {{#compare price 'asc' }}checked{{/compare}} type="checkbox" name="price" id="asc">
                                         <label for="asc">
                                             Tăng dần
                                             <i class='bx bx-check'></i>
@@ -83,7 +39,7 @@
                                 </li>
                                 <li>
                                     <div class="group-checkbox">
-                                        <input type="checkbox" name="price" id="desc">
+                                        <input {{#compare price 'desc' }}checked{{/compare}} type="checkbox" name="price" id="desc">
                                         <label for="desc">
                                             Giảm dần
                                             <i class='bx bx-check'></i>
@@ -100,7 +56,7 @@
                             {{#each manufacturers}}
                                 <li>
                                     <div class="group-checkbox">
-                                        <input type="checkbox" name="manufacturer" id={{this.key}}>
+                                        <input {{#compare ../manufacturer this.key }}checked{{/compare}} type="checkbox" name="manufacturer" id={{this.key}}>
                                         <label for={{this.key}}>
                                             {{this.name}}
                                             <i class='bx bx-check'></i>
