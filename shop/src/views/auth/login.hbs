@@ -8,7 +8,8 @@
         </div>
         <div id="mess-list">
             {{#if success}}
-                <p class="mess-content center-box">Đăng ký thành công!</p>
+                <p class="mess-content center-box">Đăng ký thành công! Kiểm tra
+                    email để kích hoạt tài khoản.</p>
             {{/if}}
             {{#if change}}
                 <p class="mess-content center-box">Đổi mật khẩu thành công, vui
@@ -31,8 +32,9 @@
                     không chính xác!</p>
             {{/if}}
             {{#if exist}}
-                <p class="mess-content center-box">Tên đăng nhập hoặc email đã
-                    tồn tại!</p>
+                <p class="mess-content center-box">Tên đăng nhập, email đã tồn
+                    tại hoặc tài khoản chưa được kích hoạt. Vui lòng kiểm tra
+                    email để kích hoạt, đăng nhập hoặc quên mật khẩu</p>
             {{/if}}
             {{#if emptyData}}
                 <p class="mess-content center-box">Vui lòng điền đầu đủ thông
@@ -40,6 +42,9 @@
             {{/if}}
             {{#if logout}}
                 <p class="mess-content center-box">Đăng xuất thành công!</p>
+            {{/if}}
+            {{#if active}}
+                <p class="mess-content center-box">Kích hoạt thành công!</p>
             {{/if}}
         </div>
         <form

@@ -17,6 +17,7 @@ const schema = new Schema(
         address: { type: Schema.Types.String },
         //birthday: sinh nhật người dùng
         birthday: { type: Schema.Types.String },
+        active: { type: Schema.Types.Boolean, default: false },
     },
     { timestamps: true }
 );

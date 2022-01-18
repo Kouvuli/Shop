@@ -3,8 +3,11 @@ import userModel from "../models/userModel";
 import bcrypt from "bcryptjs";
 const userService = {
     async getUserByUsername({ username = "" }) {
-        const user = await userModel.findOne({ username }).lean();
+        const user = await userModel.findOne({ username, active: true }).lean();
         return user;
+    },
+    async activeById({ id }) {
+        return await userModel.findByIdAndUpdate(id, { active: true });
     },
     async getUserByEmail({ email = "" }) {
         const user = await userModel.findOne({ email }).lean();

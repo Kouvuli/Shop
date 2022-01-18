@@ -17,7 +17,8 @@ const mailTemplate = ({ username, message, url }) => {
       </div>
       `;
 };
-const sendForgotPassword = ({
+
+const sendMail = ({
     email = "",
     subject = "Quên mật khẩu",
     username = "",
@@ -55,6 +56,6 @@ const sendForgotPassword = ({
 };
 
 const mailService = {
-    sendForgotPassword,
+    sendMail,
 };
 export default mailService;

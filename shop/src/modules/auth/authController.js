@@ -2,6 +2,7 @@ import _ from "lodash";
 import userService from "../../services/userService";
 import mailService from "../../services/mailService";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 const authController = {
     async login(req, res) {
         const {
@@ -14,6 +15,7 @@ const authController = {
             wrong = false,
             payment = false,
             change = false,
+            active = false,
         } = req.query;
         const state = {
             title: "Đăng nhập",
@@ -30,6 +32,7 @@ const authController = {
             wrong,
             payment,
             change,
+            active,
         });
     },
     async forgot(req, res) {
@@ -67,7 +70,7 @@ const authController = {
             resetPassword: bcrypt.hashSync(newPass, bcrypt.genSaltSync(10)),
         });
         const message = `Mật khẩu mới của bạn là ${newPass}`;
-        mailService.sendForgotPassword({ email, username: user.name, message });
+        mailService.sendMail({ email, username: user.name, message });
         res.redirect("/auth/login?resetSuccess=true");
     },
     async logout(req, res) {
@@ -75,29 +78,50 @@ const authController = {
         res.locals.user = null;
         res.redirect("/auth/login?logout=true");
     },
+    async active(req, res) {
+        const { token } = req.params;
+        try {
+            const { id } = jwt.verify(token, process.env.JWT_SECRET);
+            await userService.activeById({ id });
+            return res.redirect("/auth/login?active=true");
+        } catch (e) {
+            return res.render("error", { message: "Không tồn tại đường dẫn!" });
+        }
+    },
     async register(req, res) {
         const { name, username, email, password } = req.body;
 
         if (!name || !username || !email || !password) {
-            res.redirect("/auth/login?emptyData=true");
+            return res.redirect("/auth/login?emptyData=true");
         }
-        const exist = await userService.getUserByUsername({ username });
+        const exist = await userService.getUserByEmail({ email });
 
         if (!_.isEmpty(exist)) {
-            res.redirect("/auth/login?exist=true");
+            return res.redirect("/auth/login?exist=true");
         }
         try {
-            await userService.createNewUser({
+            const user = await userService.createNewUser({
                 username,
                 name,
                 password,
                 email,
             });
-            res.redirect("/auth/login?success=true");
+            const { _id } = user;
+            const token = jwt.sign({ id: _id }, process.env.JWT_SECRET);
+            const message = `Nhấn vào đường dẫn bên dưới để kích hoạt tài khoản`;
+            const url = `${process.env.BASE_URL}/auth/active/${token}`;
+            mailService.sendMail({
+                email,
+                username: user.name || user.username,
+                message,
+                url,
+                subject: "Kích hoạt tài khoản",
+            });
+            return res.redirect("/auth/login?success=true");
         } catch (e) {
             console.log({ e });
 
-            res.redirect("/auth/login?failure=true");
+            return res.redirect("/auth/login?failure=true");
         }
     },
     async handler(req, res) {
