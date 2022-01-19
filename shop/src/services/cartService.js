@@ -23,12 +23,11 @@ const cartService = {
             // tao mot cart moi neu khong co user
             return await cartModel.create({ userId, items: [item] });
         } else {
-            const existIdx =
-                cart.items.findIndex(
-                    (item) => item?.productId && item.productId === productId
-                ) > -1;
+            const existIdx = cart.items.findIndex(
+                (item) => item?.productId && item.productId === productId
+            );
 
-            if (existIdx) {
+            if (existIdx > -1) {
                 const items = cart.items;
                 items[existIdx].quantity = quantity;
                 return await cartModel.findOneAndUpdate({ userId }, { items });
