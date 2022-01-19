@@ -14,12 +14,13 @@ const cacheService = {
         return this.client;
     },
     async set(key, value, EX) {
-        let cleanValue = value;
-        if (typeof value === "object") {
-            cleanValue = JSON.stringify(value);
-        }
-        this.client.d;
-        await this.client.set(key, cleanValue, { EX });
+        try {
+            let cleanValue = value;
+            if (typeof value === "object") {
+                cleanValue = JSON.stringify(value);
+            }
+            await this.client.set(key, cleanValue, { EX });
+        } catch (e) {}
     },
     async get(key) {
         try {
