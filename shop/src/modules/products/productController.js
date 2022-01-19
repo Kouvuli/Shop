@@ -1,6 +1,7 @@
 import _ from "lodash";
 import productService from "../../services/productService";
 import logService from "../../services/logService";
+import cacheService from "../../services/cacheService";
 const productControllers = {
     async allProducts(req, res) {
         const {
@@ -12,20 +13,48 @@ const productControllers = {
         } = req.query;
         const perPage = 9;
         const userId = req.user || req.sessionID;
-        const categories = await productService.getCategories();
-        const manufacturers = await productService.getManufacturers();
+        let categories = await cacheService.get("categories");
+        if (!categories) {
+            categories = await productService.getCategories();
+            await cacheService.set("categories", categories, 60 * 60 * 12);
+        }
+        //Cache for a day
+
+        let manufacturers = await cacheService.get("manufacturers");
+        if (!manufacturers) {
+            manufacturers = await productService.getManufacturers();
+            await cacheService.set(
+                "manufacturers",
+                manufacturers,
+                60 * 60 * 12
+            );
+        }
+
         const { name = "" } =
             (await productService.getCategoryByKey({ key: category })) ||
-            (await productService.getManufacturerByKey({ key: category })) ||
+            (await productService.getManufacturerByKey({
+                key: manufacturer,
+            })) ||
             {};
-        const { data, total } = await productService.getProducts({
-            page,
-            perPage,
-            category,
-            manufacturer,
-            q,
-            isAsc: price === "asc",
-        });
+        const cacheKey = `products_${page}_${perPage}_${category}_${manufacturer}_${price}_${q}`;
+        let { data, total } = (await cacheService.get(cacheKey)) || {};
+        if (!data || !total) {
+            //Query database
+            console.log("Query database", cacheKey);
+
+            const list = await productService.getProducts({
+                page,
+                perPage,
+                category,
+                manufacturer,
+                q,
+                isAsc: price === "asc",
+            });
+            data = list.data;
+            total = list.total;
+            await cacheService.set(cacheKey, { data, total }, 60 * 60 * 12); //12 hours
+        }
+
         //Log
         for (const pro of data) {
             logService.create({
@@ -60,7 +89,11 @@ const productControllers = {
         const { id } = req.params;
         const userId = req.user || req.sessionID;
 
-        const data = await productService.getProductById({ id });
+        let data = await cacheService.get(`product_${id}`);
+        if (!data) {
+            data = await productService.getProductById({ id });
+            await cacheService.set(`product_${id}`, data, 60 * 30); //30 minutes
+        }
 
         logService.create({
             userId,

@@ -91,6 +91,15 @@ const helpers = {
         }
         return false;
     },
+    isJSON(str) {
+        if (typeof str === "string") {
+            try {
+                JSON.parse(str);
+                return true;
+            } catch (e) {}
+        }
+        return false;
+    },
 };
 
 export default helpers;

@@ -1,5 +1,6 @@
 if (window.location.href.includes("/")) {
     //filter manufacturers
+
     document
         .querySelectorAll(".group-checkbox input[name=manufacturer]")
         .forEach((box) => {
@@ -22,6 +23,7 @@ if (window.location.href.includes("/")) {
             box.onchange = (e) => {
                 e.preventDefault();
                 if (e.target.checked) {
+                    // insertParams("price", box.id);
                     window.location.search = insertParams("price", box.id);
                 } else {
                     window.location = removeURLParameter("price");

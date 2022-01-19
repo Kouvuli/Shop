@@ -8,6 +8,7 @@ import session from "./middleware/session";
 import passport from "./middleware/passport";
 import routes from "./middleware/routes";
 import viewEngine from "./middleware/viewEngine";
+import cacheService from "./services/cacheService";
 const PORT = process.env.PORT || 5000;
 
 class App {
@@ -16,6 +17,7 @@ class App {
         this.environment = process.env.NODE_ENV || "development";
         this.app = express();
         this.server = http.createServer(this.app);
+        this.useCache();
         this.useDatabase();
         viewEngine(this.app);
         appMdw(this.app, this.environment);
@@ -31,6 +33,15 @@ class App {
         } catch (e) {
             console.log({ e });
             console.log("> Cant connect MongoDB...");
+        }
+    }
+    async useCache() {
+        try {
+            await cacheService.connect();
+            console.log("> Cache service is connected...");
+        } catch (e) {
+            console.log({ e });
+            console.log("> Cant connect Cache service...");
         }
     }
 
