@@ -66,8 +66,6 @@ const renderComments = (productId = id, page = 1, perPage = 10) => {
 
     if (commentsSection) {
         //reset
-        commentsSection.innerHTML = "";
-        commentsPagination.innerHTML = "";
         $.ajax({
             url: `/api/v1/products/${productId}/comments?page=${page}&perPage=${perPage}`,
             method: "GET",
@@ -76,11 +74,15 @@ const renderComments = (productId = id, page = 1, perPage = 10) => {
                 //render pagination
                 for (let i = 1; i <= parseInt(total / perPage) + 1; i++) {
                     const li = document.createElement("li");
-                    li.innerHTML = `<a ${
+                    const page_id = `page_${i}`;
+
+                    li.innerHTML = `<a id=${page_id}  ${
                         page === i ? 'class="active"' : ""
                     }>${i}</a>`;
                     li.onclick = () => renderComments(id, i);
-                    commentsPagination.append(li);
+                    if (!commentsPagination.querySelector(`#${page_id}`)) {
+                        commentsPagination.append(li);
+                    }
                 }
                 // li.innerHTML = `<a>...</a>`;
                 // li.innerHTML = `<a class="page-link"><i
@@ -90,8 +92,8 @@ const renderComments = (productId = id, page = 1, perPage = 10) => {
                 if (data.length !== 0) {
                     for (const comment of data) {
                         const div = document.createElement("div");
-
-                        div.innerHTML = `<div class="user-comment">
+                        const id = `comment_${comment?._id}`;
+                        div.innerHTML = `<div class="${id}" class="user-comment">
                         <div class="user-info">
                             <b class="user-name">${
                                 comment.user?.name || `Ẩn danh`
@@ -104,13 +106,16 @@ const renderComments = (productId = id, page = 1, perPage = 10) => {
                         </div>
                         <sup>${comment.createdAt}</sup>
                     </div>`;
-                        commentsSection.append(div);
+                        if (!commentsSection.querySelector(`.${id}`)) {
+                            commentsSection.append(div);
+                        }
                     }
                 } else {
                     //when empty
                     commentsSection.innerHTML =
                         "<div text-align='center'>Chưa có bình luận</div>";
                 }
+                console.log({ commentsSection });
             },
             error: function (jqXHR) {
                 commentsSection.innerHTML =
@@ -140,8 +145,9 @@ const handleComment =
             success: function (res) {
                 const data = res.data;
                 commentContent.value = "";
-                createCommentBtn.innerHTML = "Thành công";
+                createCommentBtn.innerHTML = "Bình luận";
                 createCommentBtn.disabled = false;
+                console.log({ data });
 
                 renderComments();
             },
