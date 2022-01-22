@@ -41,7 +41,7 @@ const apiControllers = {
         }
         const data = await orderService.createOrder({
             userId,
-            status: "pending",
+            status: "shipping",
             payment,
             address,
             products,
