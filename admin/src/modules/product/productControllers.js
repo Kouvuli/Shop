@@ -105,6 +105,7 @@ const productControllers = {
     async editProduct(req, res) {
         const { id } = req.params;
         const old = await productService.getProductById({ id });
+
         const title = "Cập nhật sản phẩm";
         if (_.isEmpty(req.body)) {
             const product = await productService.getProductById({ id });
